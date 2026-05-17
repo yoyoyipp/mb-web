@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mark Beaumont</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="images/JPEG image 2.jpeg" fetchpriority="high">
+<link rel="preload" as="image" href="images/JPEG image 20.jpeg" fetchpriority="high">
+<link rel="preload" as="image" href="images/JPEG image 14.jpeg" fetchpriority="high">
+<link rel="preload" as="image" href="images/JPEG image 3.jpeg" fetchpriority="high">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--ink:#0D0D0D;--paper:#F0EDE6;--blue:#2B2BFF;--yellow:#F5E642;--white:#FFFFFF;--mid:#888;--light:#E0DDD6;--r:20px;--f:'Plus Jakarta Sans',sans-serif;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--f);background:var(--paper);color:var(--ink);overflow-x:hidden;}
+@media(max-width:600px){body{padding-bottom:48px;}}
+img{display:block;}
+
+/* CURSOR */
+.cursor{position:fixed;width:8px;height:8px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:multiply;}
+@media(hover:none){.cursor{display:none;}}
+
+/* SOCIAL SIDEBAR */
+.social-bar{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:500;display:flex;flex-direction:column;gap:0;}
+.social-btn{width:40px;height:40px;background:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;text-decoration:none;}
+.social-btn:first-child{border-radius:8px 0 0 0;}
+.social-btn:last-child{border-radius:0 0 0 8px;}
+.social-btn:hover{background:var(--blue);}
+.social-btn svg{width:16px;height:16px;fill:var(--white);}
+@media(max-width:600px){
+  .social-bar{top:auto;bottom:0;right:0;left:0;transform:none;flex-direction:row;justify-content:center;border-top:1px solid #1a1a1a;}
+  .social-btn{flex:1;height:48px;border-radius:0;}
+  .social-btn:first-child{border-radius:0;}
+  .social-btn:last-child{border-radius:0;}
+}
+
+/* CARDS */
+#cards-scroll{position:relative;height:500vh;}
+.cards-sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;}
+.card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(32px,5vw,72px) clamp(24px,6vw,80px);will-change:transform;backface-visibility:hidden;}
+.c0{background:var(--blue);z-index:5;}
+.c1{background:var(--ink);z-index:4;}
+.c2{background:var(--yellow);z-index:3;}
+.c3{background:var(--paper);z-index:2;}
+.c4{background:var(--blue);z-index:1;}
+.card-logo{position:absolute;top:clamp(20px,3vw,36px);right:clamp(20px,3vw,60px);width:clamp(36px,4vw,52px);height:auto;}
+.card-tag{position:absolute;top:clamp(24px,4vw,52px);left:clamp(24px,5vw,80px);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;}
+.c0 .card-tag,.c1 .card-tag,.c4 .card-tag{color:rgba(255,255,255,.25);}
+.c2 .card-tag{color:rgba(0,0,0,.2);}.c3 .card-tag{color:rgba(255,255,255,.25);}
+.card-kicker{font-size:clamp(9px,1.1vw,11px);font-weight:600;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.card-kicker::before{content:'';display:block;width:18px;height:1.5px;background:currentColor;}
+.c0 .card-kicker,.c4 .card-kicker{color:rgba(255,255,255,.45);}
+.c1 .card-kicker{color:rgba(255,255,255,.35);}
+.c2 .card-kicker{color:rgba(0,0,0,.4);}
+.c3 .card-kicker{color:rgba(255,255,255,.45);}
+.card-hl{font-size:clamp(36px,8vw,128px);font-weight:800;line-height:.9;letter-spacing:-.04em;max-width:900px;}
+.c0 .card-hl,.c1 .card-hl,.c4 .card-hl{color:var(--white);}
+.c2 .card-hl{color:var(--ink);}
+.c3 .card-hl{color:var(--white);}
+.card-sub{font-size:clamp(12px,1.4vw,14px);font-weight:400;margin-top:20px;opacity:.6;max-width:440px;line-height:1.65;}
+.c0 .card-sub,.c1 .card-sub,.c4 .card-sub{color:var(--white);}
+.c2 .card-sub{color:var(--ink);}.c3 .card-sub{color:var(--white);}
+.card-btns{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap;}
+.btn{font-family:var(--f);font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:12px 24px;border-radius:100px;cursor:pointer;border:none;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:transform .2s,opacity .2s;}
+.btn:hover{transform:translateY(-2px);opacity:.9;}
+.btn-p{background:var(--white);color:var(--blue);box-shadow:0 2px 0 rgba(0,0,0,.1);}
+.btn-s{background:transparent;color:rgba(255,255,255,.7);border:1.5px solid rgba(255,255,255,.3);}
+.btn-s:hover{color:var(--white);border-color:rgba(255,255,255,.6);}
+
+/* Two Lives split card */
+.card-split{display:grid;grid-template-columns:1fr 1fr;height:100%;position:absolute;inset:0;}
+.split-half{display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(32px,5vw,72px) clamp(24px,4vw,60px);}
+.split-left{background:var(--ink);transition:background .4s ease;position:relative;overflow:hidden;}
+.split-right{background:#111;border-left:1px solid #1a1a1a;transition:background .4s ease;position:relative;overflow:hidden;}
+.split-half::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.6);transition:opacity .4s ease;pointer-events:none;}
+.split-half:hover::after{opacity:.2;}
+.split-half:hover.split-left{background:#1a1a2e;}
+.split-half:hover.split-right{background:#0d1a0d;}
+.split-half .split-label,.split-half .split-title,.split-half .split-items{position:relative;z-index:1;}
+.split-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:16px;display:block;}
+.split-title{font-size:clamp(24px,3.5vw,48px);font-weight:800;line-height:.95;letter-spacing:-.03em;color:var(--white);margin-bottom:20px;}
+.split-items{display:flex;flex-direction:column;gap:8px;}
+.split-item{font-size:clamp(11px,1.3vw,13px);color:rgba(255,255,255,.5);padding-left:12px;position:relative;line-height:1.4;}
+.split-item::before{content:'—';position:absolute;left:0;color:var(--blue);}
+@media(max-width:600px){.card-split{grid-template-columns:1fr;}.split-right{border-left:none;border-top:1px solid #1a1a1a;}}
+
+.scroll-hint{position:absolute;bottom:clamp(24px,3vw,40px);right:clamp(60px,8vw,120px);display:flex;align-items:center;gap:10px;pointer-events:none;}
+.c0 .scroll-hint,.c1 .scroll-hint,.c4 .scroll-hint{color:rgba(255,255,255,.3);}
+.c2 .scroll-hint{color:rgba(0,0,0,.25);}.c3 .scroll-hint{color:rgba(255,255,255,.3);}
+.sh-txt{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;}
+.sh-line{width:32px;height:1px;background:currentColor;position:relative;overflow:hidden;}
+.sh-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:currentColor;animation:lr 1.8s ease-in-out infinite;}
+@keyframes lr{0%{left:-100%}50%{left:0}100%{left:100%}}
+.slide-counter{position:absolute;bottom:clamp(24px,3vw,40px);left:clamp(24px,5vw,80px);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;}
+.c0 .slide-counter,.c1 .slide-counter,.c4 .slide-counter{color:rgba(255,255,255,.25);}
+.c2 .slide-counter,.c3 .slide-counter{color:rgba(0,0,0,.2);}
+
+/* ABOUT */
+#about{background:var(--white);padding:clamp(64px,8vw,120px) clamp(24px,6vw,80px);}
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);max-width:1200px;margin:0 auto;align-items:center;}
+@media(max-width:768px){.about-layout{grid-template-columns:1fr;gap:40px;}}
+.sec-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:10px;margin-bottom:24px;}
+.sec-label::after{content:'';display:block;width:24px;height:1.5px;background:var(--blue);}
+.about-title{font-size:clamp(36px,5.5vw,80px);font-weight:800;line-height:.92;letter-spacing:-.04em;}
+.about-body{margin-top:28px;font-size:clamp(14px,1.5vw,16px);font-weight:400;line-height:1.8;color:#666;max-width:420px;}
+.stat-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:36px;}
+.stat-pill{background:var(--paper);padding:14px 20px;border-radius:var(--r);display:inline-flex;flex-direction:column;gap:2px;}
+.sp-num{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.04em;line-height:1;}
+.sp-lbl{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);}
+.about-img-wrap{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;background:var(--paper);}
+.about-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:var(--r);}
+.about-badge{position:absolute;bottom:20px;right:20px;background:var(--yellow);color:var(--ink);padding:10px 18px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;}
+.trusted-strip{border-top:1px solid var(--light);padding:clamp(32px,4vw,48px) clamp(24px,6vw,80px);background:var(--white);display:flex;align-items:center;gap:clamp(24px,4vw,52px);flex-wrap:wrap;}
+.trusted-lbl{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#999;white-space:nowrap;flex-shrink:0;}
+.trusted-logos{display:flex;gap:clamp(20px,3vw,36px);flex-wrap:wrap;align-items:center;}
+.tlogo{font-size:12px;font-weight:700;color:#aaa;transition:color .2s;cursor:default;}
+.tlogo:hover{color:var(--ink);}
+
+/* SPEAKING */
+#speaking{background:var(--ink);color:var(--white);padding:clamp(64px,8vw,120px) 0;}
+.speaking-head{padding:0 clamp(24px,6vw,80px);max-width:1280px;margin:0 auto clamp(40px,5vw,64px);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;}
+.speaking-title{font-size:clamp(36px,7vw,96px);font-weight:800;line-height:.9;letter-spacing:-.04em;}
+.sp-book{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);text-decoration:none;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(245,230,66,.3);padding-bottom:2px;transition:gap .2s;flex-shrink:0;}
+.sp-book:hover{gap:14px;}
+.topics-track{display:flex;gap:12px;padding:0 clamp(24px,6vw,80px) 24px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;cursor:grab;}
+.topics-track:active{cursor:grabbing;}
+.topics-track::-webkit-scrollbar{height:2px;}
+.topics-track::-webkit-scrollbar-track{background:#111;}
+.topics-track::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px;}
+.topic-card{scroll-snap-align:start;flex-shrink:0;width:clamp(260px,30vw,320px);min-height:360px;padding:clamp(28px,3vw,40px) clamp(24px,3vw,36px);border-radius:var(--r);border:1px solid #1c1c1c;background:#0a0a0a;display:flex;flex-direction:column;justify-content:flex-end;cursor:pointer;position:relative;overflow:hidden;transition:border-color .25s,transform .25s;}
+.topic-card::before{content:'';position:absolute;inset:0;background:var(--blue);opacity:0;transition:opacity .3s;border-radius:var(--r);}
+.topic-card:hover{transform:translateY(-5px);border-color:var(--blue);}
+.topic-card:hover::before{opacity:.07;}
+.tc-num{position:absolute;top:clamp(24px,2.5vw,36px);left:clamp(24px,2.5vw,36px);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);}
+.tc-icon{position:absolute;top:clamp(24px,2.5vw,36px);right:clamp(24px,2.5vw,36px);color:rgba(255,255,255,.1);}
+.tc-bg-num{position:absolute;bottom:-16px;right:12px;font-size:clamp(80px,12vw,120px);font-weight:800;letter-spacing:-.06em;color:rgba(255,255,255,.025);line-height:1;pointer-events:none;user-select:none;}
+.tc-name{font-size:clamp(18px,2.2vw,24px);font-weight:700;line-height:1.15;letter-spacing:-.02em;color:var(--white);position:relative;z-index:1;margin-bottom:10px;}
+.topic-card:hover .tc-name{color:var(--yellow);}
+.tc-desc{font-size:13px;font-weight:400;line-height:1.65;color:#888;position:relative;z-index:1;transition:color .25s;}
+.topic-card:hover .tc-desc{color:#888;}
+.drag-hint{padding:0 clamp(24px,6vw,80px);margin-top:16px;display:flex;align-items:center;gap:10px;}
+.dh-line{width:32px;height:1px;background:#1c1c1c;}
+.dh-txt{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#777;}
+.reel-block{margin:clamp(40px,5vw,64px) clamp(24px,6vw,80px) 0;background:#080808;border:1px solid #1c1c1c;border-radius:var(--r);aspect-ratio:16/6;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;cursor:pointer;}
+.reel-bg{font-size:clamp(48px,7vw,110px);font-weight:800;letter-spacing:-.04em;color:#101010;position:absolute;user-select:none;white-space:nowrap;}
+.reel-play{width:clamp(52px,5vw,64px);height:clamp(52px,5vw,64px);border:1.5px solid rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;transition:background .2s,border-color .2s,transform .2s;}
+.reel-block:hover .reel-play{background:var(--blue);border-color:var(--blue);transform:scale(1.1);}
+.reel-tri{width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:15px solid rgba(255,255,255,.7);margin-left:4px;}
+
+/* TESTIMONIALS */
+#testimonials{background:var(--paper);padding:clamp(64px,8vw,120px) clamp(24px,6vw,80px) clamp(80px,12vw,180px);overflow:hidden;}
+.test-header{max-width:1200px;margin:0 auto clamp(56px,7vw,100px);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;}
+.test-title{font-size:clamp(36px,7vw,96px);font-weight:800;line-height:.9;letter-spacing:-.04em;}
+.test-hint{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#999;text-align:right;line-height:1.6;padding-bottom:6px;}
+.notes-field{
+  max-width:1300px;margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+@media(max-width:900px){.notes-field{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.notes-field{grid-template-columns:1fr;}}
+.note{--bg:#2B2BFF;--fg:rgba(255,255,255,.9);--attr:rgba(255,255,255,.5);}
+.note:nth-child(2){--bg:#F5E642;--fg:rgba(0,0,0,.85);--attr:rgba(0,0,0,.45);}
+.note:nth-child(3){--bg:#1a1a1a;--fg:rgba(255,255,255,.8);--attr:rgba(255,255,255,.35);}
+.note:nth-child(4){--bg:#3a3aee;--fg:rgba(255,255,255,.9);--attr:rgba(255,255,255,.45);}
+.note:nth-child(5){--bg:#ddd940;--fg:rgba(0,0,0,.85);--attr:rgba(0,0,0,.45);}
+.note:nth-child(6){--bg:#111;--fg:rgba(255,255,255,.75);--attr:rgba(255,255,255,.3);}
+.note{position:relative;left:auto !important;top:auto !important;width:100%;background:var(--bg);padding:24px 22px 26px;border-radius:12px;cursor:pointer;user-select:none;box-shadow:3px 8px 28px rgba(0,0,0,.1);transform:rotate(var(--rot,0deg));transition:transform .25s ease,box-shadow .25s ease;}
+.note:hover{box-shadow:6px 18px 40px rgba(0,0,0,.18);transform:translateY(-4px) scale(1.02) rotate(0deg);z-index:10;}
+.note-q{font-size:13px;font-weight:400;line-height:1.65;color:var(--fg);font-style:italic;}
+.note-attr{margin-top:12px;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--attr);line-height:1.5;}
+
+/* PODCAST */
+#podcast{background:var(--white);padding:clamp(64px,8vw,120px) clamp(24px,6vw,80px);}
+.podcast-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 360px;gap:clamp(48px,7vw,100px);align-items:center;}
+@media(max-width:900px){.podcast-inner{grid-template-columns:1fr;}.pod-photos{display:none;}}
+.pod-kicker{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:14px;}
+.pod-title{font-size:clamp(28px,4vw,52px);font-weight:800;line-height:.92;letter-spacing:-.04em;}
+.pod-body{font-size:14px;font-weight:400;line-height:1.75;color:#888;margin-top:16px;max-width:400px;}
+.episodes{margin-top:32px;border-top:1px solid var(--light);}
+.ep{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--light);cursor:pointer;transition:color .15s;gap:12px;text-decoration:none;color:inherit;}
+.ep:hover{color:var(--blue);}
+.ep-title{font-size:13px;font-weight:600;}
+.ep-meta{font-size:11px;color:#bbb;white-space:nowrap;font-weight:500;}
+.ep-arr{color:#ddd;flex-shrink:0;transition:transform .2s,color .2s;}
+.ep:hover .ep-arr{transform:translateX(3px);color:var(--blue);}
+.pod-links{display:flex;gap:8px;margin-top:24px;flex-wrap:wrap;}
+.pod-link{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:100px;border:1.5px solid var(--light);font-size:11px;font-weight:700;letter-spacing:.06em;text-decoration:none;color:var(--ink);transition:background .2s,border-color .2s,color .2s;}
+.pod-link:hover{background:var(--ink);border-color:var(--ink);color:var(--white);}
+.pod-link svg{width:14px;height:14px;flex-shrink:0;}
+.sponsors{margin-top:24px;padding-top:24px;border-top:1px solid var(--light);}
+.sp-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#ccc;display:block;margin-bottom:10px;}
+.sp-row{display:flex;gap:8px;flex-wrap:wrap;}
+.sp-badge{padding:5px 12px;background:var(--paper);border-radius:100px;font-size:11px;font-weight:600;color:#999;}
+.pod-photos{}
+.pod-art-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;border-radius:var(--r);}
+.pa-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);position:relative;z-index:1;}
+.pa-name{font-size:clamp(18px,2.5vw,26px);font-weight:800;color:var(--white);text-align:center;line-height:1.1;position:relative;z-index:1;letter-spacing:-.02em;}
+.waveform{display:flex;gap:3px;align-items:center;position:relative;z-index:1;margin-top:8px;}
+.wbar{width:2px;background:rgba(255,255,255,.5);border-radius:2px;animation:wv 1.4s ease-in-out infinite;}
+@keyframes wv{0%,100%{transform:scaleY(1)}50%{transform:scaleY(3.5)}}
+
+/* HOW IT WORKS */
+#how{background:var(--ink);color:var(--white);padding:clamp(64px,8vw,120px) clamp(24px,6vw,80px);}
+.how-inner{max-width:1200px;margin:0 auto;}
+.how-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:clamp(48px,6vw,80px);gap:24px;flex-wrap:wrap;}
+.how-title{font-size:clamp(36px,7vw,96px);font-weight:800;line-height:.9;letter-spacing:-.04em;}
+.how-sub{font-size:13px;font-weight:400;color:#888;max-width:200px;text-align:right;line-height:1.65;padding-bottom:6px;}
+.how-steps{display:flex;flex-direction:column;}
+.how-step{display:grid;grid-template-columns:1fr 80px 1fr;align-items:center;padding:clamp(28px,4vw,48px) 0;}
+.how-step:nth-child(odd) .step-content{grid-column:1;text-align:left;padding-right:40px;}
+.how-step:nth-child(odd) .step-center{grid-column:2;}
+.how-step:nth-child(odd) .step-spacer{grid-column:3;}
+.how-step:nth-child(even) .step-spacer{grid-column:1;}
+.how-step:nth-child(even) .step-center{grid-column:2;}
+.how-step:nth-child(even) .step-content{grid-column:3;text-align:left;padding-left:40px;}
+.step-center{display:flex;flex-direction:column;align-items:center;position:relative;}
+.step-center::before{content:'';position:absolute;top:-clamp(28px,4vw,48px);bottom:0;left:50%;transform:translateX(-50%);width:1px;background:#1a1a1a;z-index:0;}
+.how-step:first-child .step-center::before{top:50%;}
+.step-dot{width:48px;height:48px;border-radius:50%;background:var(--ink);border:1.5px solid #2a2a2a;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;transition:background .3s,border-color .3s;flex-shrink:0;}
+.how-step:hover .step-dot{background:var(--blue);border-color:var(--blue);}
+.step-dot-num{font-size:11px;font-weight:700;color:#777;transition:color .3s;}
+.how-step:hover .step-dot-num{color:var(--white);}
+.step-num{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:10px;}
+.step-title{font-size:clamp(16px,2vw,22px);font-weight:700;display:block;margin-bottom:8px;line-height:1.2;}
+.step-body{font-size:13px;font-weight:400;line-height:1.7;color:#888;}
+.step-time{display:inline-block;margin-top:12px;background:rgba(255,255,255,.05);border:1px solid #1e1e1e;border-radius:100px;padding:4px 12px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);}
+@media(max-width:768px){.how-step{grid-template-columns:40px 1fr;gap:16px;}.how-step:nth-child(odd) .step-content,.how-step:nth-child(even) .step-content{grid-column:2;padding:0;text-align:left;}.how-step:nth-child(odd) .step-center,.how-step:nth-child(even) .step-center{grid-column:1;grid-row:1;}.step-spacer{display:none;}}
+.how-step{opacity:.45;transition:opacity .5s ease,transform .4s ease;}
+.how-step.is-active{opacity:1;}
+.how-step.is-active .step-dot,.how-step:hover .step-dot{background:var(--blue);border-color:var(--blue);}
+.how-step.is-active .step-dot-num,.how-step:hover .step-dot-num{color:var(--white);}
+
+/* EVENT RESOURCES */
+#resources{background:var(--paper);padding:clamp(64px,8vw,120px) clamp(24px,6vw,80px);}
+.res-inner{max-width:1200px;margin:0 auto;}
+.res-header{margin-bottom:clamp(40px,5vw,64px);}
+.res-title{font-size:clamp(36px,7vw,96px);font-weight:800;line-height:.9;letter-spacing:-.04em;color:var(--ink);}
+.res-layout{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:768px){.res-layout{grid-template-columns:1fr;}}
+.res-block{background:var(--white);padding:clamp(28px,3.5vw,44px) clamp(24px,3vw,40px);border-radius:var(--r);text-decoration:none;color:var(--ink);display:flex;flex-direction:column;justify-content:space-between;transition:background .25s,color .25s;min-height:240px;}
+.res-block.wide{grid-column:1/-1;flex-direction:row;align-items:center;gap:clamp(28px,5vw,60px);min-height:160px;flex-wrap:wrap;}
+.res-block:hover{background:var(--blue);color:var(--white);}
+.res-block:hover .res-block-label,.res-block:hover .res-block-desc{color:rgba(255,255,255,.5);}
+.res-block:hover .res-block-icon{color:rgba(255,255,255,.25);}
+.res-block-icon{color:var(--light);transition:color .25s;flex-shrink:0;}
+.res-block-name{font-size:clamp(20px,2.5vw,26px);font-weight:800;letter-spacing:-.02em;line-height:1;display:block;margin-bottom:6px;}
+.res-block-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:12px;transition:color .25s;}
+.res-block-desc{font-size:13px;font-weight:400;color:#777;line-height:1.6;max-width:280px;transition:color .25s;}
+.res-block-arr{margin-top:auto;padding-top:20px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:8px;transition:color .2s,gap .2s;}
+.res-block:hover .res-block-arr{color:var(--yellow);gap:14px;}
+.res-footer{margin-top:32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.res-dl{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--white);border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:13px 26px;text-decoration:none;transition:background .2s;}
+.res-dl:hover{background:var(--blue);}
+.res-note{font-size:12px;color:#888;max-width:280px;line-height:1.6;}
+
+/* CONTACT */
+#contact{background:var(--white);padding:clamp(64px,8vw,120px) clamp(24px,6vw,80px);}
+.contact-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 300px;gap:clamp(40px,6vw,80px);align-items:start;}
+@media(max-width:900px){.contact-inner{grid-template-columns:1fr;}.c-sidebar{display:none;}}
+.contact-title{font-size:clamp(40px,6vw,84px);font-weight:800;line-height:.9;letter-spacing:-.04em;margin-bottom:40px;}
+.fg{margin-bottom:14px;}
+.fg label{display:block;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#888;margin-bottom:5px;}
+.fg label .r{color:var(--blue);}
+.fc{width:100%;border:none;border-bottom:1.5px solid var(--light);padding:10px 0;font-family:var(--f);font-size:14px;background:transparent;color:var(--ink);outline:none;transition:border-color .2s;-webkit-appearance:none;border-radius:0;}
+.fc:focus{border-bottom-color:var(--blue);}
+.fc::placeholder{color:#bbb;}
+select.fc{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%23bbb' stroke-width='1.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 2px center;background-size:12px 8px;padding-right:20px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:600px){.frow{grid-template-columns:1fr;}}
+.submit-btn{margin-top:28px;background:var(--blue);color:var(--white);border:none;padding:14px 28px;border-radius:100px;font-family:var(--f);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s;display:inline-flex;align-items:center;gap:10px;}
+.submit-btn:hover{background:var(--ink);}
+.team-card{background:var(--paper);padding:24px;border-radius:var(--r);margin-bottom:12px;}
+.team-hd{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#888;display:block;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--light);}
+.team-p{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--light);}
+.team-p:last-child{border-bottom:none;}
+.t-av{width:36px;height:36px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.t-name{font-size:14px;font-weight:700;display:block;}
+.t-role{font-size:11px;color:#666;}
+.fees-card{background:var(--ink);color:var(--white);padding:24px;border-radius:var(--r);}
+.fees-hd{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);display:block;margin-bottom:16px;}
+.fee-row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid #151515;}
+.fee-row:last-of-type{border-bottom:none;}
+.fee-reg{font-size:13px;color:#aaa;}
+.fee-amt{font-size:18px;font-weight:800;color:var(--yellow);letter-spacing:-.03em;}
+.fees-note{font-size:11px;color:#999;line-height:1.6;margin-top:10px;}
+footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24px,6vw,80px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.f-brand{font-size:16px;font-weight:800;letter-spacing:-.02em;color:var(--white);}
+.f-back{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#777;text-decoration:none;transition:color .2s;}
+.f-back:hover{color:var(--yellow);}
+
+.reel-thumb:hover img{transform:scale(1.03);}
+.reel-thumb:hover .reel-overlay{background:rgba(0,0,0,.2);}
+.reel-thumb:hover .reel-play-btn{background:rgba(255,255,255,.25);transform:scale(1.1);}
+
+/* Bicycle zoom animation on c2 */
+@keyframes bikeRide{
+  0%{transform:translateX(-260px) scaleX(1);}
+  100%{transform:translateX(calc(100vw + 260px)) scaleX(1);}
+}
+#c2 .card-deco{position:absolute;top:32%;left:0;width:100%;pointer-events:none;}
+#c2 .card-deco svg{
+  width:clamp(110px,14vw,190px);height:auto;
+  transform:translateX(-260px);
+  transition:none;
+}
+#c2.bike-running .card-deco svg{
+  animation:bikeRide 2.1s cubic-bezier(0.3,0,0.7,1) forwards;
+}
+
+#podcast .ep{border-bottom:1px solid var(--light);color:var(--ink);}
+#podcast .ep:hover{color:var(--blue);}
+#podcast .ep-meta{color:#888;}
+#podcast .ep-arr{color:#bbb;}
+#podcast .ep:hover .ep-arr{color:var(--blue);}
+
+/* INTRO ANIMATION */
+#intro-overlay{position:fixed;inset:0;z-index:9999;background:var(--blue);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+#intro-overlay.intro-exit{animation:introOverlayFade 1.4s ease-in forwards;}
+#intro-svg{width:clamp(260px,55vmin,520px);height:clamp(260px,55vmin,520px);animation:introSvgEnter 1.4s 0s cubic-bezier(.2,0,.4,1) both;overflow:visible;}
+#intro-svg.intro-exit{animation:introSvgExit 1.4s ease-in forwards;}
+#ii1{animation:fromTL 1.1s .2s cubic-bezier(.2,0,.4,1) both;}
+#ii2{animation:fromTR 1.1s .45s cubic-bezier(.2,0,.4,1) both;}
+#ii3{animation:fromBL 1.1s .7s cubic-bezier(.2,0,.4,1) both;}
+#ii4{animation:fromBR 1.1s .95s cubic-bezier(.2,0,.4,1) both;}
+@keyframes introSvgEnter{from{transform:scale(1.5);opacity:0;}to{transform:scale(1);opacity:1;}}
+@keyframes introSvgExit{to{transform:scale(.55);opacity:0;}}
+@keyframes introOverlayFade{to{opacity:0;pointer-events:none;}}
+@keyframes fromTL{from{transform:translate(-320px,-320px);opacity:0;}to{transform:translate(0,0);opacity:1;}}
+@keyframes fromTR{from{transform:translate(320px,-320px);opacity:0;}to{transform:translate(0,0);opacity:1;}}
+@keyframes fromBL{from{transform:translate(-320px,320px);opacity:0;}to{transform:translate(0,0);opacity:1;}}
+@keyframes fromBR{from{transform:translate(320px,320px);opacity:0;}to{transform:translate(0,0);opacity:1;}}
+@media(prefers-reduced-motion:reduce){#intro-overlay{display:none;}}
+#c0-logo-bg{position:absolute;right:-6%;top:50%;transform:translateY(-50%);width:clamp(300px,62vh,620px);height:clamp(300px,62vh,620px);opacity:0;pointer-events:none;z-index:0;transition:opacity 1.4s ease;}
+#c0-logo-bg.is-visible{opacity:.5;}
+/* WORLD MAP */
+#map-wrap{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+#map-svg{display:block;width:100%;height:63%;}
+#map-fade{position:absolute;bottom:0;left:0;right:0;height:58%;background:linear-gradient(to bottom,rgba(8,8,26,0) 0%,var(--yellow) 60%);}
+.c2 .card-tag,.c2 .card-logo,.c2 .card-deco,.c2 .slide-counter,.c2 .scroll-hint,.c2 .card-kicker,.c2 .card-hl,.c2 .card-sub{position:relative;z-index:1;}
+</style>
+</head>
+<body>
+<div id="intro-overlay">
+  <svg id="intro-svg" viewBox="0 0 2048 2048" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <clipPath id="mb-clip">
+        <path d="M1642.3,973.46h-104.84l-280.27-667.89-418.81,626.42-166.67-207.61c-19.9,30.96-39.19,61.22-58.1,90.81-32.33,50.78-65.72,103.23-101.94,158.28h-124.05c35.76-54.36,97.44-169.34,129.54-219.73,32.33-50.7,65.72-103.08,101.94-158.13l43.15-65.72,167.66,208.91L1279.68,66.16l362.62,907.3Z"/>
+        <path d="M389.88,1074.53l26.25,65.69,14.15,35.38,322.23,806.24,449.74-672.62,167.65,208.91,43.16-65.73c36.23-55.04,69.6-107.44,101.96-158.12,17.35-27.26,43.35-73.44,69.27-118.68,21.97-38.36,43.83-76.12,60.25-101.07H389.88ZM775.01,1742.42l-237.89-566.82h616.84l-378.95,566.82ZM1418.59,1232.84c-18.92,29.57-38.21,59.84-58.13,90.79l-118.83-148.03h213.46c-12.4,19.36-24.5,38.39-36.49,57.24Z"/>
+      </clipPath>
+    </defs>
+    <g clip-path="url(#mb-clip)">
+      <image id="ii1" href="images/JPEG image 2.jpeg"  x="-80" y="-80"   width="1150" height="1150" preserveAspectRatio="xMidYMid slice"/>
+      <image id="ii2" href="images/JPEG image 20.jpeg" x="978"  y="-80"   width="1150" height="1150" preserveAspectRatio="xMidYMid slice"/>
+      <image id="ii3" href="images/JPEG image 14.jpeg" x="-80" y="978"   width="1150" height="1150" preserveAspectRatio="xMidYMid slice"/>
+      <image id="ii4" href="images/JPEG image 3.jpeg"  x="978"  y="978"   width="1150" height="1150" preserveAspectRatio="xMidYMid slice"/>
+    </g>
+  </svg>
+</div>
+<div class="cursor" id="cur"></div>
+
+<!-- SOCIAL SIDEBAR -->
+<div class="social-bar">
+  <a href="https://www.linkedin.com/in/mark-beaumont-47906728" target="_blank" class="social-btn" title="LinkedIn">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+  </a>
+  <a href="https://www.instagram.com/mrmarkbeaumont/" target="_blank" class="social-btn" title="Instagram">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+  </a>
+  <a href="https://www.youtube.com/@MrMarkBeaumont" target="_blank" class="social-btn" title="YouTube">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+  </a>
+  <a href="https://www.facebook.com/MarkBeaumontAdventures" target="_blank" class="social-btn" title="Facebook">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+  </a>
+</div>
+
+<!-- CARDS -->
+<div id="cards-scroll">
+  <div class="cards-sticky">
+
+    <!-- Card 1: Mark Beaumont — Blue -->
+    <div class="card c0" id="c0">
+      <div id="c0-logo-bg"><svg viewBox="0 0 2048 2048" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="mb-clip-bg"><path d="M1642.3,973.46h-104.84l-280.27-667.89-418.81,626.42-166.67-207.61c-19.9,30.96-39.19,61.22-58.1,90.81-32.33,50.78-65.72,103.23-101.94,158.28h-124.05c35.76-54.36,97.44-169.34,129.54-219.73,32.33-50.7,65.72-103.08,101.94-158.13l43.15-65.72,167.66,208.91L1279.68,66.16l362.62,907.3Z"/><path d="M389.88,1074.53l26.25,65.69,14.15,35.38,322.23,806.24,449.74-672.62,167.65,208.91,43.16-65.73c36.23-55.04,69.6-107.44,101.96-158.12,17.35-27.26,43.35-73.44,69.27-118.68,21.97-38.36,43.83-76.12,60.25-101.07H389.88ZM775.01,1742.42l-237.89-566.82h616.84l-378.95,566.82ZM1418.59,1232.84c-18.92,29.57-38.21,59.84-58.13,90.79l-118.83-148.03h213.46c-12.4,19.36-24.5,38.39-36.49,57.24Z"/></clipPath></defs><g clip-path="url(#mb-clip-bg)"><image href="images/JPEG image 2.jpeg"  x="-80" y="-80"  width="1150" height="1150" preserveAspectRatio="xMidYMid slice"/><image href="images/JPEG image 20.jpeg" x="978"  y="-80"  width="1150" height="1150" preserveAspectRatio="xMidYMid slice"/><image href="images/JPEG image 14.jpeg" x="-80"  y="978"  width="1150" height="1150" preserveAspectRatio="xMidYMid slice"/><image href="images/JPEG image 3.jpeg"  x="978"  y="978"  width="1150" height="1150" preserveAspectRatio="xMidYMid slice"/></g></svg></div>
+      <span class="card-tag">MB — 01</span>
+      <img class="card-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTUJfTG9nbyIgZGF0YS1uYW1lPSJNQiBMb2dvIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDQ4IDIwNDgiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICNGRkZGRkY7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJfTV8iIGRhdGEtbmFtZT0iJmFtcDtxdW90O00mYW1wO3F1b3Q7Ij4KICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE2NDIuMyw5NzMuNDZoLTEwNC44NGwtMjgwLjI3LTY2Ny44OS00MTguODEsNjI2LjQyLTE2Ni42Ny0yMDcuNjFjLTE5LjksMzAuOTYtMzkuMTksNjEuMjItNTguMSw5MC44MS0zMi4zMyw1MC43OC02NS43MiwxMDMuMjMtMTAxLjk0LDE1OC4yOGgtMTI0LjA1YzM1Ljc2LTU0LjM2LDk3LjQ0LTE2OS4zNCwxMjkuNTQtMjE5LjczLDMyLjMzLTUwLjcsNjUuNzItMTAzLjA4LDEwMS45NC0xNTguMTNsNDMuMTUtNjUuNzIsMTY3LjY2LDIwOC45MUwxMjc5LjY4LDY2LjE2bDM2Mi42Miw5MDcuM1oiLz4KICA8L2c+CiAgPGcgaWQ9Il9CXyIgZGF0YS1uYW1lPSImYW1wO3F1b3Q7QiZhbXA7cXVvdDsiPgogICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzg5Ljg4LDEwNzQuNTNsMjYuMjUsNjUuNjksMTQuMTUsMzUuMzgsMzIyLjIzLDgwNi4yNCw0NDkuNzQtNjcyLjYyLDE2Ny42NSwyMDguOTEsNDMuMTYtNjUuNzNjMzYuMjMtNTUuMDQsNjkuNi0xMDcuNDQsMTAxLjk2LTE1OC4xMiwxNy4zNS0yNy4yNiw0My4zNS03My40NCw2OS4yNy0xMTguNjgsMjEuOTctMzguMzYsNDMuODMtNzYuMTIsNjAuMjUtMTAxLjA3SDM4OS44OFpNNzc1LjAxLDE3NDIuNDJsLTIzNy44OS01NjYuODJoNjE2Ljg0bC0zNzguOTUsNTY2LjgyWk0xNDE4LjU5LDEyMzIuODRjLTE4LjkyLDI5LjU3LTM4LjIxLDU5Ljg0LTU4LjEzLDkwLjc5bC0xMTguODMtMTQ4LjAzaDIxMy40NmMtMTIuNCwxOS4zNi0yNC41LDM4LjM5LTM2LjQ5LDU3LjI0WiIvPgogIDwvZz4KPC9zdmc+" alt="MB">
+      <div class="card-kicker">Events · Expeditions · Entrepreneurship</div>
+      <div class="card-hl">Mark<br>Beaumont</div>
+      <div class="card-sub">Multiple Guinness World Record Holder. International Conference Speaker. BBC Broadcaster. Author &amp; Podcaster.</div>
+      <div class="card-btns">
+        <a href="#" class="btn btn-p" id="lmbtn"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 8l5 4 5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Learn More</a>
+        <a href="#contact" class="btn btn-s">Contact Mark ↗</a>
+      </div>
+      <div class="slide-counter">01 / 05</div>
+      <div class="scroll-hint"><span class="sh-txt">Scroll</span><div class="sh-line"></div></div>
+    </div>
+
+    <!-- Card 2: Two Lives — Split dark -->
+    <div class="card c1" id="c1" style="padding:0;">
+      <img class="card-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTUJfTG9nbyIgZGF0YS1uYW1lPSJNQiBMb2dvIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDQ4IDIwNDgiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICNGRkZGRkY7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJfTV8iIGRhdGEtbmFtZT0iJmFtcDtxdW90O00mYW1wO3F1b3Q7Ij4KICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE2NDIuMyw5NzMuNDZoLTEwNC44NGwtMjgwLjI3LTY2Ny44OS00MTguODEsNjI2LjQyLTE2Ni42Ny0yMDcuNjFjLTE5LjksMzAuOTYtMzkuMTksNjEuMjItNTguMSw5MC44MS0zMi4zMyw1MC43OC02NS43MiwxMDMuMjMtMTAxLjk0LDE1OC4yOGgtMTI0LjA1YzM1Ljc2LTU0LjM2LDk3LjQ0LTE2OS4zNCwxMjkuNTQtMjE5LjczLDMyLjMzLTUwLjcsNjUuNzItMTAzLjA4LDEwMS45NC0xNTguMTNsNDMuMTUtNjUuNzIsMTY3LjY2LDIwOC45MUwxMjc5LjY4LDY2LjE2bDM2Mi42Miw5MDcuM1oiLz4KICA8L2c+CiAgPGcgaWQ9Il9CXyIgZGF0YS1uYW1lPSImYW1wO3F1b3Q7QiZhbXA7cXVvdDsiPgogICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzg5Ljg4LDEwNzQuNTNsMjYuMjUsNjUuNjksMTQuMTUsMzUuMzgsMzIyLjIzLDgwNi4yNCw0NDkuNzQtNjcyLjYyLDE2Ny42NSwyMDguOTEsNDMuMTYtNjUuNzNjMzYuMjMtNTUuMDQsNjkuNi0xMDcuNDQsMTAxLjk2LTE1OC4xMiwxNy4zNS0yNy4yNiw0My4zNS03My40NCw2OS4yNy0xMTguNjgsMjEuOTctMzguMzYsNDMuODMtNzYuMTIsNjAuMjUtMTAxLjA3SDM4OS44OFpNNzc1LjAxLDE3NDIuNDJsLTIzNy44OS01NjYuODJoNjE2Ljg0bC0zNzguOTUsNTY2LjgyWk0xNDE4LjU5LDEyMzIuODRjLTE4LjkyLDI5LjU3LTM4LjIxLDU5Ljg0LTU4LjEzLDkwLjc5bC0xMTguODMtMTQ4LjAzaDIxMy40NmMtMTIuNCwxOS4zNi0yNC41LDM4LjM5LTM2LjQ5LDU3LjI0WiIvPgogIDwvZz4KPC9zdmc+" alt="MB">
+      <div class="card-split">
+        <div class="split-half split-left" style="background-image:url('images/Slide 3.jpg');background-size:cover;background-position:center;">
+          <span class="split-label">Sport &amp; Business</span>
+          <h2 class="split-title">One Man.<br>One Mission.</h2>
+          <div class="split-items">
+            <span class="split-item">Building Teams</span>
+            <span class="split-item">Creating Plans</span>
+            <span class="split-item">Quiet Confidence &amp; Execution</span>
+          </div>
+        </div>
+        <div class="split-half split-right" style="background-image:url('images/Slide 7.jpg');background-size:cover;background-position:center top;">
+          <span class="split-label">Creating a Different Future</span>
+          <h2 class="split-title">Two Worlds.<br>One Method.</h2>
+          <div class="split-items">
+            <span class="split-item">Finance &amp; Business Growth</span>
+            <span class="split-item">Backing Business</span>
+            <span class="split-item">First Principles Thinking</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-counter" style="position:absolute;bottom:clamp(24px,3vw,40px);left:clamp(24px,5vw,80px);color:rgba(255,255,255,.25);">02 / 05</div>
+    </div>
+
+    <!-- Card 3: World Record — Yellow -->
+    <div class="card c2" id="c2">
+      <div id="map-wrap">
+        <svg id="map-svg" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <filter id="rglow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <!-- Ocean -->
+          <rect width="800" height="400" fill="#07071a"/>
+          <!-- Graticule -->
+          <g stroke="#111130" stroke-width="0.6" fill="none">
+            <line x1="67" y1="0" x2="67" y2="400"/><line x1="133" y1="0" x2="133" y2="400"/><line x1="200" y1="0" x2="200" y2="400"/><line x1="267" y1="0" x2="267" y2="400"/><line x1="333" y1="0" x2="333" y2="400"/><line x1="400" y1="0" x2="400" y2="400"/><line x1="467" y1="0" x2="467" y2="400"/><line x1="533" y1="0" x2="533" y2="400"/><line x1="600" y1="0" x2="600" y2="400"/><line x1="667" y1="0" x2="667" y2="400"/><line x1="733" y1="0" x2="733" y2="400"/>
+            <line x1="0" y1="67" x2="800" y2="67"/><line x1="0" y1="133" x2="800" y2="133"/><line x1="0" y1="200" x2="800" y2="200"/><line x1="0" y1="267" x2="800" y2="267"/><line x1="0" y1="333" x2="800" y2="333"/>
+          </g>
+          <!-- Continents -->
+          <g fill="#111128" stroke="#1c1c3c" stroke-width="0.9" stroke-linejoin="round">
+            <!-- North America -->
+            <path d="M27,133 L40,51 L100,25 L200,30 L267,40 L289,80 L280,110 L258,140 L258,165 L245,163 L200,158 L170,153 L155,135 L140,128 L124,95 Z"/>
+            <!-- South America -->
+            <path d="M229,182 L264,176 L322,211 L311,258 L270,284 L247,322 L233,311 L242,267 L222,211 Z"/>
+            <!-- Africa -->
+            <path d="M387,120 L422,118 L476,131 L496,173 L489,224 L478,253 L442,278 L427,264 L407,191 L371,182 L362,167 L371,138 Z"/>
+            <!-- Eurasia -->
+            <path d="M380,118 L456,42 L622,38 L778,53 L762,84 L716,104 L671,131 L660,187 L631,178 L578,182 L529,151 L500,167 L476,131 L480,120 L449,120 L387,120 Z"/>
+            <!-- Australia -->
+            <path d="M653,249 L698,227 L722,224 L740,262 L736,284 L714,287 L698,278 L656,278 Z"/>
+          </g>
+          <!-- Cycling route (solid yellow) -->
+          <g fill="none" stroke="#F5E642" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" filter="url(#rglow)">
+            <polyline points="404,91 464,109 499,107 554,109 566,129 597,150"/>
+            <polyline points="657,271 710,262 740,261"/>
+            <polyline points="67,64 128,99 140,122 179,157"/>
+            <line x1="380" y1="113" x2="404" y2="91"/>
+          </g>
+          <!-- Flight arcs (animated dashed blue) -->
+          <g fill="none" stroke="#5b8dff" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="8,5">
+            <!-- Kolkata → Perth -->
+            <path d="M597,150 Q640,240 657,271"><animate attributeName="stroke-dashoffset" from="0" to="-26" dur="0.7s" repeatCount="indefinite"/></path>
+            <!-- Brisbane → dateline -->
+            <path d="M740,261 Q790,130 800,95"><animate attributeName="stroke-dashoffset" from="0" to="-26" dur="0.7s" repeatCount="indefinite"/></path>
+            <!-- dateline → Anchorage -->
+            <path d="M0,95 Q25,70 67,64"><animate attributeName="stroke-dashoffset" from="0" to="-26" dur="0.7s" repeatCount="indefinite"/></path>
+            <!-- Mexico → Lisbon -->
+            <path d="M179,157 Q290,118 380,113"><animate attributeName="stroke-dashoffset" from="0" to="-26" dur="0.7s" repeatCount="indefinite"/></path>
+          </g>
+          <!-- City: Paris (start/end — double pulse) -->
+          <g>
+            <circle cx="404" cy="91" r="5" fill="#F5E642"/>
+            <circle cx="404" cy="91" r="5" fill="none" stroke="#F5E642" stroke-width="1.5"><animate attributeName="r" values="5;18;5" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.9;0;0.9" dur="2s" repeatCount="indefinite"/></circle>
+            <circle cx="404" cy="91" r="5" fill="none" stroke="#F5E642" stroke-width="1"><animate attributeName="r" values="5;18;5" dur="2s" begin="0.7s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="2s" begin="0.7s" repeatCount="indefinite"/></circle>
+            <text x="404" y="82" fill="#F5E642" font-size="7" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-weight="700" letter-spacing="0.12em">PARIS</text>
+          </g>
+          <!-- Istanbul -->
+          <g><circle cx="464" cy="109" r="3" fill="white" opacity="0.85"/><circle cx="464" cy="109" r="3" fill="none" stroke="white" stroke-width="1" opacity="0.7"><animate attributeName="r" values="3;11;3" dur="2.3s" begin="0.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="2.3s" begin="0.4s" repeatCount="indefinite"/></circle><text x="464" y="103" fill="white" font-size="5.5" text-anchor="middle" font-family="sans-serif" font-weight="600" opacity="0.65" letter-spacing="0.08em">ISTANBUL</text></g>
+          <!-- Kolkata -->
+          <g><circle cx="597" cy="150" r="3" fill="white" opacity="0.85"/><circle cx="597" cy="150" r="3" fill="none" stroke="white" stroke-width="1" opacity="0.7"><animate attributeName="r" values="3;11;3" dur="2.5s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="2.5s" begin="0.8s" repeatCount="indefinite"/></circle><text x="597" y="144" fill="white" font-size="5.5" text-anchor="middle" font-family="sans-serif" font-weight="600" opacity="0.65" letter-spacing="0.08em">KOLKATA</text></g>
+          <!-- Perth -->
+          <g><circle cx="657" cy="271" r="3" fill="white" opacity="0.85"/><circle cx="657" cy="271" r="3" fill="none" stroke="white" stroke-width="1" opacity="0.7"><animate attributeName="r" values="3;11;3" dur="2.2s" begin="1.1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="2.2s" begin="1.1s" repeatCount="indefinite"/></circle><text x="657" y="265" fill="white" font-size="5.5" text-anchor="middle" font-family="sans-serif" font-weight="600" opacity="0.65" letter-spacing="0.08em">PERTH</text></g>
+          <!-- Brisbane -->
+          <g><circle cx="740" cy="261" r="3" fill="white" opacity="0.85"/><circle cx="740" cy="261" r="3" fill="none" stroke="white" stroke-width="1" opacity="0.7"><animate attributeName="r" values="3;11;3" dur="2.4s" begin="1.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="2.4s" begin="1.4s" repeatCount="indefinite"/></circle><text x="738" y="255" fill="white" font-size="5.5" text-anchor="end" font-family="sans-serif" font-weight="600" opacity="0.65" letter-spacing="0.08em">BRISBANE</text></g>
+          <!-- Anchorage -->
+          <g><circle cx="67" cy="64" r="3" fill="white" opacity="0.85"/><circle cx="67" cy="64" r="3" fill="none" stroke="white" stroke-width="1" opacity="0.7"><animate attributeName="r" values="3;11;3" dur="2.1s" begin="1.7s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="2.1s" begin="1.7s" repeatCount="indefinite"/></circle><text x="74" y="62" fill="white" font-size="5.5" text-anchor="start" font-family="sans-serif" font-weight="600" opacity="0.65" letter-spacing="0.08em">ANCHORAGE</text></g>
+          <!-- Mexico City -->
+          <g><circle cx="179" cy="157" r="3" fill="white" opacity="0.85"/><circle cx="179" cy="157" r="3" fill="none" stroke="white" stroke-width="1" opacity="0.7"><animate attributeName="r" values="3;11;3" dur="2.6s" begin="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="2.6s" begin="2s" repeatCount="indefinite"/></circle><text x="179" y="168" fill="white" font-size="5.5" text-anchor="middle" font-family="sans-serif" font-weight="600" opacity="0.65" letter-spacing="0.08em">MEXICO</text></g>
+          <!-- Lisbon -->
+          <g><circle cx="380" cy="113" r="3" fill="white" opacity="0.85"/><circle cx="380" cy="113" r="3" fill="none" stroke="white" stroke-width="1" opacity="0.7"><animate attributeName="r" values="3;11;3" dur="2.8s" begin="2.3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="2.8s" begin="2.3s" repeatCount="indefinite"/></circle><text x="374" y="107" fill="white" font-size="5.5" text-anchor="end" font-family="sans-serif" font-weight="600" opacity="0.65" letter-spacing="0.08em">LISBON</text></g>
+          <!-- Stat watermark -->
+          <text x="795" y="393" fill="rgba(255,255,255,0.12)" font-size="7.5" text-anchor="end" font-family="sans-serif" font-weight="700" letter-spacing="0.14em">18,000 MILES · 78 DAYS</text>
+        </svg>
+        <div id="map-fade"></div>
+      </div>
+      <span class="card-tag">MB — 03</span>
+      
+      <img class="card-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTUJfTG9nbyIgZGF0YS1uYW1lPSJNQiBMb2dvIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDQ4IDIwNDgiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICMwRDBEMEQ7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJfTV8iIGRhdGEtbmFtZT0iJmFtcDtxdW90O00mYW1wO3F1b3Q7Ij4KICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE2NDIuMyw5NzMuNDZoLTEwNC44NGwtMjgwLjI3LTY2Ny44OS00MTguODEsNjI2LjQyLTE2Ni42Ny0yMDcuNjFjLTE5LjksMzAuOTYtMzkuMTksNjEuMjItNTguMSw5MC44MS0zMi4zMyw1MC43OC02NS43MiwxMDMuMjMtMTAxLjk0LDE1OC4yOGgtMTI0LjA1YzM1Ljc2LTU0LjM2LDk3LjQ0LTE2OS4zNCwxMjkuNTQtMjE5LjczLDMyLjMzLTUwLjcsNjUuNzItMTAzLjA4LDEwMS45NC0xNTguMTNsNDMuMTUtNjUuNzIsMTY3LjY2LDIwOC45MUwxMjc5LjY4LDY2LjE2bDM2Mi42Miw5MDcuM1oiLz4KICA8L2c+CiAgPGcgaWQ9Il9CXyIgZGF0YS1uYW1lPSImYW1wO3F1b3Q7QiZhbXA7cXVvdDsiPgogICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzg5Ljg4LDEwNzQuNTNsMjYuMjUsNjUuNjksMTQuMTUsMzUuMzgsMzIyLjIzLDgwNi4yNCw0NDkuNzQtNjcyLjYyLDE2Ny42NSwyMDguOTEsNDMuMTYtNjUuNzNjMzYuMjMtNTUuMDQsNjkuNi0xMDcuNDQsMTAxLjk2LTE1OC4xMiwxNy4zNS0yNy4yNiw0My4zNS03My40NCw2OS4yNy0xMTguNjgsMjEuOTctMzguMzYsNDMuODMtNzYuMTIsNjAuMjUtMTAxLjA3SDM4OS44OFpNNzc1LjAxLDE3NDIuNDJsLTIzNy44OS01NjYuODJoNjE2Ljg0bC0zNzguOTUsNTY2LjgyWk0xNDE4LjU5LDEyMzIuODRjLTE4LjkyLDI5LjU3LTM4LjIxLDU5Ljg0LTU4LjEzLDkwLjc5bC0xMTguODMtMTQ4LjAzaDIxMy40NmMtMTIuNCwxOS4zNi0yNC41LDM4LjM5LTM2LjQ5LDU3LjI0WiIvPgogIDwvZz4KPC9zdmc+" alt="MB">
+      <div class="card-deco"><svg width="130" height="80" viewBox="0 0 130 80" fill="none" color="#0D0D0D"><circle cx="22" cy="58" r="16" stroke="currentColor" stroke-width="1.2"/><circle cx="108" cy="58" r="16" stroke="currentColor" stroke-width="1.2"/><path d="M22 58L48 20h22" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M70 20L108 58" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M48 20L65 58" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="60" y1="20" x2="82" y2="20" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="71" cy="20" r="3.5" stroke="currentColor" stroke-width="1.2"/></svg></div>
+      <div class="slide-counter">03 / 05</div>
+      <div class="scroll-hint" style="color:rgba(0,0,0,.25)"><span class="sh-txt">Scroll</span><div class="sh-line"></div></div>
+      <div class="card-kicker">World Record</div>
+      <div class="card-hl">Fastest<br>Around<br>the World</div>
+      <div class="card-sub">78 days · 14 hours · 40 minutes · 18,000 miles</div>
+    </div>
+
+    <!-- Card 4: Backing Business — Paper -->
+    <div class="card c3" id="c3" style="background-image:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.48) 50%,rgba(0,0,0,.2) 100%),url('images/Slide 8.jpg');background-size:cover;background-position:center 28%;">
+      <span class="card-tag">MB — 04</span>
+      <img class="card-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTUJfTG9nbyIgZGF0YS1uYW1lPSJNQiBMb2dvIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDQ4IDIwNDgiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICNGRkZGRkY7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJfTV8iIGRhdGEtbmFtZT0iJmFtcDtxdW90O00mYW1wO3F1b3Q7Ij4KICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE2NDIuMyw5NzMuNDZoLTEwNC44NGwtMjgwLjI3LTY2Ny44OS00MTguODEsNjI2LjQyLTE2Ni42Ny0yMDcuNjFjLTE5LjksMzAuOTYtMzkuMTksNjEuMjItNTguMSw5MC44MS0zMi4zMyw1MC43OC02NS43MiwxMDMuMjMtMTAxLjk0LDE1OC4yOGgtMTI0LjA1YzM1Ljc2LTU0LjM2LDk3LjQ0LTE2OS4zNCwxMjkuNTQtMjE5LjczLDMyLjMzLTUwLjcsNjUuNzItMTAzLjA4LDEwMS45NC0xNTguMTNsNDMuMTUtNjUuNzIsMTY3LjY2LDIwOC45MUwxMjc5LjY4LDY2LjE2bDM2Mi42Miw5MDcuM1oiLz4KICA8L2c+CiAgPGcgaWQ9Il9CXyIgZGF0YS1uYW1lPSImYW1wO3F1b3Q7QiZhbXA7cXVvdDsiPgogICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzg5Ljg4LDEwNzQuNTNsMjYuMjUsNjUuNjksMTQuMTUsMzUuMzgsMzIyLjIzLDgwNi4yNCw0NDkuNzQtNjcyLjYyLDE2Ny42NSwyMDguOTEsNDMuMTYtNjUuNzNjMzYuMjMtNTUuMDQsNjkuNi0xMDcuNDQsMTAxLjk2LTE1OC4xMiwxNy4zNS0yNy4yNiw0My4zNS03My40NCw2OS4yNy0xMTguNjgsMjEuOTctMzguMzYsNDMuODMtNzYuMTIsNjAuMjUtMTAxLjA3SDM4OS44OFpNNzc1LjAxLDE3NDIuNDJsLTIzNy44OS01NjYuODJoNjE2Ljg0bC0zNzguOTUsNTY2LjgyWk0xNDE4LjU5LDEyMzIuODRjLTE4LjkyLDI5LjU3LTM4LjIxLDU5Ljg0LTU4LjEzLDkwLjc5bC0xMTguODMtMTQ4LjAzaDIxMy40NmMtMTIuNCwxOS4zNi0yNC41LDM4LjM5LTM2LjQ5LDU3LjI0WiIvPgogIDwvZz4KPC9zdmc+" alt="MB">
+      <div class="card-deco"><svg width="110" height="80" viewBox="0 0 110 80" fill="none" color="rgba(255,255,255,0.2)"><polyline points="8,68 28,42 52,52 76,18 102,8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="92,8 102,8 102,18" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+      <div class="slide-counter">04 / 05</div>
+      <div style="position:absolute;bottom:clamp(24px,3vw,40px);right:clamp(60px,8vw,120px);display:flex;flex-direction:column;align-items:flex-end;gap:7px;"><span style="font-size:9px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.3);text-align:right;line-height:1.65;">World's Highest Marathon<br>Atacama Desert &middot; 2026</span><div style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.3);"><span style="font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;">Scroll</span><div style="width:32px;height:1px;background:currentColor;position:relative;overflow:hidden;"><div style="position:absolute;top:0;left:-100%;width:100%;height:100%;background:currentColor;animation:lr 1.8s ease-in-out infinite;"></div></div></div></div>
+      <div class="card-kicker">Finance &amp; Business Growth</div>
+      <div class="card-hl">Backing<br>Business</div>
+      <div class="card-sub">Supporting founders doing something that has never been done before</div>
+      <div style="margin-top:24px;display:flex;flex-direction:column;gap:8px;max-width:480px;">
+        <div style="font-size:12px;font-weight:400;line-height:1.65;color:rgba(255,255,255,.65);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>14 years as Corporate Ambassador for LDC, the UK's leading mid-market PE firm.</div>
+        <div style="font-size:12px;font-weight:400;line-height:1.65;color:rgba(255,255,255,.65);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>6 years as Partner at Eos, an early-stage investor into healthcare and environmental sustainability.</div>
+        <div style="font-size:12px;font-weight:400;line-height:1.65;color:rgba(255,255,255,.65);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Operating Partner at <a href="https://envoygroup.com/our-team/" target="_blank" style="color:var(--yellow);font-weight:600;text-decoration:none;">Envoy Group</a> — backing entrepreneurs scaling ambitious businesses.</div>
+      </div>
+    </div>
+
+    <!-- Card 5: Community — Blue -->
+    <div class="card c4" id="c4" style="background-image:linear-gradient(to top,rgba(8,8,55,.92) 0%,rgba(8,8,55,.6) 50%,rgba(8,8,55,.28) 100%),url('images/Slide 6.jpeg');background-size:cover;background-position:center top;">
+      <span class="card-tag">MB — 05</span>
+      <img class="card-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTUJfTG9nbyIgZGF0YS1uYW1lPSJNQiBMb2dvIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDQ4IDIwNDgiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICNGRkZGRkY7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJfTV8iIGRhdGEtbmFtZT0iJmFtcDtxdW90O00mYW1wO3F1b3Q7Ij4KICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE2NDIuMyw5NzMuNDZoLTEwNC44NGwtMjgwLjI3LTY2Ny44OS00MTguODEsNjI2LjQyLTE2Ni42Ny0yMDcuNjFjLTE5LjksMzAuOTYtMzkuMTksNjEuMjItNTguMSw5MC44MS0zMi4zMyw1MC43OC02NS43MiwxMDMuMjMtMTAxLjk0LDE1OC4yOGgtMTI0LjA1YzM1Ljc2LTU0LjM2LDk3LjQ0LTE2OS4zNCwxMjkuNTQtMjE5LjczLDMyLjMzLTUwLjcsNjUuNzItMTAzLjA4LDEwMS45NC0xNTguMTNsNDMuMTUtNjUuNzIsMTY3LjY2LDIwOC45MUwxMjc5LjY4LDY2LjE2bDM2Mi42Miw5MDcuM1oiLz4KICA8L2c+CiAgPGcgaWQ9Il9CXyIgZGF0YS1uYW1lPSImYW1wO3F1b3Q7QiZhbXA7cXVvdDsiPgogICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzg5Ljg4LDEwNzQuNTNsMjYuMjUsNjUuNjksMTQuMTUsMzUuMzgsMzIyLjIzLDgwNi4yNCw0NDkuNzQtNjcyLjYyLDE2Ny42NSwyMDguOTEsNDMuMTYtNjUuNzNjMzYuMjMtNTUuMDQsNjkuNi0xMDcuNDQsMTAxLjk2LTE1OC4xMiwxNy4zNS0yNy4yNiw0My4zNS03My40NCw2OS4yNy0xMTguNjgsMjEuOTctMzguMzYsNDMuODMtNzYuMTIsNjAuMjUtMTAxLjA3SDM4OS44OFpNNzc1LjAxLDE3NDIuNDJsLTIzNy44OS01NjYuODJoNjE2Ljg0bC0zNzguOTUsNTY2LjgyWk0xNDE4LjU5LDEyMzIuODRjLTE4LjkyLDI5LjU3LTM4LjIxLDU5Ljg0LTU4LjEzLDkwLjc5bC0xMTguODMtMTQ4LjAzaDIxMy40NmMtMTIuNCwxOS4zNi0yNC41LDM4LjM5LTM2LjQ5LDU3LjI0WiIvPgogIDwvZz4KPC9zdmc+" alt="MB">
+      <div class="card-deco"><svg width="90" height="80" viewBox="0 0 90 80" fill="none" color="white"><circle cx="30" cy="28" r="12" stroke="currentColor" stroke-width="1.2"/><circle cx="60" cy="28" r="12" stroke="currentColor" stroke-width="1.2"/><path d="M6 68c0-13.255 10.745-24 24-24M60 44c13.255 0 24 10.745 24 24" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M36 68c0-7.732 3.582-14.627 9.207-19.166" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+      <div class="slide-counter">05 / 05</div>
+      <div class="scroll-hint"><span class="sh-txt">Scroll</span><div class="sh-line"></div></div>
+      <div class="card-kicker">Community &amp; Charity</div>
+      <div class="card-hl">Giving<br>Back</div>
+      <div class="card-sub">Giving back through endurance — supporting the causes that matter most.</div>
+      <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px;max-width:520px;">
+        <div style="font-size:12px;font-weight:400;line-height:1.65;color:rgba(255,255,255,.6);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--yellow);">—</span><strong style="color:rgba(255,255,255,.85);font-weight:600;">My Name'5 Doddie Foundation</strong> — £1.6m raised in 2026. Charity rides from Dublin to Edinburgh raising funds for Motor Neurone Disease research.</div>
+        <div style="font-size:12px;font-weight:400;line-height:1.65;color:rgba(255,255,255,.6);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--yellow);">—</span><strong style="color:rgba(255,255,255,.85);font-weight:600;">Action Medical Research</strong> — Ambassador for over a decade. Donates 100% of keynote and after-dinner speaking fees to this children's charity.</div>
+        <div style="font-size:12px;font-weight:400;line-height:1.65;color:rgba(255,255,255,.6);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--yellow);">—</span><strong style="color:rgba(255,255,255,.85);font-weight:600;">The Archie Foundation</strong> — Supporting children and families in Scottish hospitals.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-layout">
+    <div>
+      <div class="sec-label">About</div>
+      <h2 class="about-title">Rethink<br>What's<br>Possible.</h2>
+      <p class="about-body">Mark Beaumont is one of the world's greatest endurance athletes — multiple Guinness World Record holder, BBC broadcaster, bestselling author, and impact investor. He circumnavigated the globe by bicycle in 78 days, redefining what is humanly possible.</p>
+      <div class="stat-row">
+        <div class="stat-pill"><span class="sp-num">100+</span><span class="sp-lbl">Countries</span></div>
+        <div class="stat-pill"><span class="sp-num">18,000</span><span class="sp-lbl">Miles</span></div>
+        <div class="stat-pill"><span class="sp-num">200+</span><span class="sp-lbl">Keynotes</span></div>
+        <div class="stat-pill"><span class="sp-num">£2M+</span><span class="sp-lbl">Raised</span></div>
+      </div>
+      <div style="margin-top:20px;display:flex;flex-direction:column;gap:8px;max-width:380px;">
+        <div style="background:var(--ink);border-radius:var(--r);padding:14px 18px;display:flex;align-items:center;gap:14px;">
+          <div style="flex-shrink:0;width:48px;height:48px;border-radius:10px;background:#E8B800;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+          <div>
+            <span style="font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);display:block;margin-bottom:3px;">Guinness World Record</span>
+            <span style="font-size:14px;font-weight:800;color:var(--white);display:block;letter-spacing:-.02em;line-height:1.2;">World's Highest Marathon</span>
+            <span style="font-size:11px;color:rgba(255,255,255,.35);display:block;margin-top:2px;">Atacama Desert &middot; 2026</span>
+          </div>
+        </div>
+        <div style="background:var(--ink);border-radius:var(--r);padding:14px 18px;display:flex;align-items:center;gap:14px;">
+          <div style="flex-shrink:0;width:48px;height:48px;border-radius:10px;background:#E8B800;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+          <div>
+            <span style="font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);display:block;margin-bottom:3px;">Guinness World Record</span>
+            <span style="font-size:14px;font-weight:800;color:var(--white);display:block;letter-spacing:-.02em;line-height:1.2;">Fastest Cycle Around the World</span>
+            <span style="font-size:11px;color:rgba(255,255,255,.35);display:block;margin-top:2px;">78 days &middot; 14 hrs &middot; 40 mins &middot; 2017</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about-img-wrap" id="about-carousel">
+  <img src="images/JPEG image 2.jpeg" class="about-slide" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;opacity:1;transition:opacity 1.2s ease;border-radius:var(--r);display:block;">
+  <img src="images/JPEG image 14.jpeg" class="about-slide" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:0;transition:opacity 1.2s ease;border-radius:var(--r);display:block;">
+  <img src="images/JPEG image 21.jpeg" class="about-slide" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;opacity:0;transition:opacity 1.2s ease;border-radius:var(--r);display:block;">
+  <img src="images/JPEG image 3.jpeg" class="about-slide" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;opacity:0;transition:opacity 1.2s ease;border-radius:var(--r);display:block;">
+  <img src="images/JPEG image 4.jpeg" class="about-slide" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;opacity:0;transition:opacity 1.2s ease;border-radius:var(--r);display:block;">
+  <img src="images/JPEG image 20.jpeg" class="about-slide" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:0;transition:opacity 1.2s ease;border-radius:var(--r);display:block;">
+  <button id="about-prev" aria-label="Previous" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);z-index:10;background:rgba(0,0,0,.35);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='rgba(0,0,0,.6)'" onmouseout="this.style.background='rgba(0,0,0,.35)'"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button id="about-next" aria-label="Next" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);z-index:10;background:rgba(0,0,0,.35);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='rgba(0,0,0,.6)'" onmouseout="this.style.background='rgba(0,0,0,.35)'"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+  </div>
+</section>
+<div class="trusted-strip">
+  <span class="trusted-lbl">Trusted by</span>
+  <div class="trusted-logos"><span class="tlogo">GCN</span><span class="tlogo">JC Motor Group</span><span class="tlogo">Coca-Cola</span><span class="tlogo">Entrepreneurial Scotland</span><span class="tlogo">Envoy</span></div>
+</div>
+
+<!-- SPEAKING -->
+<section id="speaking">
+  <div class="speaking-head"><h2 class="speaking-title">Speaking<br>Topics</h2><a href="#contact" class="sp-book">Contact Mark ↗</a></div>
+  <div style="margin:0 clamp(24px,6vw,80px) clamp(32px,4vw,48px);border-radius:var(--r);overflow:hidden;height:clamp(220px,30vw,460px);position:relative;">
+    <img src="images/Slide 1.jpg" alt="Mark Beaumont speaking" style="width:100%;height:100%;object-fit:cover;object-position:center 42%;display:block;">
+    <div style="position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(0,0,0,.55));"></div>
+  </div>
+  <div class="topics-track" id="topicsTrack">
+    <div class="topic-card" style="background-image:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.15) 100%),url('images/WhatsApp Image 2568-12-17 at 04.58.03.jpeg');background-size:cover;background-position:center 35%;"><span class="tc-num">01</span><svg class="tc-icon" width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M6 28V16l10-12 10 12v12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 28v-8h8v8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="tc-bg-num">01</span><div class="tc-name">Leadership</div><div class="tc-desc">Leading under extreme pressure — translated to every boardroom and every team.</div></div>
+    <div class="topic-card" style="background-image:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.15) 100%),url('images/JPEG image 10.jpeg');background-size:cover;background-position:center 60%;"><span class="tc-num">02</span><svg class="tc-icon" width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M16 4c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M16 4l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="tc-bg-num">02</span><div class="tc-name">Resilience</div><div class="tc-desc">A masterclass in bouncing forward — not just back — from cycling through the dark.</div></div>
+    <div class="topic-card" style="background-image:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.15) 100%),url('images/JPEG image 8.jpeg');background-size:cover;background-position:center top;"><span class="tc-num">03</span><svg class="tc-icon" width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="5" stroke="currentColor" stroke-width="1.3"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="tc-bg-num">03</span><div class="tc-name">Innovation</div><div class="tc-desc">Breaking records requires systematic creative thinking. So does building organisations.</div></div>
+    <div class="topic-card" style="background-image:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.15) 100%),url('images/JPEG image 19.jpeg');background-size:cover;background-position:center 40%;"><span class="tc-num">04</span><svg class="tc-icon" width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M4 28L16 4l12 24" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 20h16" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="tc-bg-num">04</span><div class="tc-name">First Principles</div><div class="tc-desc">Strip away assumption. The methodology behind Mark's approach to impossible challenges.</div></div>
+    <div class="topic-card" style="background-image:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.15) 100%),url('images/WhatsApp Image 2026-04-22 at 12.49.55.jpeg');background-size:cover;background-position:center 20%;"><span class="tc-num">05</span><svg class="tc-icon" width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="8" r="4" stroke="currentColor" stroke-width="1.3"/><path d="M4 28c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="tc-bg-num">05</span><div class="tc-name">Rethink What's Possible</div><div class="tc-desc">The flagship — challenges audiences to expand what they believe they're capable of.</div></div>
+    <div class="topic-card" style="background:transparent;border:1px dashed #1c1c1c;justify-content:center;align-items:center;cursor:pointer;" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})"><span style="font-size:13px;font-weight:700;color:#999;text-align:center;line-height:1.5;position:relative;z-index:1;">All talks tailored<br>to your event →</span></div>
+  </div>
+  <div class="drag-hint"><div class="dh-line"></div><span class="dh-txt">Drag to explore</span></div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="test-header"><h2 class="test-title">What<br>People Say</h2></div>
+  <div class="notes-field" id="nf">
+    <div class="note" style="--rot:-2.5deg;"><p class="note-q">"The room went silent — then erupted. Connected physical endurance to leadership in a way I've never seen."</p><div class="note-attr">Chief People Officer<br>Financial Services</div></div>
+    <div class="note" style="--rot:1.8deg;"><p class="note-q">"In a different league. Authentic, structured, transformative. We've booked him three times."</p><div class="note-attr">Head of Events<br>FTSE 100</div></div>
+    <div class="note" style="--rot:-1.2deg;"><p class="note-q">"Audience feedback was off the charts. You could feel the energy in the room shift."</p><div class="note-attr">Managing Director<br>Professional Services</div></div>
+    <div class="note" style="--rot:2.2deg;"><p class="note-q">"Best speaker investment in five years. Immediate standing ovation."</p><div class="note-attr">COO<br>Healthcare Group</div></div>
+    <div class="note" style="--rot:-1.8deg;"><p class="note-q">"Still talked about six months later. The highlight of our whole conference series."</p><div class="note-attr">Event Director<br>Technology</div></div>
+    <div class="note" style="--rot:1.2deg;"><p class="note-q">"Genuinely moving and practically useful. A rare combination. The team left changed."</p><div class="note-attr">VP Leadership<br>Global Consultancy</div></div>
+  </div>
+</section>
+
+<!-- PODCAST -->
+<section id="podcast" style="background:var(--paper);padding:0;overflow:hidden;">
+  <!-- Photo hero banner -->
+  <div style="position:relative;overflow:hidden;height:clamp(280px,38vw,500px);">
+    <div style="position:absolute;inset:0;">
+    <img src="images/Slide 4.JPG" class="pod-slide" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition:opacity 1.2s ease;display:block;">
+    <img src="images/Slide 5 (thumbail in podcast section).JPG" class="pod-slide" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;opacity:0;transition:opacity 1.2s ease;display:block;">
+  </div>
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,.08) 100%);"></div>
+    <div style="position:absolute;inset:0;padding:clamp(32px,5vw,64px);display:flex;flex-direction:column;justify-content:flex-end;max-width:580px;">
+      <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);display:block;margin-bottom:12px;">Podcast</span>
+      <h2 style="font-size:clamp(28px,4.5vw,58px);font-weight:800;line-height:.9;letter-spacing:-.04em;color:var(--white);margin-bottom:14px;">The Endurance<br>Podcast</h2>
+      <p style="font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;max-width:400px;margin-bottom:20px;">Conversations with the world's greatest endurance athletes — going deep on mindset, method, and the pursuit of extraordinary.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;"><a href="https://youtube.com/playlist?list=PLZAm04fy9xotSSluuDpMpptqFm16c1RmX&si=255hVJ6BjLs8xpwq" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:100px;border:1.5px solid rgba(255,255,255,.2);font-size:11px;font-weight:700;letter-spacing:.06em;text-decoration:none;color:rgba(255,255,255,.7);transition:background .2s,border-color .2s;" onmouseover="this.style.background='rgba(255,255,255,.08)';this.style.borderColor='rgba(255,255,255,.4)'" onmouseout="this.style.background='';this.style.borderColor='rgba(255,255,255,.2)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a> <a href="https://open.spotify.com/show/1npa2DZ7jAeagEfazPGZWb" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:100px;border:1.5px solid rgba(255,255,255,.2);font-size:11px;font-weight:700;letter-spacing:.06em;text-decoration:none;color:rgba(255,255,255,.7);transition:background .2s,border-color .2s;" onmouseover="this.style.background='rgba(255,255,255,.08)';this.style.borderColor='rgba(255,255,255,.4)'" onmouseout="this.style.background='';this.style.borderColor='rgba(255,255,255,.2)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>Spotify</a> <a href="https://podcasts.apple.com/us/podcast/endurance/id1867197295" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:100px;border:1.5px solid rgba(255,255,255,.2);font-size:11px;font-weight:700;letter-spacing:.06em;text-decoration:none;color:rgba(255,255,255,.7);transition:background .2s,border-color .2s;" onmouseover="this.style.background='rgba(255,255,255,.08)';this.style.borderColor='rgba(255,255,255,.4)'" onmouseout="this.style.background='';this.style.borderColor='rgba(255,255,255,.2)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm2.54 17.747c-.19.316-.48.49-.794.49-.16 0-.32-.04-.462-.126l-3.986-2.37v.878a.75.75 0 01-1.5 0V7.381a.75.75 0 011.5 0v.877l3.986-2.369a.898.898 0 011.256.364 9.06 9.06 0 010 8.494z"/></svg>Apple</a></div>
+    </div>
+  </div>
+  <!-- Episodes strip + side image -->
+  <div style="display:block;">
+    <div style="padding:clamp(24px,4vw,48px) clamp(24px,6vw,80px);">
+      <div style="border-top:1px solid var(--light);">
+        <a href="https://www.youtube.com/watch?v=qR-y9p--X98" target="_blank" class="ep"><span class="ep-title">Amy Ennion — Endurance Swimming Records</span><span class="ep-meta">55m</span><svg class="ep-arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="https://www.youtube.com/watch?v=ajZXVMmmg2Q" target="_blank" class="ep"><span class="ep-title">Rob Wainwright — Going the Extra Mile for Doddie Weir</span><span class="ep-meta">46m</span><svg class="ep-arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="https://www.youtube.com/watch?v=v_TACa4C5os" target="_blank" class="ep"><span class="ep-title">Sarah Ruggins — LEJOGLE, Europe, the World?</span><span class="ep-meta">63m</span><svg class="ep-arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div style="margin-top:20px;padding-top:16px;">
+        <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#aaa;display:block;margin-bottom:8px;">Sponsored by</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <div style="padding:5px 12px;background:rgba(0,0,0,.06);border-radius:100px;font-size:11px;font-weight:600;color:#666;">Move Pre-Workout</div>
+          <div style="padding:5px 12px;background:rgba(0,0,0,.06);border-radius:100px;font-size:11px;font-weight:600;color:#666;">Precision Fuel</div>
+          <div style="padding:5px 12px;background:rgba(0,0,0,.06);border-radius:100px;font-size:11px;font-weight:600;color:#666;">Garmin</div>
+        </div>
+      </div>
+      <div style="margin-top:24px;">
+        <a href="https://yoyoyipp.github.io/podcast/" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:12px 22px;background:var(--ink);color:var(--white);border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.06em;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='var(--blue)'" onmouseout="this.style.background='var(--ink)'">View All Episodes <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="how-inner">
+    <div class="how-header"><h2 class="how-title">How It<br>Works</h2><p class="how-sub">Thorough without being bureaucratic.</p></div>
+    <div class="how-steps">
+      <div class="how-step"><div class="step-content"><span class="step-num">Step 01</span><span class="step-title">Tell Us About Your Event</span><p class="step-body">Use the form below — date, location, audience size, and topic focus.</p><span class="step-time">3 minutes</span></div><div class="step-center"><div class="step-dot"><span class="step-dot-num">1</span></div></div><div class="step-spacer"></div></div>
+      <div class="how-step"><div class="step-spacer"></div><div class="step-center"><div class="step-dot"><span class="step-dot-num">2</span></div></div><div class="step-content"><span class="step-num">Step 02</span><span class="step-title">We Confirm Availability</span><p class="step-body">Deborah will be in touch within 48 hours to check the diary.</p><span class="step-time">48 hours</span></div></div>
+      <div class="how-step"><div class="step-content"><span class="step-num">Step 03</span><span class="step-title">Introductory Call</span><p class="step-body">A short 20-minute call to confirm the fit is right for both sides.</p><span class="step-time">20 minutes</span></div><div class="step-center"><div class="step-dot"><span class="step-dot-num">3</span></div></div><div class="step-spacer"></div></div>
+      <div class="how-step"><div class="step-spacer"></div><div class="step-center"><div class="step-dot"><span class="step-dot-num">4</span></div></div><div class="step-content"><span class="step-num">Step 04</span><span class="step-title">Contract &amp; Date Secured</span><p class="step-body">We issue a simple contract and hold the date in the diary.</p><span class="step-time">Date secured</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT MARK -->
+<section id="contact">
+  <div class="contact-inner">
+    <div>
+      <h2 class="contact-title">Contact<br>Mark</h2>
+      <form onsubmit="return false;">
+        <div class="frow"><div class="fg"><label>Name <span class="r">*</span></label><input type="text" class="fc" placeholder="Your name"></div><div class="fg"><label>Organisation <span class="r">*</span></label><input type="text" class="fc" placeholder="Company or agency"></div></div>
+        <div class="frow"><div class="fg"><label>Event Date <span class="r">*</span></label><input type="text" class="fc" placeholder="Date or approximate"></div><div class="fg"><label>Format <span class="r">*</span></label><select class="fc"><option value="" disabled selected>Select</option><option>In-person — UK</option><option>In-person — Europe</option><option>In-person — Middle East / Gulf</option><option>In-person — North America</option><option>Hybrid</option><option>Virtual</option></select></div></div>
+        <div class="frow"><div class="fg"><label>Audience Size <span class="r">*</span></label><select class="fc"><option value="" disabled selected>Select</option><option>Under 100</option><option>100–250</option><option>250–500</option><option>500–1,000</option><option>1,000+</option></select></div><div class="fg"><label>Sector</label><input type="text" class="fc" placeholder="e.g. Finance, Tech"></div></div>
+        <div class="fg"><label>Topic Interest <span class="r">*</span></label><select class="fc"><option value="" disabled selected>Select</option><option>Leadership</option><option>Resilience</option><option>Innovation</option><option>First Principles</option><option>Rethink What's Possible</option><option>Other</option></select></div>
+        <div class="fg"><label>How Did You Hear About Mark?</label><select class="fc"><option value="" disabled selected>Select</option><option>Speaker bureau</option><option>LinkedIn</option><option>BBC / Media</option><option>Word of mouth</option><option>Previous event</option><option>The Endurance Podcast</option><option>Other</option></select></div>
+        <div class="fg"><label>Anything else?</label><textarea class="fc" rows="3" placeholder="Budget, theme, or other context..."></textarea></div>
+        <button class="submit-btn">Submit Enquiry <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </form>
+    </div>
+    <div class="c-sidebar">
+      <div class="team-card"><span class="team-hd">The Team</span><div class="team-p"><div class="t-av"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3.5" stroke="#aaa" stroke-width="1.2"/><path d="M2.5 16c0-3.59 2.91-6.5 6.5-6.5s6.5 2.91 6.5 6.5" stroke="#aaa" stroke-width="1.2" stroke-linecap="round"/></svg></div><div><span class="t-name">Deborah</span><span class="t-role">Manager</span></div></div><div class="team-p"><div class="t-av"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3.5" stroke="#aaa" stroke-width="1.2"/><path d="M2.5 16c0-3.59 2.91-6.5 6.5-6.5s6.5 2.91 6.5 6.5" stroke="#aaa" stroke-width="1.2" stroke-linecap="round"/></svg></div><div><span class="t-name">Yoyo</span><span class="t-role">Research &amp; Marketing</span></div></div>
+        <div class="team-p"><div class="t-av"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3.5" stroke="#aaa" stroke-width="1.2"/><path d="M2.5 16c0-3.59 2.91-6.5 6.5-6.5s6.5 2.91 6.5 6.5" stroke="#aaa" stroke-width="1.2" stroke-linecap="round"/></svg></div><div><span class="t-name">Ed</span><span class="t-role">Partnership Manager</span></div></div></div>
+      <div class="fees-card"><span class="fees-hd">Speaking Fees (Guide)</span><div class="fee-row"><span class="fee-reg">UK</span><span class="fee-amt">£4,500–£6k</span></div><div class="fee-row"><span class="fee-reg">International</span><span class="fee-amt">£8k–£10k</span></div><p class="fees-note">Confirmed via contract. Fees vary by format and travel.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- EVENT RESOURCES -->
+<section id="resources">
+  <div class="res-inner">
+    <div class="res-header"><h2 class="res-title">Event<br>Resources</h2></div>
+    <div class="res-layout">
+      <div class="res-block wide"><svg class="res-block-icon" width="56" height="56" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="20" stroke="currentColor" stroke-width="1.5"/><path d="M24 22l18 10-18 10V22z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><div><span class="res-block-label">Download</span><span class="res-block-name">Speaker Reel</span><p class="res-block-desc">2-minute highlight reel and full 8-minute keynote demonstration.</p><div class="res-block-arr">Download <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></div>
+      <div class="res-block"><div><svg class="res-block-icon" width="44" height="44" viewBox="0 0 48 48" fill="none"><rect x="8" y="8" width="32" height="32" rx="3" stroke="currentColor" stroke-width="1.4"/><circle cx="24" cy="24" r="8" stroke="currentColor" stroke-width="1.4"/><circle cx="35" cy="13" r="2.5" fill="currentColor" opacity=".4"/></svg><span class="res-block-label" style="margin-top:18px;">Download</span><span class="res-block-name">Headshots</span><p class="res-block-desc">High-res photography for event programmes and press.</p></div><div class="res-block-arr">Download <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      <div class="res-block"><div><svg class="res-block-icon" width="44" height="44" viewBox="0 0 48 48" fill="none"><path d="M10 6h28v36H10z" stroke="currentColor" stroke-width="1.4"/><path d="M16 18h16M16 24h16M16 30h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M30 6v8h8" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span class="res-block-label" style="margin-top:18px;">Download</span><span class="res-block-name">Bios &amp; Rate Card</span><p class="res-block-desc">Short, medium, long bios — plus fee information by region.</p></div><div class="res-block-arr">Download <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+    </div>
+    <div class="res-footer"><a href="#" class="res-dl"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v8M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Download All Resources</a><p class="res-note">All assets are print-ready and web-optimised. Questions? Contact Deborah directly.</p></div>
+  </div>
+</section>
+
+
+<footer>
+  <span class="f-brand">Mark Beaumont</span>
+  <a href="#" class="f-back" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to top</a>
+</footer>
+
+<script>
+const cur=document.getElementById('cur');
+if(cur)document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';});
+
+(function(){
+  const wrap=document.getElementById('cards-scroll');
+  const cards=['c0','c1','c2','c3','c4'].map(id=>document.getElementById(id));
+  function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
+  let bikeGo=false;
+  let wrapTop=wrap.offsetTop;
+  let vh=window.innerHeight;
+  window.addEventListener('resize',function(){wrapTop=wrap.offsetTop;vh=window.innerHeight;},{passive:true});
+  function triggerBike(){
+    const c2=cards[2];
+    const svg=c2.querySelector('.card-deco svg');
+    if(!svg)return;
+    c2.classList.remove('bike-running');
+    svg.style.animation='none';
+    void svg.offsetWidth;
+    svg.style.animation='';
+    c2.classList.add('bike-running');
+    svg.addEventListener('animationend',function(){
+      c2.classList.remove('bike-running');
+    },{once:true});
+  }
+  function tick(){
+    const scrolled=Math.max(0,window.pageYOffset-wrapTop);
+    cards.forEach((card,i)=>{
+      const t=Math.max(0,Math.min(1,(scrolled-i*vh)/vh));
+      card.style.transform='translateY('+Math.round(-ease(t)*vh)+'px)';
+    });
+    const c2Visible=scrolled>=1.3*vh&&scrolled<3*vh;
+    if(c2Visible&&!bikeGo){bikeGo=true;triggerBike();}
+    if(!c2Visible&&bikeGo){bikeGo=false;}
+  }
+  var rafPending=false;
+  window.addEventListener('scroll',function(){
+    if(!rafPending){rafPending=true;requestAnimationFrame(function(){tick();rafPending=false;});}
+  },{passive:true});
+  tick();
+})();
+
+document.getElementById('lmbtn').addEventListener('click',e=>{
+  e.preventDefault();
+  const wrap=document.getElementById('cards-scroll');
+  const vh=window.innerHeight;
+  window.scrollTo({top:wrap.offsetTop+vh,behavior:'smooth'});
+});
+
+(function(){
+  const notes=Array.from(document.querySelectorAll('.note'));
+  let topZ=10;
+  notes.forEach(n=>n.addEventListener('click',()=>{topZ++;n.style.zIndex=topZ;}));
+})();
+
+(function(){
+  const track=document.getElementById('topicsTrack');
+  let dragging=false,startX,scrollLeft;
+  track.addEventListener('mousedown',e=>{dragging=true;startX=e.pageX-track.offsetLeft;scrollLeft=track.scrollLeft;track.style.userSelect='none';});
+  document.addEventListener('mouseup',()=>{dragging=false;track.style.userSelect='';});
+  track.addEventListener('mousemove',e=>{
+    if(!dragging)return;e.preventDefault();
+    track.scrollLeft=scrollLeft-(e.pageX-track.offsetLeft-startX)*1.4;
+  });
+})();
+
+(function(){
+  var steps=document.querySelectorAll('.how-step');
+  if(!steps.length)return;
+  function check(){
+    var vh=window.innerHeight;
+    steps.forEach(function(s){
+      var r=s.getBoundingClientRect();
+      if(r.top+r.height*0.5<vh*0.84)s.classList.add('is-active');
+    });
+  }
+  window.addEventListener('scroll',check,{passive:true});
+  check();
+})();
+
+(function(){
+  var slides = document.querySelectorAll('#podcast .pod-slide');
+  if(slides.length < 2) return;
+  var cur = 0;
+  setInterval(function(){
+    slides[cur].style.opacity = '0';
+    cur = (cur + 1) % slides.length;
+    slides[cur].style.opacity = '1';
+  }, 4000);
+})();
+
+(function(){
+  var slides = document.querySelectorAll('#about-carousel .about-slide');
+  if(slides.length < 2) return;
+  var cur = 0, timer;
+  function goTo(n){
+    slides[cur].style.opacity = '0';
+    cur = (n + slides.length) % slides.length;
+    slides[cur].style.opacity = '1';
+  }
+  function startTimer(){ timer = setInterval(function(){ goTo(cur + 1); }, 4000); }
+  function resetTimer(){ clearInterval(timer); startTimer(); }
+  startTimer();
+  var prev = document.getElementById('about-prev');
+  var next = document.getElementById('about-next');
+  if(prev) prev.addEventListener('click', function(){ goTo(cur - 1); resetTimer(); });
+  if(next) next.addEventListener('click', function(){ goTo(cur + 1); resetTimer(); });
+})();
+(function(){
+  var o=document.getElementById('intro-overlay');
+  if(!o)return;
+  if(sessionStorage.getItem('mbIntroSeen')){o.remove();return;}
+  sessionStorage.setItem('mbIntroSeen','1');
+  document.body.style.overflow='hidden';
+
+  var svgEl=document.getElementById('intro-svg');
+  if(svgEl)svgEl.style.opacity='0';
+
+  var srcs=['images/JPEG image 2.jpeg','images/JPEG image 20.jpeg','images/JPEG image 14.jpeg','images/JPEG image 3.jpeg'];
+  var loaded=0,started=false;
+  var maxWait=setTimeout(run,3000);
+
+  function run(){
+    if(started)return;
+    started=true;
+    clearTimeout(maxWait);
+    if(svgEl){
+      ['ii1','ii2','ii3','ii4'].forEach(function(id){
+        var el=document.getElementById(id);
+        if(!el)return;
+        el.style.animation='none';
+        void el.offsetWidth;
+        el.style.animation='';
+      });
+      svgEl.style.animation='none';
+      void svgEl.offsetWidth;
+      svgEl.style.animation='';
+      svgEl.style.opacity='';
+    }
+    setTimeout(function(){
+      var s=document.getElementById('intro-svg');
+      var bg=document.getElementById('c0-logo-bg');
+      if(s)s.classList.add('intro-exit');
+      o.classList.add('intro-exit');
+      if(bg)bg.classList.add('is-visible');
+      setTimeout(function(){o.remove();document.body.style.overflow='';},1450);
+    },2000);
+  }
+
+  srcs.forEach(function(src){
+    var img=new Image();
+    img.onload=img.onerror=function(){loaded++;if(loaded>=srcs.length)run();};
+    img.src=src;
+  });
+})();
+
+</script>
+</body>
+</html>
