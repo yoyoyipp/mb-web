@@ -7,6 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="images/JPEG image 2.jpeg">
+<link rel="preload" as="image" href="images/JPEG image 20.jpeg">
+<link rel="preload" as="image" href="images/JPEG image 14.jpeg">
+<link rel="preload" as="image" href="images/JPEG image 3.jpeg">
+<link rel="preload" as="image" href="images/Slide 3.jpg">
+<link rel="preload" as="image" href="images/Slide 7.jpg">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{--ink:#0D0D0D;--paper:#F0EDE6;--blue:#2B2BFF;--yellow:#F5E642;--white:#FFFFFF;--mid:#888;--light:#E0DDD6;--r:20px;--f:'Plus Jakarta Sans',sans-serif;}
@@ -751,14 +757,46 @@ document.getElementById('lmbtn').addEventListener('click',e=>{
   if(sessionStorage.getItem('mbIntroSeen')){o.remove();return;}
   sessionStorage.setItem('mbIntroSeen','1');
   document.body.style.overflow='hidden';
-  setTimeout(function(){
-    var s=document.getElementById('intro-svg');
-    var bg=document.getElementById('c0-logo-bg');
-    if(s)s.classList.add('intro-exit');
-    o.classList.add('intro-exit');
-    if(bg)bg.classList.add('is-visible');
-    setTimeout(function(){o.remove();document.body.style.overflow='';},1450);
-  },2000);
+
+  var svgEl=document.getElementById('intro-svg');
+  if(svgEl)svgEl.style.opacity='0';
+
+  var srcs=['images/JPEG image 2.jpeg','images/JPEG image 20.jpeg','images/JPEG image 14.jpeg','images/JPEG image 3.jpeg'];
+  var loaded=0,started=false;
+  var maxWait=setTimeout(run,1200);
+
+  function run(){
+    if(started)return;
+    started=true;
+    clearTimeout(maxWait);
+    if(svgEl){
+      ['ii1','ii2','ii3','ii4'].forEach(function(id){
+        var el=document.getElementById(id);
+        if(!el)return;
+        el.style.animation='none';
+        void el.offsetWidth;
+        el.style.animation='';
+      });
+      svgEl.style.animation='none';
+      void svgEl.offsetWidth;
+      svgEl.style.animation='';
+      svgEl.style.opacity='';
+    }
+    setTimeout(function(){
+      var s=document.getElementById('intro-svg');
+      var bg=document.getElementById('c0-logo-bg');
+      if(s)s.classList.add('intro-exit');
+      o.classList.add('intro-exit');
+      if(bg)bg.classList.add('is-visible');
+      setTimeout(function(){o.remove();document.body.style.overflow='';},1450);
+    },2000);
+  }
+
+  srcs.forEach(function(src){
+    var img=new Image();
+    img.onload=img.onerror=function(){loaded++;if(loaded>=srcs.length)run();};
+    img.src=src;
+  });
 })();
 
 </script>
