@@ -7,12 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="images/JPEG image 2.jpeg">
-<link rel="preload" as="image" href="images/JPEG image 20.jpeg">
-<link rel="preload" as="image" href="images/JPEG image 14.jpeg">
-<link rel="preload" as="image" href="images/JPEG image 3.jpeg">
-<link rel="preload" as="image" href="images/Slide 3.jpg">
-<link rel="preload" as="image" href="images/Slide 7.jpg">
+<link rel="preload" as="image" href="images/JPEG image 2.jpeg" fetchpriority="high">
+<link rel="preload" as="image" href="images/JPEG image 20.jpeg" fetchpriority="high">
+<link rel="preload" as="image" href="images/JPEG image 14.jpeg" fetchpriority="high">
+<link rel="preload" as="image" href="images/JPEG image 3.jpeg" fetchpriority="high">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{--ink:#0D0D0D;--paper:#F0EDE6;--blue:#2B2BFF;--yellow:#F5E642;--white:#FFFFFF;--mid:#888;--light:#E0DDD6;--r:20px;--f:'Plus Jakarta Sans',sans-serif;}
@@ -681,7 +679,10 @@ if(cur)document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';c
     if(c2Visible&&!bikeGo){bikeGo=true;triggerBike();}
     if(!c2Visible&&bikeGo){bikeGo=false;}
   }
-  window.addEventListener('scroll',tick,{passive:true});
+  var rafPending=false;
+  window.addEventListener('scroll',function(){
+    if(!rafPending){rafPending=true;requestAnimationFrame(function(){tick();rafPending=false;});}
+  },{passive:true});
   tick();
 })();
 
@@ -763,7 +764,7 @@ document.getElementById('lmbtn').addEventListener('click',e=>{
 
   var srcs=['images/JPEG image 2.jpeg','images/JPEG image 20.jpeg','images/JPEG image 14.jpeg','images/JPEG image 3.jpeg'];
   var loaded=0,started=false;
-  var maxWait=setTimeout(run,1200);
+  var maxWait=setTimeout(run,3000);
 
   function run(){
     if(started)return;
