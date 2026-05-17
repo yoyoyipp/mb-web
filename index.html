@@ -583,7 +583,7 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
         </div>
       </div>
       <div style="margin-top:24px;">
-        <a href="podcast.html" style="display:inline-flex;align-items:center;gap:8px;padding:12px 22px;background:var(--ink);color:var(--white);border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.06em;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='var(--blue)'" onmouseout="this.style.background='var(--ink)'">View All Episodes <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="https://yoyoyipp.github.io/podcast/" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:12px 22px;background:var(--ink);color:var(--white);border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.06em;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='var(--blue)'" onmouseout="this.style.background='var(--ink)'">View All Episodes <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
 
@@ -655,6 +655,9 @@ if(cur)document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';c
   const cards=['c0','c1','c2','c3','c4'].map(id=>document.getElementById(id));
   function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
   let bikeGo=false;
+  let wrapTop=wrap.offsetTop;
+  let vh=window.innerHeight;
+  window.addEventListener('resize',function(){wrapTop=wrap.offsetTop;vh=window.innerHeight;},{passive:true});
   function triggerBike(){
     const c2=cards[2];
     const svg=c2.querySelector('.card-deco svg');
@@ -669,11 +672,10 @@ if(cur)document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';c
     },{once:true});
   }
   function tick(){
-    const top=wrap.getBoundingClientRect().top,vh=window.innerHeight;
-    const scrolled=Math.max(0,-top);
+    const scrolled=Math.max(0,window.pageYOffset-wrapTop);
     cards.forEach((card,i)=>{
       const t=Math.max(0,Math.min(1,(scrolled-i*vh)/vh));
-      card.style.transform='translateY('+(-ease(t)*100)+'vh)';
+      card.style.transform='translateY('+Math.round(-ease(t)*vh)+'px)';
     });
     const c2Visible=scrolled>=1.3*vh&&scrolled<3*vh;
     if(c2Visible&&!bikeGo){bikeGo=true;triggerBike();}
