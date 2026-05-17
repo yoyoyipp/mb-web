@@ -14,8 +14,9 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{--ink:#0D0D0D;--paper:#F0EDE6;--blue:#2B2BFF;--yellow:#F5E642;--white:#FFFFFF;--mid:#888;--light:#E0DDD6;--r:20px;--f:'Plus Jakarta Sans',sans-serif;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;scroll-snap-type:y proximity;}
 body{font-family:var(--f);background:var(--paper);color:var(--ink);overflow-x:hidden;}
+#about,#speaking,#testimonials,#podcast,#how,#contact,#resources{scroll-snap-align:start;}
 @media(max-width:600px){body{padding-bottom:48px;}}
 img{display:block;}
 
