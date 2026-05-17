@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Map V2 — Bold Route</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--ink:#0D0D0D;--yellow:#F5E642;--f:'Plus Jakarta Sans',sans-serif;}
+html,body{width:100%;height:100%;overflow:hidden;}
+body{font-family:var(--f);background:#111;}
+.card{width:100vw;height:100vh;background:var(--yellow);position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(32px,5vw,72px) clamp(24px,6vw,80px);}
+.map-wrap{position:absolute;inset:0;pointer-events:none;z-index:0;}
+.map-wrap svg{width:100%;height:100%;}
+.card-tag{position:absolute;top:clamp(24px,4vw,52px);left:clamp(24px,5vw,80px);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(0,0,0,.2);z-index:2;}
+.card-logo{position:absolute;top:clamp(20px,3vw,36px);right:clamp(20px,3vw,60px);width:clamp(32px,3.5vw,46px);height:auto;z-index:2;}
+.card-kicker{font-size:clamp(9px,1.1vw,11px);font-weight:600;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:16px;color:rgba(0,0,0,.4);position:relative;z-index:2;}
+.card-kicker::before{content:'';display:block;width:18px;height:1.5px;background:currentColor;}
+.card-hl{font-size:clamp(36px,8vw,128px);font-weight:800;line-height:.9;letter-spacing:-.04em;color:var(--ink);position:relative;z-index:2;}
+.card-sub{font-size:clamp(12px,1.4vw,14px);font-weight:400;margin-top:20px;opacity:.55;max-width:440px;line-height:1.65;color:var(--ink);position:relative;z-index:2;}
+.slide-counter{position:absolute;bottom:clamp(24px,3vw,40px);right:clamp(60px,8vw,120px);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(0,0,0,.2);z-index:2;}
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- V2: Bold Route — thick graphic lines, no continents, inspired by Milan transit map -->
+  <div class="map-wrap">
+    <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+      <!-- Subtle dot grid for geographic reference -->
+      <g fill="rgba(0,0,0,0.09)">
+        <circle r="1" cx="67" cy="67"/><circle r="1" cx="133" cy="67"/><circle r="1" cx="200" cy="67"/><circle r="1" cx="267" cy="67"/><circle r="1" cx="333" cy="67"/><circle r="1" cx="400" cy="67"/><circle r="1" cx="467" cy="67"/><circle r="1" cx="533" cy="67"/><circle r="1" cx="600" cy="67"/><circle r="1" cx="667" cy="67"/><circle r="1" cx="733" cy="67"/>
+        <circle r="1" cx="67" cy="133"/><circle r="1" cx="133" cy="133"/><circle r="1" cx="200" cy="133"/><circle r="1" cx="267" cy="133"/><circle r="1" cx="333" cy="133"/><circle r="1" cx="400" cy="133"/><circle r="1" cx="467" cy="133"/><circle r="1" cx="533" cy="133"/><circle r="1" cx="600" cy="133"/><circle r="1" cx="667" cy="133"/><circle r="1" cx="733" cy="133"/>
+        <circle r="1" cx="67" cy="200"/><circle r="1" cx="133" cy="200"/><circle r="1" cx="200" cy="200"/><circle r="1" cx="267" cy="200"/><circle r="1" cx="333" cy="200"/><circle r="1" cx="400" cy="200"/><circle r="1" cx="467" cy="200"/><circle r="1" cx="533" cy="200"/><circle r="1" cx="600" cy="200"/><circle r="1" cx="667" cy="200"/><circle r="1" cx="733" cy="200"/>
+        <circle r="1" cx="67" cy="267"/><circle r="1" cx="133" cy="267"/><circle r="1" cx="200" cy="267"/><circle r="1" cx="267" cy="267"/><circle r="1" cx="333" cy="267"/><circle r="1" cx="400" cy="267"/><circle r="1" cx="467" cy="267"/><circle r="1" cx="533" cy="267"/><circle r="1" cx="600" cy="267"/><circle r="1" cx="667" cy="267"/><circle r="1" cx="733" cy="267"/>
+        <circle r="1" cx="67" cy="333"/><circle r="1" cx="133" cy="333"/><circle r="1" cx="200" cy="333"/><circle r="1" cx="267" cy="333"/><circle r="1" cx="333" cy="333"/><circle r="1" cx="400" cy="333"/><circle r="1" cx="467" cy="333"/><circle r="1" cx="533" cy="333"/><circle r="1" cx="600" cy="333"/><circle r="1" cx="667" cy="333"/><circle r="1" cx="733" cy="333"/>
+      </g>
+      <!-- THICK cycling route — bold rounded lines -->
+      <g fill="none" stroke="rgba(0,0,0,0.88)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="404,91 464,109 499,107 554,109 566,129 597,150"/>
+        <polyline points="657,271 710,262 740,261"/>
+        <polyline points="67,64 128,99 140,122 179,157"/>
+        <line x1="380" y1="113" x2="404" y2="91"/>
+      </g>
+      <!-- THICK flight arcs — large dashes, animated -->
+      <g fill="none" stroke="rgba(0,0,0,0.88)" stroke-width="7" stroke-linecap="round" stroke-dasharray="14,10">
+        <path d="M597,150 Q640,240 657,271"><animate attributeName="stroke-dashoffset" from="0" to="-48" dur="0.9s" repeatCount="indefinite"/></path>
+        <path d="M740,261 Q790,130 800,95"><animate attributeName="stroke-dashoffset" from="0" to="-48" dur="0.9s" repeatCount="indefinite"/></path>
+        <path d="M0,95 Q25,70 67,64"><animate attributeName="stroke-dashoffset" from="0" to="-48" dur="0.9s" repeatCount="indefinite"/></path>
+        <path d="M179,157 Q290,118 380,113"><animate attributeName="stroke-dashoffset" from="0" to="-48" dur="0.9s" repeatCount="indefinite"/></path>
+      </g>
+      <!-- City nodes: large filled circles with labels -->
+      <!-- Paris — start/end, largest -->
+      <circle cx="404" cy="91" r="16" fill="var(--ink)"/>
+      <circle cx="404" cy="91" r="16" fill="none" stroke="rgba(0,0,0,0.4)" stroke-width="1.5">
+        <animate attributeName="r" values="16;28;16" dur="2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <text x="404" y="95" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="8" font-weight="800" fill="#F5E642" letter-spacing="0.04em">PARIS</text>
+      <!-- Other cities: medium circles -->
+      <g>
+        <circle cx="464" cy="109" r="11" fill="var(--ink)"/>
+        <text x="464" y="113" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="5.5" font-weight="800" fill="#F5E642" letter-spacing="0.02em">IST</text>
+        <circle cx="464" cy="109" r="11" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="1"><animate attributeName="r" values="11;20;11" dur="2.4s" begin="0.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0;0.35" dur="2.4s" begin="0.5s" repeatCount="indefinite"/></circle>
+      </g>
+      <g>
+        <circle cx="597" cy="150" r="11" fill="var(--ink)"/>
+        <text x="597" y="154" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="5" font-weight="800" fill="#F5E642" letter-spacing="0.02em">KOL</text>
+        <circle cx="597" cy="150" r="11" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="1"><animate attributeName="r" values="11;20;11" dur="2.2s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0;0.35" dur="2.2s" begin="1s" repeatCount="indefinite"/></circle>
+      </g>
+      <g>
+        <circle cx="657" cy="271" r="11" fill="var(--ink)"/>
+        <text x="657" y="275" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="4.5" font-weight="800" fill="#F5E642" letter-spacing="0.02em">PERTH</text>
+        <circle cx="657" cy="271" r="11" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="1"><animate attributeName="r" values="11;20;11" dur="2.6s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0;0.35" dur="2.6s" begin="1.5s" repeatCount="indefinite"/></circle>
+      </g>
+      <g>
+        <circle cx="740" cy="261" r="11" fill="var(--ink)"/>
+        <text x="740" y="265" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="4" font-weight="800" fill="#F5E642" letter-spacing="0.01em">BNE</text>
+        <circle cx="740" cy="261" r="11" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="1"><animate attributeName="r" values="11;20;11" dur="2.3s" begin="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0;0.35" dur="2.3s" begin="2s" repeatCount="indefinite"/></circle>
+      </g>
+      <g>
+        <circle cx="67" cy="64" r="11" fill="var(--ink)"/>
+        <text x="67" y="68" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="4" font-weight="800" fill="#F5E642" letter-spacing="0.01em">ANC</text>
+        <circle cx="67" cy="64" r="11" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="1"><animate attributeName="r" values="11;20;11" dur="2.5s" begin="2.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0;0.35" dur="2.5s" begin="2.5s" repeatCount="indefinite"/></circle>
+      </g>
+      <g>
+        <circle cx="179" cy="157" r="11" fill="var(--ink)"/>
+        <text x="179" y="161" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="4" font-weight="800" fill="#F5E642" letter-spacing="0.01em">MEX</text>
+        <circle cx="179" cy="157" r="11" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="1"><animate attributeName="r" values="11;20;11" dur="2.7s" begin="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0;0.35" dur="2.7s" begin="3s" repeatCount="indefinite"/></circle>
+      </g>
+      <g>
+        <circle cx="380" cy="113" r="11" fill="var(--ink)"/>
+        <text x="380" y="117" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="4" font-weight="800" fill="#F5E642" letter-spacing="0.01em">LIS</text>
+        <circle cx="380" cy="113" r="11" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="1"><animate attributeName="r" values="11;20;11" dur="2.9s" begin="3.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0;0.35" dur="2.9s" begin="3.5s" repeatCount="indefinite"/></circle>
+      </g>
+      <!-- Legend -->
+      <g font-family="'Plus Jakarta Sans',sans-serif" font-size="5.5" font-weight="700" letter-spacing="0.12em" fill="rgba(0,0,0,0.35)">
+        <line x1="12" y1="384" x2="34" y2="384" stroke="rgba(0,0,0,0.8)" stroke-width="9" stroke-linecap="round"/>
+        <text x="38" y="387">CYCLING</text>
+        <line x1="12" y1="395" x2="34" y2="395" stroke="rgba(0,0,0,0.8)" stroke-width="7" stroke-dasharray="14,10" stroke-linecap="round"/>
+        <text x="38" y="398">FLIGHT</text>
+      </g>
+    </svg>
+  </div>
+
+  <span class="card-tag">MB — 03</span>
+  <svg class="card-logo" viewBox="0 0 2048 2048" xmlns="http://www.w3.org/2000/svg" fill="#0D0D0D">
+    <path d="M1642.3,973.46h-104.84l-280.27-667.89-418.81,626.42-166.67-207.61c-19.9,30.96-39.19,61.22-58.1,90.81-32.33,50.78-65.72,103.23-101.94,158.28h-124.05c35.76-54.36,97.44-169.34,129.54-219.73,32.33-50.7,65.72-103.08,101.94-158.13l43.15-65.72,167.66,208.91L1279.68,66.16l362.62,907.3Z"/>
+    <path d="M389.88,1074.53l26.25,65.69,14.15,35.38,322.23,806.24,449.74-672.62,167.65,208.91,43.16-65.73c36.23-55.04,69.6-107.44,101.96-158.12,17.35-27.26,43.35-73.44,69.27-118.68,21.97-38.36,43.83-76.12,60.25-101.07H389.88ZM775.01,1742.42l-237.89-566.82h616.84l-378.95,566.82ZM1418.59,1232.84c-18.92,29.57-38.21,59.84-58.13,90.79l-118.83-148.03h213.46c-12.4,19.36-24.5,38.39-36.49,57.24Z"/>
+  </svg>
+  <div class="card-kicker">World Record</div>
+  <div class="card-hl">Fastest<br>Around<br>the World</div>
+  <div class="card-sub">78 days · 14 hours · 40 minutes · 18,000 miles</div>
+  <div class="slide-counter">03 / 05</div>
+</div>
+</body>
+</html>
