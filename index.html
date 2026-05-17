@@ -297,6 +297,11 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
 .reel-thumb:hover .reel-overlay{background:rgba(0,0,0,.2);}
 .reel-thumb:hover .reel-play-btn{background:rgba(255,255,255,.25);transform:scale(1.1);}
 
+/* Map overlay on c2 */
+#c2 .map-wrap{position:absolute;inset:0;pointer-events:none;z-index:0;}
+#c2 .map-wrap svg{width:100%;height:100%;}
+#c2 .map-fade{position:absolute;bottom:0;left:0;right:0;height:45%;background:linear-gradient(to bottom,rgba(245,230,66,0),var(--yellow) 70%);pointer-events:none;z-index:1;}
+
 /* Bicycle zoom animation on c2 */
 @keyframes bikeRide{
   0%{transform:translateX(-260px) scaleX(1);}
@@ -422,6 +427,74 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
 
     <!-- Card 3: World Record — Yellow -->
     <div class="card c2" id="c2">
+      <div class="map-wrap">
+        <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <filter id="routeglow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <g stroke="rgba(0,0,0,0.06)" stroke-width="0.5" fill="none">
+            <line x1="67" y1="0" x2="67" y2="400"/><line x1="133" y1="0" x2="133" y2="400"/><line x1="200" y1="0" x2="200" y2="400"/><line x1="267" y1="0" x2="267" y2="400"/><line x1="333" y1="0" x2="333" y2="400"/><line x1="400" y1="0" x2="400" y2="400"/><line x1="467" y1="0" x2="467" y2="400"/><line x1="533" y1="0" x2="533" y2="400"/><line x1="600" y1="0" x2="600" y2="400"/><line x1="667" y1="0" x2="667" y2="400"/><line x1="733" y1="0" x2="733" y2="400"/>
+            <line x1="0" y1="67" x2="800" y2="67"/><line x1="0" y1="133" x2="800" y2="133"/><line x1="0" y1="200" x2="800" y2="200"/><line x1="0" y1="267" x2="800" y2="267"/><line x1="0" y1="333" x2="800" y2="333"/>
+          </g>
+          <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(0,0,0,0.1)" stroke-width="0.8"/>
+          <g fill="none" stroke="rgba(0,0,0,0.2)" stroke-width="1" stroke-linejoin="round">
+            <path d="M27,133 L40,51 L100,25 L200,30 L267,40 L289,80 L280,110 L258,140 L258,165 L245,163 L200,158 L170,153 L155,135 L140,128 L124,95 Z"/>
+            <path d="M229,182 L264,176 L322,211 L311,258 L270,284 L247,322 L233,311 L242,267 L222,211 Z"/>
+            <path d="M387,120 L422,118 L476,131 L496,173 L489,224 L478,253 L442,278 L427,264 L407,191 L371,182 L362,167 L371,138 Z"/>
+            <path d="M380,118 L456,42 L622,38 L778,53 L762,84 L716,104 L671,131 L660,187 L631,178 L578,182 L529,151 L500,167 L476,131 L480,120 L449,120 L387,120 Z"/>
+            <path d="M653,249 L698,227 L722,224 L740,262 L736,284 L714,287 L698,278 L656,278 Z"/>
+          </g>
+          <g fill="none" stroke="rgba(0,0,0,0.88)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" filter="url(#routeglow)">
+            <polyline points="404,91 464,109 499,107 554,109 566,129 597,150"/>
+            <polyline points="657,271 710,262 740,261"/>
+            <polyline points="67,64 128,99 140,122 179,157"/>
+            <line x1="380" y1="113" x2="404" y2="91"/>
+          </g>
+          <g fill="none" stroke="rgba(0,0,0,0.38)" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="5,4">
+            <path d="M597,150 Q640,240 657,271"><animate attributeName="stroke-dashoffset" from="0" to="-18" dur="0.75s" repeatCount="indefinite"/></path>
+            <path d="M740,261 Q790,130 800,95"><animate attributeName="stroke-dashoffset" from="0" to="-18" dur="0.75s" repeatCount="indefinite"/></path>
+            <path d="M0,95 Q25,70 67,64"><animate attributeName="stroke-dashoffset" from="0" to="-18" dur="0.75s" repeatCount="indefinite"/></path>
+            <path d="M179,157 Q290,118 380,113"><animate attributeName="stroke-dashoffset" from="0" to="-18" dur="0.75s" repeatCount="indefinite"/></path>
+          </g>
+          <circle cx="404" cy="91" r="9" fill="none" stroke="rgba(0,0,0,0.6)" stroke-width="1"/>
+          <circle cx="404" cy="91" r="4.5" fill="#0D0D0D"/>
+          <circle cx="404" cy="91" r="4.5" fill="none" stroke="rgba(0,0,0,0.45)" stroke-width="0.8"><animate attributeName="r" values="4.5;18;4.5" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.45;0;0.45" dur="2.2s" repeatCount="indefinite"/></circle>
+          <circle cx="404" cy="91" r="4.5" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="0.6"><animate attributeName="r" values="4.5;18;4.5" dur="2.2s" begin="0.7s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.3;0;0.3" dur="2.2s" begin="0.7s" repeatCount="indefinite"/></circle>
+          <g fill="#0D0D0D">
+            <circle cx="464" cy="109" r="3.5"/><circle cx="597" cy="150" r="3.5"/><circle cx="657" cy="271" r="3.5"/>
+            <circle cx="740" cy="261" r="3.5"/><circle cx="67" cy="64" r="3.5"/><circle cx="179" cy="157" r="3.5"/><circle cx="380" cy="113" r="3.5"/>
+          </g>
+          <g fill="none" stroke="rgba(0,0,0,0.38)" stroke-width="0.8">
+            <circle cx="464" cy="109" r="3"><animate attributeName="r" values="3;11;3" dur="2.5s" begin="0.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.5s" begin="0.5s" repeatCount="indefinite"/></circle>
+            <circle cx="597" cy="150" r="3"><animate attributeName="r" values="3;11;3" dur="2.7s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.7s" begin="1s" repeatCount="indefinite"/></circle>
+            <circle cx="657" cy="271" r="3"><animate attributeName="r" values="3;11;3" dur="2.3s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.3s" begin="1.5s" repeatCount="indefinite"/></circle>
+            <circle cx="740" cy="261" r="3"><animate attributeName="r" values="3;11;3" dur="2.6s" begin="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.6s" begin="2s" repeatCount="indefinite"/></circle>
+            <circle cx="67" cy="64" r="3"><animate attributeName="r" values="3;11;3" dur="2.4s" begin="2.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.4s" begin="2.5s" repeatCount="indefinite"/></circle>
+            <circle cx="179" cy="157" r="3"><animate attributeName="r" values="3;11;3" dur="2.8s" begin="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.8s" begin="3s" repeatCount="indefinite"/></circle>
+            <circle cx="380" cy="113" r="3"><animate attributeName="r" values="3;11;3" dur="2.9s" begin="3.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.9s" begin="3.5s" repeatCount="indefinite"/></circle>
+          </g>
+          <g font-family="'Plus Jakarta Sans',sans-serif" font-weight="700" letter-spacing="0.12em">
+            <text x="404" y="80" text-anchor="middle" font-size="6.5" fill="rgba(0,0,0,0.8)">PARIS</text>
+            <text x="470" y="104" text-anchor="start" font-size="5.5" fill="rgba(0,0,0,0.5)">ISTANBUL</text>
+            <text x="602" y="145" text-anchor="start" font-size="5.5" fill="rgba(0,0,0,0.5)">KOLKATA</text>
+            <text x="662" y="266" text-anchor="start" font-size="5.5" fill="rgba(0,0,0,0.5)">PERTH</text>
+            <text x="736" y="255" text-anchor="end" font-size="5.5" fill="rgba(0,0,0,0.5)">BRISBANE</text>
+            <text x="74" y="59" text-anchor="start" font-size="5.5" fill="rgba(0,0,0,0.5)">ANCHORAGE</text>
+            <text x="179" y="169" text-anchor="middle" font-size="5.5" fill="rgba(0,0,0,0.5)">MEXICO</text>
+            <text x="374" y="107" text-anchor="end" font-size="5.5" fill="rgba(0,0,0,0.5)">LISBON</text>
+          </g>
+          <g font-family="'Plus Jakarta Sans',sans-serif" font-size="5.5" font-weight="600" letter-spacing="0.1em" fill="rgba(0,0,0,0.35)">
+            <line x1="12" y1="383" x2="32" y2="383" stroke="rgba(0,0,0,0.75)" stroke-width="2" stroke-linecap="round"/>
+            <text x="36" y="386">CYCLING  ·  18,000 MI</text>
+            <line x1="12" y1="393" x2="32" y2="393" stroke="rgba(0,0,0,0.38)" stroke-width="1.4" stroke-dasharray="5,4" stroke-linecap="round"/>
+            <text x="36" y="396">FLIGHT LEGS</text>
+          </g>
+        </svg>
+      </div>
+      <div class="map-fade"></div>
       <span class="card-tag">MB — 03</span>
       
       <img class="card-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTUJfTG9nbyIgZGF0YS1uYW1lPSJNQiBMb2dvIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDQ4IDIwNDgiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICMwRDBEMEQ7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJfTV8iIGRhdGEtbmFtZT0iJmFtcDtxdW90O00mYW1wO3F1b3Q7Ij4KICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE2NDIuMyw5NzMuNDZoLTEwNC44NGwtMjgwLjI3LTY2Ny44OS00MTguODEsNjI2LjQyLTE2Ni42Ny0yMDcuNjFjLTE5LjksMzAuOTYtMzkuMTksNjEuMjItNTguMSw5MC44MS0zMi4zMyw1MC43OC02NS43MiwxMDMuMjMtMTAxLjk0LDE1OC4yOGgtMTI0LjA1YzM1Ljc2LTU0LjM2LDk3LjQ0LTE2OS4zNCwxMjkuNTQtMjE5LjczLDMyLjMzLTUwLjcsNjUuNzItMTAzLjA4LDEwMS45NC0xNTguMTNsNDMuMTUtNjUuNzIsMTY3LjY2LDIwOC45MUwxMjc5LjY4LDY2LjE2bDM2Mi42Miw5MDcuM1oiLz4KICA8L2c+CiAgPGcgaWQ9Il9CXyIgZGF0YS1uYW1lPSImYW1wO3F1b3Q7QiZhbXA7cXVvdDsiPgogICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzg5Ljg4LDEwNzQuNTNsMjYuMjUsNjUuNjksMTQuMTUsMzUuMzgsMzIyLjIzLDgwNi4yNCw0NDkuNzQtNjcyLjYyLDE2Ny42NSwyMDguOTEsNDMuMTYtNjUuNzNjMzYuMjMtNTUuMDQsNjkuNi0xMDcuNDQsMTAxLjk2LTE1OC4xMiwxNy4zNS0yNy4yNiw0My4zNS03My40NCw2OS4yNy0xMTguNjgsMjEuOTctMzguMzYsNDMuODMtNzYuMTIsNjAuMjUtMTAxLjA3SDM4OS44OFpNNzc1LjAxLDE3NDIuNDJsLTIzNy44OS01NjYuODJoNjE2Ljg0bC0zNzguOTUsNTY2LjgyWk0xNDE4LjU5LDEyMzIuODRjLTE4LjkyLDI5LjU3LTM4LjIxLDU5Ljg0LTU4LjEzLDkwLjc5bC0xMTguODMtMTQ4LjAzaDIxMy40NmMtMTIuNCwxOS4zNi0yNC41LDM4LjM5LTM2LjQ5LDU3LjI0WiIvPgogIDwvZz4KPC9zdmc+" alt="MB">
