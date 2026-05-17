@@ -300,8 +300,6 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
 /* Map overlay on c2 */
 #c2 .map-wrap{position:absolute;inset:0;pointer-events:none;z-index:0;}
 #c2 .map-wrap svg{width:100%;height:100%;}
-#c2 .map-fade{position:absolute;bottom:0;left:0;right:0;height:45%;background:linear-gradient(to bottom,rgba(245,230,66,0),var(--yellow) 70%);pointer-events:none;z-index:1;}
-#c2 .card-kicker,#c2 .card-hl,#c2 .card-sub{position:relative;z-index:2;}
 
 /* Bicycle zoom animation on c2 */
 @keyframes bikeRide{
@@ -435,6 +433,10 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
               <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b"/>
               <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
+            <linearGradient id="c2-fade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="50%" stop-color="#F5E642" stop-opacity="0"/>
+              <stop offset="88%" stop-color="#F5E642" stop-opacity="1"/>
+            </linearGradient>
           </defs>
           <g stroke="rgba(0,0,0,0.06)" stroke-width="0.5" fill="none">
             <line x1="67" y1="0" x2="67" y2="400"/><line x1="133" y1="0" x2="133" y2="400"/><line x1="200" y1="0" x2="200" y2="400"/><line x1="267" y1="0" x2="267" y2="400"/><line x1="333" y1="0" x2="333" y2="400"/><line x1="400" y1="0" x2="400" y2="400"/><line x1="467" y1="0" x2="467" y2="400"/><line x1="533" y1="0" x2="533" y2="400"/><line x1="600" y1="0" x2="600" y2="400"/><line x1="667" y1="0" x2="667" y2="400"/><line x1="733" y1="0" x2="733" y2="400"/>
@@ -493,9 +495,9 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
             <line x1="12" y1="393" x2="32" y2="393" stroke="rgba(0,0,0,0.38)" stroke-width="1.4" stroke-dasharray="5,4" stroke-linecap="round"/>
             <text x="36" y="396">FLIGHT LEGS</text>
           </g>
+          <rect x="0" y="0" width="800" height="400" fill="url(#c2-fade)"/>
         </svg>
       </div>
-      <div class="map-fade"></div>
       <span class="card-tag">MB — 03</span>
       
       <img class="card-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTUJfTG9nbyIgZGF0YS1uYW1lPSJNQiBMb2dvIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDQ4IDIwNDgiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICMwRDBEMEQ7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJfTV8iIGRhdGEtbmFtZT0iJmFtcDtxdW90O00mYW1wO3F1b3Q7Ij4KICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE2NDIuMyw5NzMuNDZoLTEwNC44NGwtMjgwLjI3LTY2Ny44OS00MTguODEsNjI2LjQyLTE2Ni42Ny0yMDcuNjFjLTE5LjksMzAuOTYtMzkuMTksNjEuMjItNTguMSw5MC44MS0zMi4zMyw1MC43OC02NS43MiwxMDMuMjMtMTAxLjk0LDE1OC4yOGgtMTI0LjA1YzM1Ljc2LTU0LjM2LDk3LjQ0LTE2OS4zNCwxMjkuNTQtMjE5LjczLDMyLjMzLTUwLjcsNjUuNzItMTAzLjA4LDEwMS45NC0xNTguMTNsNDMuMTUtNjUuNzIsMTY3LjY2LDIwOC45MUwxMjc5LjY4LDY2LjE2bDM2Mi42Miw5MDcuM1oiLz4KICA8L2c+CiAgPGcgaWQ9Il9CXyIgZGF0YS1uYW1lPSImYW1wO3F1b3Q7QiZhbXA7cXVvdDsiPgogICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzg5Ljg4LDEwNzQuNTNsMjYuMjUsNjUuNjksMTQuMTUsMzUuMzgsMzIyLjIzLDgwNi4yNCw0NDkuNzQtNjcyLjYyLDE2Ny42NSwyMDguOTEsNDMuMTYtNjUuNzNjMzYuMjMtNTUuMDQsNjkuNi0xMDcuNDQsMTAxLjk2LTE1OC4xMiwxNy4zNS0yNy4yNiw0My4zNS03My40NCw2OS4yNy0xMTguNjgsMjEuOTctMzguMzYsNDMuODMtNzYuMTIsNjAuMjUtMTAxLjA3SDM4OS44OFpNNzc1LjAxLDE3NDIuNDJsLTIzNy44OS01NjYuODJoNjE2Ljg0bC0zNzguOTUsNTY2LjgyWk0xNDE4LjU5LDEyMzIuODRjLTE4LjkyLDI5LjU3LTM4LjIxLDU5Ljg0LTU4LjEzLDkwLjc5bC0xMTguODMtMTQ4LjAzaDIxMy40NmMtMTIuNCwxOS4zNi0yNC41LDM4LjM5LTM2LjQ5LDU3LjI0WiIvPgogIDwvZz4KPC9zdmc+" alt="MB">
