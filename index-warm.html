@@ -13,7 +13,7 @@
 <link rel="preload" as="image" href="images/JPEG image 3.jpeg" fetchpriority="high">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{--ink:#0D0D0D;--paper:#F0EDE6;--blue:#2B2BFF;--yellow:#F5E642;--white:#FFFFFF;--mid:#6B6B6B;--light:#E0DDD6;--r:20px;--f:'Plus Jakarta Sans',sans-serif;}
+:root{--ink:#27221E;--paper:#F2EDE4;--blue:#8FA8BC;--yellow:#EDE0A4;--white:#FFFFFF;--mid:#8C8178;--light:#DDD7CE;--r:20px;--f:'Plus Jakarta Sans',sans-serif;}
 html{scroll-behavior:smooth;scroll-snap-type:y proximity;}
 body{font-family:var(--f);background:var(--paper);color:var(--ink);overflow-x:hidden;max-width:1600px;margin-left:auto;margin-right:auto;}
 #partnerships,#speaking,#podcast,#how,#contact{scroll-snap-align:start;}
@@ -79,8 +79,8 @@ img{display:block;}
 .split-right{background:#111;border-left:1px solid #1a1a1a;transition:background .4s ease;position:relative;overflow:hidden;}
 .split-half::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.6);transition:opacity .4s ease;pointer-events:none;}
 .split-half:hover::after{opacity:.2;}
-.split-half:hover.split-left{background:#1a1a2e;}
-.split-half:hover.split-right{background:#0d1a0d;}
+.split-half:hover.split-left{background:#1e1a28;}
+.split-half:hover.split-right{background:#100e14;}
 .split-half .split-label,.split-half .split-title,.split-half .split-items{position:relative;z-index:1;}
 .split-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:16px;display:block;}
 .split-title{font-size:clamp(24px,3.5vw,48px);font-weight:800;line-height:.95;letter-spacing:-.03em;color:var(--white);margin-bottom:20px;}
@@ -167,12 +167,12 @@ img{display:block;}
 }
 @media(max-width:900px){.notes-field{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:480px){.notes-field{grid-template-columns:1fr;}}
-.note{--bg:#2B2BFF;--fg:rgba(255,255,255,.9);--attr:rgba(255,255,255,.5);}
-.note:nth-child(2){--bg:#F5E642;--fg:rgba(0,0,0,.85);--attr:rgba(0,0,0,.45);}
-.note:nth-child(3){--bg:#1a1a1a;--fg:rgba(255,255,255,.8);--attr:rgba(255,255,255,.35);}
-.note:nth-child(4){--bg:#3a3aee;--fg:rgba(255,255,255,.9);--attr:rgba(255,255,255,.45);}
-.note:nth-child(5){--bg:#ddd940;--fg:rgba(0,0,0,.85);--attr:rgba(0,0,0,.45);}
-.note:nth-child(6){--bg:#111;--fg:rgba(255,255,255,.75);--attr:rgba(255,255,255,.3);}
+.note{--bg:#8FA8BC;--fg:rgba(255,255,255,.92);--attr:rgba(255,255,255,.55);}
+.note:nth-child(2){--bg:#EDE0A4;--fg:rgba(39,34,30,.88);--attr:rgba(39,34,30,.5);}
+.note:nth-child(3){--bg:#2C2620;--fg:rgba(255,255,255,.8);--attr:rgba(255,255,255,.35);}
+.note:nth-child(4){--bg:#7898AC;--fg:rgba(255,255,255,.92);--attr:rgba(255,255,255,.5);}
+.note:nth-child(5){--bg:#D4CC8C;--fg:rgba(39,34,30,.88);--attr:rgba(39,34,30,.5);}
+.note:nth-child(6){--bg:#1E1A14;--fg:rgba(255,255,255,.75);--attr:rgba(255,255,255,.3);}
 .note{position:relative;left:auto !important;top:auto !important;width:100%;background:var(--bg);padding:24px 22px 26px;border-radius:12px;cursor:pointer;user-select:none;box-shadow:3px 8px 28px rgba(0,0,0,.1);transform:rotate(var(--rot,0deg));transition:transform .25s ease,box-shadow .25s ease;}
 .note:hover{box-shadow:6px 18px 40px rgba(0,0,0,.18);transform:translateY(-4px) scale(1.02) rotate(0deg);z-index:10;}
 .note-q{font-size:13px;font-weight:400;line-height:1.65;color:var(--fg);font-style:italic;}
@@ -401,8 +401,8 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
       <div class="card-hl">Mark<br>Beaumont</div>
       <div class="card-sub">Multiple Guinness World Record Holder. International Conference Speaker. BBC Broadcaster. Author &amp; Podcaster.</div>
       <div style="display:flex;flex-direction:column;gap:6px;margin-top:16px;margin-bottom:4px;">
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:5px 14px;width:fit-content;"><svg width="10" height="10" viewBox="0 0 24 24" fill="#F5E642"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-size:10px;font-weight:600;color:rgba(255,255,255,.8);letter-spacing:.03em;">World's Highest Marathon · Atacama Desert 2026</span></div>
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:5px 14px;width:fit-content;"><svg width="10" height="10" viewBox="0 0 24 24" fill="#F5E642"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-size:10px;font-weight:600;color:rgba(255,255,255,.8);letter-spacing:.03em;">Fastest Cycle Around the World · 78 days 2017</span></div>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:5px 14px;width:fit-content;"><svg width="10" height="10" viewBox="0 0 24 24" fill="#EDE0A4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-size:10px;font-weight:600;color:rgba(255,255,255,.8);letter-spacing:.03em;">World's Highest Marathon · Atacama Desert 2026</span></div>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:5px 14px;width:fit-content;"><svg width="10" height="10" viewBox="0 0 24 24" fill="#EDE0A4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-size:10px;font-weight:600;color:rgba(255,255,255,.8);letter-spacing:.03em;">Fastest Cycle Around the World · 78 days 2017</span></div>
       </div>
       <div class="card-btns">
         <a href="#" class="btn btn-p" id="lmbtn"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 8l5 4 5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Learn More</a>
@@ -451,8 +451,8 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
               <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
             <linearGradient id="c2-fade" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="50%" stop-color="#F5E642" stop-opacity="0"/>
-              <stop offset="88%" stop-color="#F5E642" stop-opacity="1"/>
+              <stop offset="50%" stop-color="#EDE0A4" stop-opacity="0"/>
+              <stop offset="88%" stop-color="#EDE0A4" stop-opacity="1"/>
             </linearGradient>
           </defs>
           <g stroke="rgba(0,0,0,0.06)" stroke-width="0.5" fill="none">
@@ -480,10 +480,10 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
             <path d="M236,111 Q310,80 380,113"><animate attributeName="stroke-dashoffset" from="0" to="-18" dur="0.75s" repeatCount="indefinite"/></path>
           </g>
           <circle cx="404" cy="91" r="9" fill="none" stroke="rgba(0,0,0,0.6)" stroke-width="1"/>
-          <circle cx="404" cy="91" r="4.5" fill="#0D0D0D"/>
+          <circle cx="404" cy="91" r="4.5" fill="#27221E"/>
           <circle cx="404" cy="91" r="4.5" fill="none" stroke="rgba(0,0,0,0.45)" stroke-width="0.8"><animate attributeName="r" values="4.5;18;4.5" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.45;0;0.45" dur="2.2s" repeatCount="indefinite"/></circle>
           <circle cx="404" cy="91" r="4.5" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="0.6"><animate attributeName="r" values="4.5;18;4.5" dur="2.2s" begin="0.7s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.3;0;0.3" dur="2.2s" begin="0.7s" repeatCount="indefinite"/></circle>
-          <g fill="#0D0D0D">
+          <g fill="#27221E">
             <circle cx="464" cy="109" r="3.5"/><circle cx="597" cy="150" r="3.5"/><circle cx="657" cy="271" r="3.5"/>
             <circle cx="740" cy="261" r="3.5"/><circle cx="67" cy="64" r="3.5"/><circle cx="236" cy="111" r="3.5"/><circle cx="380" cy="113" r="3.5"/>
           </g>
@@ -520,7 +520,7 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
       <span class="card-tag">MB — 03</span>
       
       <img class="card-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTUJfTG9nbyIgZGF0YS1uYW1lPSJNQiBMb2dvIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDQ4IDIwNDgiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICMwRDBEMEQ7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJfTV8iIGRhdGEtbmFtZT0iJmFtcDtxdW90O00mYW1wO3F1b3Q7Ij4KICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE2NDIuMyw5NzMuNDZoLTEwNC44NGwtMjgwLjI3LTY2Ny44OS00MTguODEsNjI2LjQyLTE2Ni42Ny0yMDcuNjFjLTE5LjksMzAuOTYtMzkuMTksNjEuMjItNTguMSw5MC44MS0zMi4zMyw1MC43OC02NS43MiwxMDMuMjMtMTAxLjk0LDE1OC4yOGgtMTI0LjA1YzM1Ljc2LTU0LjM2LDk3LjQ0LTE2OS4zNCwxMjkuNTQtMjE5LjczLDMyLjMzLTUwLjcsNjUuNzItMTAzLjA4LDEwMS45NC0xNTguMTNsNDMuMTUtNjUuNzIsMTY3LjY2LDIwOC45MUwxMjc5LjY4LDY2LjE2bDM2Mi42Miw5MDcuM1oiLz4KICA8L2c+CiAgPGcgaWQ9Il9CXyIgZGF0YS1uYW1lPSImYW1wO3F1b3Q7QiZhbXA7cXVvdDsiPgogICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzg5Ljg4LDEwNzQuNTNsMjYuMjUsNjUuNjksMTQuMTUsMzUuMzgsMzIyLjIzLDgwNi4yNCw0NDkuNzQtNjcyLjYyLDE2Ny42NSwyMDguOTEsNDMuMTYtNjUuNzNjMzYuMjMtNTUuMDQsNjkuNi0xMDcuNDQsMTAxLjk2LTE1OC4xMiwxNy4zNS0yNy4yNiw0My4zNS03My40NCw2OS4yNy0xMTguNjgsMjEuOTctMzguMzYsNDMuODMtNzYuMTIsNjAuMjUtMTAxLjA3SDM4OS44OFpNNzc1LjAxLDE3NDIuNDJsLTIzNy44OS01NjYuODJoNjE2Ljg0bC0zNzguOTUsNTY2LjgyWk0xNDE4LjU5LDEyMzIuODRjLTE4LjkyLDI5LjU3LTM4LjIxLDU5Ljg0LTU4LjEzLDkwLjc5bC0xMTguODMtMTQ4LjAzaDIxMy40NmMtMTIuNCwxOS4zNi0yNC41LDM4LjM5LTM2LjQ5LDU3LjI0WiIvPgogIDwvZz4KPC9zdmc+" alt="MB">
-      <div class="card-deco"><svg width="130" height="80" viewBox="0 0 130 80" fill="none" color="#0D0D0D"><circle cx="22" cy="58" r="16" stroke="currentColor" stroke-width="1.2"/><circle cx="108" cy="58" r="16" stroke="currentColor" stroke-width="1.2"/><path d="M22 58L48 20h22" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M70 20L108 58" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M48 20L65 58" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="60" y1="20" x2="82" y2="20" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="71" cy="20" r="3.5" stroke="currentColor" stroke-width="1.2"/></svg></div>
+      <div class="card-deco"><svg width="130" height="80" viewBox="0 0 130 80" fill="none" color="#27221E"><circle cx="22" cy="58" r="16" stroke="currentColor" stroke-width="1.2"/><circle cx="108" cy="58" r="16" stroke="currentColor" stroke-width="1.2"/><path d="M22 58L48 20h22" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M70 20L108 58" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M48 20L65 58" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="60" y1="20" x2="82" y2="20" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="71" cy="20" r="3.5" stroke="currentColor" stroke-width="1.2"/></svg></div>
       <div class="slide-counter">03 / 05</div>
       <div class="scroll-hint" style="color:rgba(0,0,0,.25)"><span class="sh-txt">Scroll</span><div class="sh-line"></div></div>
       <div class="card-kicker">Guinness World Record</div>
