@@ -13,7 +13,7 @@
 <link rel="preload" as="image" href="images/JPEG image 3.jpeg" fetchpriority="high">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{--ink:#27221E;--paper:#F2EDE4;--blue:#8FA8BC;--yellow:#EDE0A4;--white:#FFFFFF;--mid:#8C8178;--light:#DDD7CE;--r:20px;--f:'Plus Jakarta Sans',sans-serif;}
+:root{--ink:#1C1A18;--paper:#F2EDE4;--blue:#2D48C8;--yellow:#F6EA58;--white:#FFFFFF;--mid:#7A7470;--light:#DDD7CE;--r:20px;--f:'Plus Jakarta Sans',sans-serif;}
 html{scroll-behavior:smooth;scroll-snap-type:y proximity;}
 body{font-family:var(--f);background:var(--paper);color:var(--ink);overflow-x:hidden;max-width:1600px;margin-left:auto;margin-right:auto;}
 #partnerships,#speaking,#podcast,#how,#contact{scroll-snap-align:start;}
@@ -43,27 +43,31 @@ img{display:block;}
 #cards-scroll{position:relative;height:500vh;}
 .cards-sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;}
 .card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(32px,5vw,72px) clamp(24px,6vw,80px);will-change:transform;backface-visibility:hidden;}
-.c0{background:var(--blue);z-index:5;}
+.c0{background:var(--white);z-index:5;}
 .c1{background:var(--ink);z-index:4;}
 .c2{background:var(--yellow);z-index:3;}
 .c3{background:var(--paper);z-index:2;}
 .c4{background:var(--blue);z-index:1;}
 .card-logo{position:absolute;top:clamp(20px,3vw,36px);right:clamp(20px,3vw,60px);width:clamp(36px,4vw,52px);height:auto;}
 .card-tag{position:absolute;top:clamp(24px,4vw,52px);left:clamp(24px,5vw,80px);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;}
-.c0 .card-tag,.c1 .card-tag,.c4 .card-tag{color:rgba(255,255,255,.25);}
+.c0 .card-tag{color:rgba(0,0,0,.18);}
+.c1 .card-tag,.c4 .card-tag{color:rgba(255,255,255,.25);}
 .c2 .card-tag{color:rgba(0,0,0,.2);}.c3 .card-tag{color:rgba(255,255,255,.25);}
 .card-kicker{font-size:clamp(9px,1.1vw,11px);font-weight:600;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:16px;}
 .card-kicker::before{content:'';display:block;width:18px;height:1.5px;background:currentColor;}
-.c0 .card-kicker,.c4 .card-kicker{color:rgba(255,255,255,.45);}
+.c0 .card-kicker{color:var(--blue);}
+.c4 .card-kicker{color:rgba(255,255,255,.45);}
 .c1 .card-kicker{color:rgba(255,255,255,.35);}
 .c2 .card-kicker{color:rgba(0,0,0,.4);}
 .c3 .card-kicker{color:rgba(255,255,255,.45);}
 .card-hl{font-size:clamp(36px,8vw,128px);font-weight:800;line-height:.9;letter-spacing:-.04em;max-width:900px;}
-.c0 .card-hl,.c1 .card-hl,.c4 .card-hl{color:var(--white);}
+.c0 .card-hl{color:var(--ink);}
+.c1 .card-hl,.c4 .card-hl{color:var(--white);}
 .c2 .card-hl{color:var(--ink);}
 .c3 .card-hl{color:var(--white);}
 .card-sub{font-size:clamp(12px,1.4vw,14px);font-weight:400;margin-top:20px;opacity:.6;max-width:440px;line-height:1.65;}
-.c0 .card-sub,.c1 .card-sub,.c4 .card-sub{color:var(--white);}
+.c0 .card-sub{color:var(--ink);}
+.c1 .card-sub,.c4 .card-sub{color:var(--white);}
 .c2 .card-sub{color:var(--ink);}.c3 .card-sub{color:var(--white);}
 .card-btns{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap;}
 .btn{font-family:var(--f);font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:12px 24px;border-radius:100px;cursor:pointer;border:none;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:transform .2s,opacity .2s;}
@@ -90,7 +94,8 @@ img{display:block;}
 @media(max-width:600px){.card-split{grid-template-columns:1fr;}.split-right{border-left:none;border-top:1px solid #1a1a1a;}}
 
 .scroll-hint{position:absolute;bottom:clamp(24px,3vw,40px);right:clamp(60px,8vw,120px);display:flex;align-items:center;gap:10px;pointer-events:none;}
-.c0 .scroll-hint,.c1 .scroll-hint,.c4 .scroll-hint{color:rgba(255,255,255,.3);}
+.c0 .scroll-hint{color:rgba(0,0,0,.3);}
+.c1 .scroll-hint,.c4 .scroll-hint{color:rgba(255,255,255,.3);}
 .c2 .scroll-hint{color:rgba(0,0,0,.25);}.c3 .scroll-hint{color:rgba(255,255,255,.3);}
 .sh-txt{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;}
 .sh-line{width:32px;height:1px;background:currentColor;position:relative;overflow:hidden;}
@@ -99,7 +104,8 @@ img{display:block;}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.ticker-track{animation:none!important;overflow-x:auto;}}
 .slide-counter{position:absolute;bottom:clamp(24px,3vw,40px);left:clamp(24px,5vw,80px);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;}
-.c0 .slide-counter,.c1 .slide-counter,.c4 .slide-counter{color:rgba(255,255,255,.25);}
+.c0 .slide-counter{color:rgba(0,0,0,.2);}
+.c1 .slide-counter,.c4 .slide-counter{color:rgba(255,255,255,.25);}
 .c2 .slide-counter,.c3 .slide-counter{color:rgba(0,0,0,.2);}
 
 /* ABOUT */
@@ -155,7 +161,7 @@ img{display:block;}
 .reel-tri{width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:15px solid rgba(255,255,255,.7);margin-left:4px;}
 
 /* TESTIMONIALS */
-#testimonials{background:var(--paper);padding:clamp(64px,8vw,120px) clamp(24px,6vw,80px) clamp(80px,12vw,180px);overflow:hidden;}
+#testimonials{background:var(--white);padding:clamp(64px,8vw,120px) clamp(24px,6vw,80px) clamp(48px,6vw,80px);overflow:hidden;}
 .test-header{max-width:1200px;margin:0 auto clamp(56px,7vw,100px);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;}
 .test-title{font-size:clamp(36px,5.5vw,80px);font-weight:800;line-height:.9;letter-spacing:-.04em;}
 .test-hint{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#999;text-align:right;line-height:1.6;padding-bottom:6px;}
@@ -167,11 +173,11 @@ img{display:block;}
 }
 @media(max-width:900px){.notes-field{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:480px){.notes-field{grid-template-columns:1fr;}}
-.note{--bg:#8FA8BC;--fg:rgba(255,255,255,.92);--attr:rgba(255,255,255,.55);}
-.note:nth-child(2){--bg:#EDE0A4;--fg:rgba(39,34,30,.88);--attr:rgba(39,34,30,.5);}
+.note{--bg:#4A72D0;--fg:rgba(255,255,255,.92);--attr:rgba(255,255,255,.55);}
+.note:nth-child(2){--bg:#F6EA58;--fg:rgba(39,34,30,.88);--attr:rgba(39,34,30,.5);}
 .note:nth-child(3){--bg:#2C2620;--fg:rgba(255,255,255,.8);--attr:rgba(255,255,255,.35);}
-.note:nth-child(4){--bg:#7898AC;--fg:rgba(255,255,255,.92);--attr:rgba(255,255,255,.5);}
-.note:nth-child(5){--bg:#D4CC8C;--fg:rgba(39,34,30,.88);--attr:rgba(39,34,30,.5);}
+.note:nth-child(4){--bg:#2D48C8;--fg:rgba(255,255,255,.92);--attr:rgba(255,255,255,.5);}
+.note:nth-child(5){--bg:#EEE040;--fg:rgba(39,34,30,.88);--attr:rgba(39,34,30,.5);}
 .note:nth-child(6){--bg:#1E1A14;--fg:rgba(255,255,255,.75);--attr:rgba(255,255,255,.3);}
 .note{position:relative;left:auto !important;top:auto !important;width:100%;background:var(--bg);padding:24px 22px 26px;border-radius:12px;cursor:pointer;user-select:none;box-shadow:3px 8px 28px rgba(0,0,0,.1);transform:rotate(var(--rot,0deg));transition:transform .25s ease,box-shadow .25s ease;}
 .note:hover{box-shadow:6px 18px 40px rgba(0,0,0,.18);transform:translateY(-4px) scale(1.02) rotate(0deg);z-index:10;}
@@ -304,6 +310,12 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
 .reel-thumb:hover .reel-overlay{background:rgba(0,0,0,.2);}
 .reel-thumb:hover .reel-play-btn{background:rgba(255,255,255,.25);transform:scale(1.1);}
 
+/* c0 hero overrides (light paper background) */
+.c0 .btn-p{background:var(--blue);color:var(--white);}
+.c0 .btn-s{color:var(--ink);border-color:rgba(0,0,0,.22);}
+.c0 .btn-s:hover{color:var(--blue);border-color:var(--blue);}
+.c0 .card-logo{filter:brightness(0);opacity:.75;}
+
 /* Map overlay on c2 */
 #c2 .map-wrap{position:absolute;inset:0;pointer-events:none;z-index:0;}
 #c2 .map-wrap svg{width:100%;height:100%;}
@@ -331,7 +343,7 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
 #podcast .ep:hover .ep-arr{color:var(--blue);}
 
 /* INTRO ANIMATION */
-#intro-overlay{position:fixed;inset:0;z-index:9999;background:var(--blue);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+#intro-overlay{position:fixed;inset:0;z-index:9999;background:#FFFFFF;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 #intro-overlay.intro-exit{animation:introOverlayFade 1.4s ease-in forwards;}
 #intro-svg{width:clamp(260px,55vmin,520px);height:clamp(260px,55vmin,520px);animation:introSvgEnter 1.4s 0s cubic-bezier(.2,0,.4,1) both;overflow:visible;}
 #intro-svg.intro-exit{animation:introSvgExit 1.4s ease-in forwards;}
@@ -401,8 +413,8 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
       <div class="card-hl">Mark<br>Beaumont</div>
       <div class="card-sub">Multiple Guinness World Record Holder. International Conference Speaker. BBC Broadcaster. Author &amp; Podcaster.</div>
       <div style="display:flex;flex-direction:column;gap:6px;margin-top:16px;margin-bottom:4px;">
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:5px 14px;width:fit-content;"><svg width="10" height="10" viewBox="0 0 24 24" fill="#EDE0A4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-size:10px;font-weight:600;color:rgba(255,255,255,.8);letter-spacing:.03em;">World's Highest Marathon · Atacama Desert 2026</span></div>
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:5px 14px;width:fit-content;"><svg width="10" height="10" viewBox="0 0 24 24" fill="#EDE0A4"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-size:10px;font-weight:600;color:rgba(255,255,255,.8);letter-spacing:.03em;">Fastest Cycle Around the World · 78 days 2017</span></div>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.12);border-radius:100px;padding:5px 14px;width:fit-content;"><svg width="10" height="10" viewBox="0 0 24 24" fill="#F6EA58"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-size:10px;font-weight:600;color:rgba(0,0,0,.65);letter-spacing:.03em;">World's Highest Marathon · Atacama Desert 2026</span></div>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.12);border-radius:100px;padding:5px 14px;width:fit-content;"><svg width="10" height="10" viewBox="0 0 24 24" fill="#F6EA58"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-size:10px;font-weight:600;color:rgba(0,0,0,.65);letter-spacing:.03em;">Fastest Cycle Around the World · 78 days 2017</span></div>
       </div>
       <div class="card-btns">
         <a href="#" class="btn btn-p" id="lmbtn"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 8l5 4 5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Learn More</a>
@@ -416,7 +428,7 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
     <div class="card c1" id="c1" style="padding:0;">
       <img class="card-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTUJfTG9nbyIgZGF0YS1uYW1lPSJNQiBMb2dvIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDQ4IDIwNDgiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICNGRkZGRkY7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJfTV8iIGRhdGEtbmFtZT0iJmFtcDtxdW90O00mYW1wO3F1b3Q7Ij4KICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE2NDIuMyw5NzMuNDZoLTEwNC44NGwtMjgwLjI3LTY2Ny44OS00MTguODEsNjI2LjQyLTE2Ni42Ny0yMDcuNjFjLTE5LjksMzAuOTYtMzkuMTksNjEuMjItNTguMSw5MC44MS0zMi4zMyw1MC43OC02NS43MiwxMDMuMjMtMTAxLjk0LDE1OC4yOGgtMTI0LjA1YzM1Ljc2LTU0LjM2LDk3LjQ0LTE2OS4zNCwxMjkuNTQtMjE5LjczLDMyLjMzLTUwLjcsNjUuNzItMTAzLjA4LDEwMS45NC0xNTguMTNsNDMuMTUtNjUuNzIsMTY3LjY2LDIwOC45MUwxMjc5LjY4LDY2LjE2bDM2Mi42Miw5MDcuM1oiLz4KICA8L2c+CiAgPGcgaWQ9Il9CXyIgZGF0YS1uYW1lPSImYW1wO3F1b3Q7QiZhbXA7cXVvdDsiPgogICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzg5Ljg4LDEwNzQuNTNsMjYuMjUsNjUuNjksMTQuMTUsMzUuMzgsMzIyLjIzLDgwNi4yNCw0NDkuNzQtNjcyLjYyLDE2Ny42NSwyMDguOTEsNDMuMTYtNjUuNzNjMzYuMjMtNTUuMDQsNjkuNi0xMDcuNDQsMTAxLjk2LTE1OC4xMiwxNy4zNS0yNy4yNiw0My4zNS03My40NCw2OS4yNy0xMTguNjgsMjEuOTctMzguMzYsNDMuODMtNzYuMTIsNjAuMjUtMTAxLjA3SDM4OS44OFpNNzc1LjAxLDE3NDIuNDJsLTIzNy44OS01NjYuODJoNjE2Ljg0bC0zNzguOTUsNTY2LjgyWk0xNDE4LjU5LDEyMzIuODRjLTE4LjkyLDI5LjU3LTM4LjIxLDU5Ljg0LTU4LjEzLDkwLjc5bC0xMTguODMtMTQ4LjAzaDIxMy40NmMtMTIuNCwxOS4zNi0yNC41LDM4LjM5LTM2LjQ5LDU3LjI0WiIvPgogIDwvZz4KPC9zdmc+" alt="MB">
       <div class="card-split">
-        <div class="split-half split-left" style="background-image:url('images/cheddar-gorge-cyclists.jpeg');background-size:cover;background-position:center;">
+        <div class="split-half split-left" style="background-image:url('images/business-aerial.webp');background-size:cover;background-position:center 30%;">
           <span class="split-label">Business &amp; Sport</span>
           <h2 class="split-title">Two Worlds.</h2>
           <div class="split-items">
@@ -451,8 +463,8 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
               <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
             <linearGradient id="c2-fade" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="50%" stop-color="#EDE0A4" stop-opacity="0"/>
-              <stop offset="88%" stop-color="#EDE0A4" stop-opacity="1"/>
+              <stop offset="50%" stop-color="#F6EA58" stop-opacity="0"/>
+              <stop offset="88%" stop-color="#F6EA58" stop-opacity="1"/>
             </linearGradient>
           </defs>
           <g stroke="rgba(0,0,0,0.06)" stroke-width="0.5" fill="none">
@@ -467,46 +479,67 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
             <path d="M380,118 L456,42 L622,38 L778,53 L762,84 L716,104 L671,131 L660,187 L631,178 L578,182 L529,151 L500,167 L476,131 L480,120 L449,120 L387,120 Z"/>
             <path d="M653,249 L698,227 L722,224 L740,262 L736,284 L714,287 L698,278 L656,278 Z"/>
           </g>
+          <!-- Stage 1: Paris→Berlin→Kazan→Omsk→Ulaanbaatar→Beijing (cycling) -->
+          <!-- Stage 2: Perth→Adelaide→Melbourne→Brisbane + Auckland→Invercargill (cycling) -->
+          <!-- Stage 3: Anchorage→Edmonton→Minneapolis→Halifax (cycling) -->
+          <!-- Stage 4: Lisbon→Madrid→Paris (cycling) -->
           <g fill="none" stroke="rgba(0,0,0,0.88)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" filter="url(#routeglow)">
-            <polyline points="404,91 464,109 499,107 554,109 566,129 597,150"/>
-            <polyline points="657,271 710,262 740,261"/>
-            <polyline points="67,64 128,85 185,95 236,111"/>
-            <line x1="380" y1="113" x2="404" y2="91"/>
+            <polyline points="404,91 432,75 480,70 512,66 556,76 580,100"/>
+            <polyline points="660,275 692,285 712,291 738,262"/>
+            <polyline points="767,279 769,295"/>
+            <polyline points="82,57 118,74 160,87 192,82 205,89"/>
+            <polyline points="380,113 390,104 404,91"/>
           </g>
+          <!-- Flight legs: Beijing→Perth, Brisbane→Auckland, NZ→Anchorage (Pacific wrap), Halifax→Lisbon -->
           <g fill="none" stroke="rgba(0,0,0,0.38)" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="5,4">
-            <path d="M597,150 Q640,240 657,271"><animate attributeName="stroke-dashoffset" from="0" to="-18" dur="0.75s" repeatCount="indefinite"/></path>
-            <path d="M740,261 Q790,130 800,95"><animate attributeName="stroke-dashoffset" from="0" to="-18" dur="0.75s" repeatCount="indefinite"/></path>
-            <path d="M0,95 Q25,70 67,64"><animate attributeName="stroke-dashoffset" from="0" to="-18" dur="0.75s" repeatCount="indefinite"/></path>
-            <path d="M236,111 Q310,80 380,113"><animate attributeName="stroke-dashoffset" from="0" to="-18" dur="0.75s" repeatCount="indefinite"/></path>
+            <path d="M580,100 Q615,210 660,275"><animate attributeName="stroke-dashoffset" from="0" to="-18" dur="0.75s" repeatCount="indefinite"/></path>
+            <path d="M738,262 Q752,276 767,279"><animate attributeName="stroke-dashoffset" from="0" to="-18" dur="0.75s" repeatCount="indefinite"/></path>
+            <path d="M769,295 Q795,140 800,70"><animate attributeName="stroke-dashoffset" from="0" to="-18" dur="0.75s" repeatCount="indefinite"/></path>
+            <path d="M0,70 Q40,58 82,57"><animate attributeName="stroke-dashoffset" from="0" to="-18" dur="0.75s" repeatCount="indefinite"/></path>
+            <path d="M205,89 Q292,70 380,113"><animate attributeName="stroke-dashoffset" from="0" to="-18" dur="0.75s" repeatCount="indefinite"/></path>
           </g>
+          <!-- Paris: pulsing START/FINISH dot -->
           <circle cx="404" cy="91" r="9" fill="none" stroke="rgba(0,0,0,0.6)" stroke-width="1"/>
-          <circle cx="404" cy="91" r="4.5" fill="#27221E"/>
+          <circle cx="404" cy="91" r="4.5" fill="#1C1A18"/>
           <circle cx="404" cy="91" r="4.5" fill="none" stroke="rgba(0,0,0,0.45)" stroke-width="0.8"><animate attributeName="r" values="4.5;18;4.5" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.45;0;0.45" dur="2.2s" repeatCount="indefinite"/></circle>
           <circle cx="404" cy="91" r="4.5" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="0.6"><animate attributeName="r" values="4.5;18;4.5" dur="2.2s" begin="0.7s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.3;0;0.3" dur="2.2s" begin="0.7s" repeatCount="indefinite"/></circle>
-          <g fill="#27221E">
-            <circle cx="464" cy="109" r="3.5"/><circle cx="597" cy="150" r="3.5"/><circle cx="657" cy="271" r="3.5"/>
-            <circle cx="740" cy="261" r="3.5"/><circle cx="67" cy="64" r="3.5"/><circle cx="236" cy="111" r="3.5"/><circle cx="380" cy="113" r="3.5"/>
+          <!-- Waypoint dots -->
+          <g fill="#1C1A18">
+            <circle cx="432" cy="75" r="2.5"/><circle cx="480" cy="70" r="2.5"/>
+            <circle cx="512" cy="66" r="2.5"/><circle cx="556" cy="76" r="2.5"/>
+            <circle cx="580" cy="100" r="3.5"/>
+            <circle cx="660" cy="275" r="3.5"/>
+            <circle cx="692" cy="285" r="2"/><circle cx="712" cy="291" r="2"/>
+            <circle cx="738" cy="262" r="3.5"/>
+            <circle cx="767" cy="279" r="3"/><circle cx="769" cy="295" r="2.5"/>
+            <circle cx="82" cy="57" r="3.5"/>
+            <circle cx="118" cy="74" r="2.5"/><circle cx="160" cy="87" r="2.5"/>
+            <circle cx="192" cy="82" r="2.5"/><circle cx="205" cy="89" r="3.5"/>
+            <circle cx="380" cy="113" r="3.5"/><circle cx="390" cy="104" r="2.5"/>
           </g>
+          <!-- Pulsing rings on main cities -->
           <g fill="none" stroke="rgba(0,0,0,0.38)" stroke-width="0.8">
-            <circle cx="464" cy="109" r="3"><animate attributeName="r" values="3;11;3" dur="2.5s" begin="0.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.5s" begin="0.5s" repeatCount="indefinite"/></circle>
-            <circle cx="597" cy="150" r="3"><animate attributeName="r" values="3;11;3" dur="2.7s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.7s" begin="1s" repeatCount="indefinite"/></circle>
-            <circle cx="657" cy="271" r="3"><animate attributeName="r" values="3;11;3" dur="2.3s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.3s" begin="1.5s" repeatCount="indefinite"/></circle>
-            <circle cx="740" cy="261" r="3"><animate attributeName="r" values="3;11;3" dur="2.6s" begin="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.6s" begin="2s" repeatCount="indefinite"/></circle>
-            <circle cx="67" cy="64" r="3"><animate attributeName="r" values="3;11;3" dur="2.4s" begin="2.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.4s" begin="2.5s" repeatCount="indefinite"/></circle>
-            <circle cx="236" cy="111" r="3"><animate attributeName="r" values="3;11;3" dur="2.8s" begin="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.8s" begin="3s" repeatCount="indefinite"/></circle>
-            <circle cx="380" cy="113" r="3"><animate attributeName="r" values="3;11;3" dur="2.9s" begin="3.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.9s" begin="3.5s" repeatCount="indefinite"/></circle>
+            <circle cx="580" cy="100" r="3"><animate attributeName="r" values="3;11;3" dur="2.5s" begin="0.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.5s" begin="0.5s" repeatCount="indefinite"/></circle>
+            <circle cx="660" cy="275" r="3"><animate attributeName="r" values="3;11;3" dur="2.7s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.7s" begin="1s" repeatCount="indefinite"/></circle>
+            <circle cx="738" cy="262" r="3"><animate attributeName="r" values="3;11;3" dur="2.3s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.3s" begin="1.5s" repeatCount="indefinite"/></circle>
+            <circle cx="82" cy="57" r="3"><animate attributeName="r" values="3;11;3" dur="2.4s" begin="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.4s" begin="2s" repeatCount="indefinite"/></circle>
+            <circle cx="205" cy="89" r="3"><animate attributeName="r" values="3;11;3" dur="2.8s" begin="2.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.8s" begin="2.5s" repeatCount="indefinite"/></circle>
+            <circle cx="380" cy="113" r="3"><animate attributeName="r" values="3;11;3" dur="2.9s" begin="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2.9s" begin="3s" repeatCount="indefinite"/></circle>
           </g>
+          <!-- City labels -->
           <g font-family="'Plus Jakarta Sans',sans-serif" font-weight="700" letter-spacing="0.12em">
             <rect x="376" y="60" width="56" height="9" rx="2.5" fill="rgba(0,0,0,0.72)"/>
             <text x="404" y="67" text-anchor="middle" font-size="4.8" font-weight="800" letter-spacing="0.14em" fill="white">START · FINISH</text>
             <text x="404" y="80" text-anchor="middle" font-size="6" fill="rgba(0,0,0,0.75)">PARIS</text>
-            <text x="470" y="104" text-anchor="start" font-size="5.5" fill="rgba(0,0,0,0.5)">ISTANBUL</text>
-            <text x="602" y="145" text-anchor="start" font-size="5.5" fill="rgba(0,0,0,0.5)">KOLKATA</text>
-            <text x="662" y="266" text-anchor="start" font-size="5.5" fill="rgba(0,0,0,0.5)">PERTH</text>
-            <text x="736" y="255" text-anchor="end" font-size="5.5" fill="rgba(0,0,0,0.5)">BRISBANE</text>
-            <text x="74" y="59" text-anchor="start" font-size="5.5" fill="rgba(0,0,0,0.5)">ANCHORAGE</text>
-            <text x="236" y="103" text-anchor="middle" font-size="5.5" fill="rgba(0,0,0,0.5)">NEW YORK</text>
-            <text x="374" y="107" text-anchor="end" font-size="5.5" fill="rgba(0,0,0,0.5)">LISBON</text>
+            <text x="437" y="70" text-anchor="start" font-size="5" fill="rgba(0,0,0,0.45)">BERLIN</text>
+            <text x="558" y="71" text-anchor="start" font-size="5" fill="rgba(0,0,0,0.45)">ULAANBAATAR</text>
+            <text x="585" y="96" text-anchor="start" font-size="5.5" fill="rgba(0,0,0,0.5)">BEIJING</text>
+            <text x="656" y="270" text-anchor="end" font-size="5.5" fill="rgba(0,0,0,0.5)">PERTH</text>
+            <text x="744" y="257" text-anchor="start" font-size="5.5" fill="rgba(0,0,0,0.5)">BRISBANE</text>
+            <text x="760" y="274" text-anchor="start" font-size="4.8" fill="rgba(0,0,0,0.4)">AUCKLAND</text>
+            <text x="87" y="52" text-anchor="start" font-size="5.5" fill="rgba(0,0,0,0.5)">ANCHORAGE</text>
+            <text x="204" y="83" text-anchor="middle" font-size="5.5" fill="rgba(0,0,0,0.5)">HALIFAX</text>
+            <text x="375" y="107" text-anchor="end" font-size="5.5" fill="rgba(0,0,0,0.5)">LISBON</text>
           </g>
           <g font-family="'Plus Jakarta Sans',sans-serif" font-size="5.5" font-weight="600" letter-spacing="0.1em" fill="rgba(0,0,0,0.35)">
             <line x1="12" y1="383" x2="32" y2="383" stroke="rgba(0,0,0,0.75)" stroke-width="2" stroke-linecap="round"/>
@@ -526,6 +559,12 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
       <div class="card-kicker">Guinness World Record</div>
       <div class="card-hl">Fastest Cycle<br>Around<br>the World</div>
       <div class="card-sub">78 days · 14 hours · 40 minutes · 18,000 miles</div>
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,2.5vw,32px);margin-top:22px;position:relative;z-index:2;">
+        <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-size:clamp(13px,1.6vw,17px);font-weight:800;letter-spacing:-.03em;color:var(--ink);">2.5 years</span><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(0,0,0,.4);">in the planning</span></div>
+        <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-size:clamp(13px,1.6vw,17px);font-weight:800;letter-spacing:-.03em;color:var(--ink);">Team of 40</span><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(0,0,0,.4);">support crew</span></div>
+        <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-size:clamp(13px,1.6vw,17px);font-weight:800;letter-spacing:-.03em;color:var(--ink);">37% faster</span><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(0,0,0,.4);">than previous record</span></div>
+        <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-size:clamp(13px,1.6vw,17px);font-weight:800;letter-spacing:-.03em;color:var(--ink);">1.4% faster</span><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(0,0,0,.4);">than target</span></div>
+      </div>
     </div>
 
     <!-- Card 4: Backing Business — Paper -->
@@ -543,9 +582,9 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
       <div class="card-hl" style="position:relative;z-index:1;">Backing<br>Business</div>
       <div class="card-sub" style="position:relative;z-index:1;">Supporting founders doing something that has never been done before</div>
       <div style="margin-top:24px;display:flex;flex-direction:column;gap:8px;max-width:480px;position:relative;z-index:1;">
-        <div style="font-size:12px;font-weight:400;line-height:1.65;color:rgba(255,255,255,.65);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Working with founders and building high performance teams across sport and business.</div>
-        <div style="font-size:12px;font-weight:400;line-height:1.65;color:rgba(255,255,255,.65);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Partner at <a href="https://envoygroup.com/our-team/" target="_blank" style="color:var(--yellow);font-weight:600;text-decoration:none;">Envoy Group</a> — backing entrepreneurs scaling ambitious businesses.</div>
-        <div style="font-size:12px;font-weight:400;line-height:1.65;color:rgba(255,255,255,.65);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span><strong style="color:rgba(255,255,255,.85);font-weight:600;">Ecosystem Technologies</strong> — decarbonising building.</div>
+        <div style="font-size:12px;font-weight:400;line-height:1.65;color:rgba(255,255,255,.65);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Working with founders and building high performance teams.</div>
+        <div style="font-size:12px;font-weight:400;line-height:1.65;color:rgba(255,255,255,.65);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Operating Partner at <a href="https://envoygroup.com/our-team/" target="_blank" style="color:var(--yellow);font-weight:600;text-decoration:none;">Envoy Group</a> — backing entrepreneurs scaling ambitious businesses.</div>
+        <div style="font-size:12px;font-weight:400;line-height:1.65;color:rgba(255,255,255,.65);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Former Partner at <strong style="color:rgba(255,255,255,.85);font-weight:600;">EOS Advisory</strong>, backing healthcare and environmental sustainability.</div>
       </div>
     </div>
 
@@ -556,9 +595,9 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
       <div class="card-deco"><svg width="90" height="80" viewBox="0 0 90 80" fill="none" color="white"><circle cx="30" cy="28" r="12" stroke="currentColor" stroke-width="1.2"/><circle cx="60" cy="28" r="12" stroke="currentColor" stroke-width="1.2"/><path d="M6 68c0-13.255 10.745-24 24-24M60 44c13.255 0 24 10.745 24 24" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M36 68c0-7.732 3.582-14.627 9.207-19.166" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
       <div class="slide-counter">05 / 05</div>
       <div class="scroll-hint"><span class="sh-txt">Scroll</span><div class="sh-line"></div></div>
-      <div class="card-kicker">Community &amp; Charity</div>
-      <div class="card-hl">Giving<br>Back</div>
-      <div class="card-sub">Long term partnerships supporting young people and important causes.</div>
+      <div class="card-kicker">Education &amp; Charity</div>
+      <div class="card-hl">Community</div>
+      <div class="card-sub">Long term partnerships supporting young people and great causes.</div>
       <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px;max-width:520px;">
         <div style="font-size:12px;font-weight:400;line-height:1.65;color:rgba(255,255,255,.6);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--yellow);">—</span><strong style="color:rgba(255,255,255,.85);font-weight:600;">My Name'5 Doddie Foundation</strong> — Since 2019, co-leading with Rob Wainwright and Ian Fraser the annual 6 Nations ride, raising over £5m for Motor Neurone Disease research.</div>
         <div style="font-size:12px;font-weight:400;line-height:1.65;color:rgba(255,255,255,.6);padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:var(--yellow);">—</span><strong style="color:rgba(255,255,255,.85);font-weight:600;">Entrepreneurial Scotland</strong> — Since 2007, as Patron supporting thousands of students gaining a global mindset through internships.</div>
@@ -575,7 +614,7 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
     <div style="display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 clamp(36px,5vw,56px) 0;">
       <div class="sec-label">Partnerships</div>
       <h2 class="about-title">Partner<br>With<br>Mark</h2>
-      <p class="about-body">Align your brand with a credibly built endurance and adventure story — and reach an engaged audience across sport, business and life.</p>
+      <p class="about-body">Associate your organisation with an endurance and adventure story that will resonate with audiences across business, sport and life.</p>
     </div>
     <div style="position:relative;clip-path:inset(0 0 12% -600px);">
       <img id="mark-png" src="images/mark-speaking.png" alt="Mark Beaumont on stage" style="position:absolute;top:-40px;left:60%;transform:translateX(-50%);height:125%;width:auto;object-fit:contain;object-position:top center;display:block;">
@@ -613,25 +652,6 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
   </div>
   </div><!-- end stats+cards wrapper -->
 </section>
-<div class="trusted-strip" style="flex-direction:row;align-items:center;gap:clamp(24px,4vw,52px);overflow:hidden;">
-  <span class="trusted-lbl" style="flex-shrink:0;">Trusted by</span>
-  <div style="overflow:hidden;flex:1;position:relative;">
-    <div class="ticker-track" style="display:flex;align-items:center;white-space:nowrap;animation:ticker 22s linear infinite;gap:clamp(32px,5vw,64px);">
-      <span class="tlogo">John Clark Motor Group</span>
-      <span class="tlogo">Balderton</span>
-      <span class="tlogo">Coca-Cola</span>
-      <span class="tlogo">Citywire</span>
-      <span class="tlogo">Lloyds Bank</span>
-      <span style="color:var(--light);font-size:18px;flex-shrink:0;">·</span>
-      <span class="tlogo">John Clark Motor Group</span>
-      <span class="tlogo">Balderton</span>
-      <span class="tlogo">Coca-Cola</span>
-      <span class="tlogo">Citywire</span>
-      <span class="tlogo">Lloyds Bank</span>
-      <span style="color:var(--light);font-size:18px;flex-shrink:0;">·</span>
-    </div>
-  </div>
-</div>
 
 <!-- SPEAKING -->
 <section id="speaking">
@@ -666,10 +686,29 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
     <div class="note" style="--rot:-1.8deg;"><p class="note-q">"Still talked about six months later. The highlight of our whole conference series."</p><div class="note-attr">Event Director<br>Technology</div></div>
     <div class="note" style="--rot:1.2deg;"><p class="note-q">"Genuinely moving and practically useful. A rare combination. The team left changed."</p><div class="note-attr">VP Leadership<br>Global Consultancy</div></div>
   </div>
+  <div class="trusted-strip" style="flex-direction:row;align-items:center;gap:clamp(24px,4vw,52px);overflow:hidden;margin-top:clamp(48px,6vw,80px);background:transparent;border-top:1px solid var(--light);">
+    <span class="trusted-lbl" style="flex-shrink:0;">Trusted by</span>
+    <div style="overflow:hidden;flex:1;position:relative;">
+      <div class="ticker-track" style="display:flex;align-items:center;white-space:nowrap;animation:ticker 22s linear infinite;gap:clamp(32px,5vw,64px);">
+        <span class="tlogo">John Clark Motor Group</span>
+        <span class="tlogo">Balderton</span>
+        <span class="tlogo">Coca-Cola</span>
+        <span class="tlogo">Citywire</span>
+        <span class="tlogo">Lloyds Bank</span>
+        <span style="color:var(--light);font-size:18px;flex-shrink:0;">·</span>
+        <span class="tlogo">John Clark Motor Group</span>
+        <span class="tlogo">Balderton</span>
+        <span class="tlogo">Coca-Cola</span>
+        <span class="tlogo">Citywire</span>
+        <span class="tlogo">Lloyds Bank</span>
+        <span style="color:var(--light);font-size:18px;flex-shrink:0;">·</span>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- PODCAST -->
-<section id="podcast" style="background:var(--paper);padding:0;overflow:hidden;">
+<section id="podcast" style="background:var(--white);padding:0;overflow:hidden;">
   <!-- Photo hero banner -->
   <div class="pod-hero" style="position:relative;overflow:hidden;height:clamp(280px,38vw,500px);">
     <div style="position:absolute;inset:0;">
