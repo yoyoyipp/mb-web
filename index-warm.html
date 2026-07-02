@@ -765,14 +765,16 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
   <div class="contact-inner">
     <div>
       <h2 class="contact-title">Contact<br>Mark</h2>
-      <form onsubmit="return false;">
-        <div class="frow"><div class="fg"><label for="f-name">Name <span class="r">*</span></label><input type="text" id="f-name" class="fc" placeholder="Your name"></div><div class="fg"><label for="f-org">Organisation <span class="r">*</span></label><input type="text" id="f-org" class="fc" placeholder="Company or agency"></div></div>
-        <div class="frow"><div class="fg"><label for="f-date">Event Date <span class="r">*</span></label><input type="text" id="f-date" class="fc" placeholder="Date or approximate"></div><div class="fg"><label for="f-format">Format <span class="r">*</span></label><select class="fc" id="f-format"><option value="" disabled selected>Select</option><option>In-person — UK</option><option>In-person — Europe</option><option>In-person — Middle East / Gulf</option><option>In-person — North America</option><option>Hybrid</option><option>Virtual</option></select></div></div>
-        <div class="frow"><div class="fg"><label for="f-audience">Audience Size <span class="r">*</span></label><select class="fc" id="f-audience"><option value="" disabled selected>Select</option><option>Under 100</option><option>100–250</option><option>250–500</option><option>500–1,000</option><option>1,000+</option></select></div><div class="fg"><label for="f-sector">Sector</label><input type="text" id="f-sector" class="fc" placeholder="e.g. Finance, Tech"></div></div>
-        <div class="fg"><label for="topic-interest">Topic Interest <span class="r">*</span></label><select class="fc" id="topic-interest"><option value="" disabled selected>Select</option><option>Leadership</option><option>Resilience</option><option>Innovation</option><option>First Principles</option><option>Rethink What's Possible</option><option>Partnerships</option><option>Other</option></select></div>
-        <div class="fg"><label for="f-source">How Did You Hear About Mark?</label><select class="fc" id="f-source"><option value="" disabled selected>Select</option><option>Speaker bureau</option><option>LinkedIn</option><option>BBC / Media</option><option>Word of mouth</option><option>Previous event</option><option>The Endurance Podcast</option><option>Other</option></select></div>
-        <div class="fg"><label for="f-notes">Anything else?</label><textarea class="fc" id="f-notes" rows="3" placeholder="Budget, theme, or other context..."></textarea></div>
-        <button class="submit-btn">Submit Enquiry <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <form id="contact-form" action="https://formspree.io/f/mnjkoqdy" method="POST">
+        <div class="frow"><div class="fg"><label for="f-name">Name <span class="r">*</span></label><input type="text" id="f-name" name="name" class="fc" placeholder="Your name" required></div><div class="fg"><label for="f-org">Organisation <span class="r">*</span></label><input type="text" id="f-org" name="organisation" class="fc" placeholder="Company or agency" required></div></div>
+        <div class="frow"><div class="fg"><label for="f-email">Email <span class="r">*</span></label><input type="email" id="f-email" name="email" class="fc" placeholder="your@email.com" required></div><div class="fg"><label for="f-phone">Phone</label><input type="tel" id="f-phone" name="phone" class="fc" placeholder="Optional"></div></div>
+        <div class="frow"><div class="fg"><label for="f-date">Event Date <span class="r">*</span></label><input type="text" id="f-date" name="event_date" class="fc" placeholder="Date or approximate" required></div><div class="fg"><label for="f-format">Format <span class="r">*</span></label><select class="fc" id="f-format" name="format" required><option value="" disabled selected>Select</option><option>In-person — UK</option><option>In-person — Europe</option><option>In-person — Middle East / Gulf</option><option>In-person — North America</option><option>Hybrid</option><option>Virtual</option></select></div></div>
+        <div class="frow"><div class="fg"><label for="f-audience">Audience Size <span class="r">*</span></label><select class="fc" id="f-audience" name="audience_size" required><option value="" disabled selected>Select</option><option>Under 100</option><option>100–250</option><option>250–500</option><option>500–1,000</option><option>1,000+</option></select></div><div class="fg"><label for="f-sector">Sector</label><input type="text" id="f-sector" name="sector" class="fc" placeholder="e.g. Finance, Tech"></div></div>
+        <div class="fg"><label for="topic-interest">Topic Interest <span class="r">*</span></label><select class="fc" id="topic-interest" name="topic_interest" required><option value="" disabled selected>Select</option><option>Leadership</option><option>Resilience</option><option>Innovation</option><option>First Principles</option><option>Rethink What's Possible</option><option>Partnerships</option><option>Other</option></select></div>
+        <div class="fg"><label for="f-source">How Did You Hear About Mark?</label><select class="fc" id="f-source" name="how_heard"><option value="" disabled selected>Select</option><option>Speaker bureau</option><option>LinkedIn</option><option>BBC / Media</option><option>Word of mouth</option><option>Previous event</option><option>The Endurance Podcast</option><option>Other</option></select></div>
+        <div class="fg"><label for="f-notes">Anything else?</label><textarea class="fc" id="f-notes" name="notes" rows="3" placeholder="Budget, theme, or other context..."></textarea></div>
+        <button type="submit" class="submit-btn" id="submit-btn">Submit Enquiry <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <p id="form-success" style="display:none;margin-top:20px;font-size:13px;font-weight:600;color:var(--blue);">Enquiry sent — we'll be in touch within 48 hours.</p>
       </form>
     </div>
     <div class="c-sidebar">
@@ -982,6 +984,30 @@ document.getElementById('lmbtn').addEventListener('click',e=>{
     var img=new Image();
     img.onload=img.onerror=function(){loaded++;if(loaded>=srcs.length)run();};
     img.src=src;
+  });
+})();
+
+(function(){
+  var form=document.getElementById('contact-form');
+  if(!form)return;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=document.getElementById('submit-btn');
+    btn.disabled=true;btn.style.opacity='.6';btn.textContent='Sending…';
+    fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+    .then(function(r){
+      if(r.ok){
+        form.reset();
+        btn.style.display='none';
+        document.getElementById('form-success').style.display='block';
+      } else {
+        btn.disabled=false;btn.style.opacity='1';btn.innerHTML='Submit Enquiry <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        alert('Something went wrong — please try again or email directly.');
+      }
+    }).catch(function(){
+      btn.disabled=false;btn.style.opacity='1';btn.innerHTML='Submit Enquiry <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      alert('Something went wrong — please try again or email directly.');
+    });
   });
 })();
 
