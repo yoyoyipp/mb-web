@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mark Beaumont</title>
+<meta name="description" content="Mark Beaumont — record-breaking endurance athlete, international keynote speaker, broadcaster and investor. Book Mark for conferences, partnerships and events.">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<meta property="og:title" content="Mark Beaumont — Speaker · Athlete · Broadcaster">
+<meta property="og:description" content="Multiple Guinness World Record holder. International conference speaker. Book Mark for your next event.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,7 +27,7 @@ body{font-family:var(--f);background:var(--paper);color:var(--ink);overflow-x:hi
 img{display:block;}
 
 /* CURSOR */
-.cursor{position:fixed;width:8px;height:8px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:multiply;}
+.cursor{position:fixed;left:0;top:0;width:8px;height:8px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;opacity:0;}
 @media(hover:none){.cursor{display:none;}}
 
 /* SOCIAL SIDEBAR */
@@ -37,12 +42,15 @@ img{display:block;}
   .social-btn{flex:1;height:48px;border-radius:0;}
   .social-btn:first-child{border-radius:0;}
   .social-btn:last-child{border-radius:0;}
+  .card{padding-bottom:88px!important;}
+  .split-half{padding-bottom:56px!important;}
+  .slide-counter,.scroll-hint{bottom:60px!important;}
 }
 
 /* CARDS */
-#cards-scroll{position:relative;height:500vh;}
-.cards-sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;}
-.card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(32px,5vw,72px) clamp(24px,6vw,80px);will-change:transform;backface-visibility:hidden;}
+#cards-scroll{position:relative;height:500vh;height:calc(5*100dvh);}
+.cards-sticky{position:sticky;top:0;height:100vh;height:100dvh;width:100%;overflow:hidden;}
+.card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:clamp(32px,5vw,72px) clamp(24px,6vw,80px);}
 .c0{background:var(--white);z-index:5;}
 .c1{background:var(--ink);z-index:4;}
 .c2{background:var(--yellow);z-index:3;}
@@ -128,6 +136,7 @@ img{display:block;}
 .trusted-logos{display:flex;gap:clamp(20px,3vw,36px);flex-wrap:wrap;align-items:center;}
 .tlogo{font-size:12px;font-weight:700;color:#aaa;transition:color .2s;cursor:default;}
 .tlogo:hover{color:var(--ink);}
+.tdot{color:#ccc;font-size:14px;flex-shrink:0;}
 
 /* SPEAKING */
 #speaking{background:var(--ink);color:var(--white);padding:clamp(48px,6vw,80px) clamp(24px,6vw,80px) clamp(36px,4.5vw,64px);}
@@ -170,6 +179,7 @@ img{display:block;}
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:20px;
+  position:relative;
 }
 @media(max-width:900px){.notes-field{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:480px){.notes-field{grid-template-columns:1fr;}}
@@ -179,7 +189,15 @@ img{display:block;}
 .note:nth-child(4){--bg:#2D48C8;--fg:rgba(255,255,255,.92);--attr:rgba(255,255,255,.5);}
 .note:nth-child(5){--bg:#EEE040;--fg:rgba(39,34,30,.88);--attr:rgba(39,34,30,.5);}
 .note:nth-child(6){--bg:#1E1A14;--fg:rgba(255,255,255,.75);--attr:rgba(255,255,255,.3);}
-.note{position:relative;left:auto !important;top:auto !important;width:100%;background:var(--bg);padding:24px 22px 26px;border-radius:12px;cursor:pointer;user-select:none;box-shadow:3px 8px 28px rgba(0,0,0,.1);transform:rotate(var(--rot,0deg));transition:transform .25s ease,box-shadow .25s ease;}
+.note:nth-child(7){--bg:#3B5BD6;--fg:rgba(255,255,255,.92);--attr:rgba(255,255,255,.5);}
+.note:nth-child(8){--bg:#F2E44E;--fg:rgba(39,34,30,.88);--attr:rgba(39,34,30,.5);}
+.note{position:relative;width:100%;background:var(--bg);padding:24px 22px 26px;border-radius:12px;cursor:pointer;user-select:none;box-shadow:3px 8px 28px rgba(0,0,0,.1);transform:rotate(var(--rot,0deg));transition:transform .25s ease,box-shadow .25s ease;}
+.note-float{position:absolute;width:clamp(240px,23vw,300px);z-index:5;box-shadow:6px 16px 36px rgba(0,0,0,.2);}
+.nf1{top:50%;right:13%;margin-top:-95px;}
+.nf2{top:50%;left:15%;margin-top:-55px;}
+@media(max-width:900px){
+  .note-float{position:relative;top:auto;right:auto;bottom:auto;left:auto;margin-top:0;width:100%;z-index:auto;box-shadow:3px 8px 28px rgba(0,0,0,.1);}
+}
 .note:hover{box-shadow:6px 18px 40px rgba(0,0,0,.18);transform:translateY(-4px) scale(1.02) rotate(0deg);z-index:10;}
 .note-q{font-size:13px;font-weight:400;line-height:1.65;color:var(--fg);font-style:italic;}
 .note-attr{margin-top:12px;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--attr);line-height:1.5;}
@@ -229,7 +247,7 @@ img{display:block;}
 .how-step:nth-child(even) .step-center{grid-column:2;}
 .how-step:nth-child(even) .step-content{grid-column:3;text-align:left;padding-left:40px;}
 .step-center{display:flex;flex-direction:column;align-items:center;position:relative;}
-.step-center::before{content:'';position:absolute;top:-clamp(28px,4vw,48px);bottom:0;left:50%;transform:translateX(-50%);width:1px;background:#1a1a2a;z-index:0;}
+.step-center::before{content:'';position:absolute;top:calc(-1*clamp(28px,4vw,48px));bottom:0;left:50%;transform:translateX(-50%);width:1px;background:#1a1a2a;z-index:0;}
 .how-step:first-child .step-center::before{top:50%;}
 .step-dot{width:48px;height:48px;border-radius:50%;background:#07070F;border:1.5px solid #1e1e2e;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;transition:background .3s,border-color .3s;flex-shrink:0;}
 .how-step:hover .step-dot{background:var(--blue);border-color:var(--blue);}
@@ -263,6 +281,9 @@ img{display:block;}
 .res-block-desc{font-size:13px;font-weight:400;color:#777;line-height:1.6;max-width:280px;transition:color .25s;}
 .res-block-arr{margin-top:auto;padding-top:20px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:8px;transition:color .2s,gap .2s;}
 .res-block:hover .res-block-arr{color:var(--yellow);gap:14px;}
+.res-reel-btn{display:inline-flex;align-items:center;gap:6px;border:1.5px solid currentColor;color:inherit;border-radius:100px;padding:9px 18px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s,color .2s;}
+.res-block:hover .res-reel-btn:hover{background:var(--yellow);color:var(--ink);border-color:var(--yellow);}
+.res-block:not(:hover) .res-reel-btn:hover{background:var(--blue);color:var(--white);border-color:var(--blue);}
 .res-footer{margin-top:32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
 .res-dl{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--white);border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:13px 26px;text-decoration:none;transition:background .2s;}
 .res-dl:hover{background:var(--blue);}
@@ -412,11 +433,7 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
       <img class="card-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTUJfTG9nbyIgZGF0YS1uYW1lPSJNQiBMb2dvIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDQ4IDIwNDgiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICNGRkZGRkY7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJfTV8iIGRhdGEtbmFtZT0iJmFtcDtxdW90O00mYW1wO3F1b3Q7Ij4KICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE2NDIuMyw5NzMuNDZoLTEwNC44NGwtMjgwLjI3LTY2Ny44OS00MTguODEsNjI2LjQyLTE2Ni42Ny0yMDcuNjFjLTE5LjksMzAuOTYtMzkuMTksNjEuMjItNTguMSw5MC44MS0zMi4zMyw1MC43OC02NS43MiwxMDMuMjMtMTAxLjk0LDE1OC4yOGgtMTI0LjA1YzM1Ljc2LTU0LjM2LDk3LjQ0LTE2OS4zNCwxMjkuNTQtMjE5LjczLDMyLjMzLTUwLjcsNjUuNzItMTAzLjA4LDEwMS45NC0xNTguMTNsNDMuMTUtNjUuNzIsMTY3LjY2LDIwOC45MUwxMjc5LjY4LDY2LjE2bDM2Mi42Miw5MDcuM1oiLz4KICA8L2c+CiAgPGcgaWQ9Il9CXyIgZGF0YS1uYW1lPSImYW1wO3F1b3Q7QiZhbXA7cXVvdDsiPgogICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzg5Ljg4LDEwNzQuNTNsMjYuMjUsNjUuNjksMTQuMTUsMzUuMzgsMzIyLjIzLDgwNi4yNCw0NDkuNzQtNjcyLjYyLDE2Ny42NSwyMDguOTEsNDMuMTYtNjUuNzNjMzYuMjMtNTUuMDQsNjkuNi0xMDcuNDQsMTAxLjk2LTE1OC4xMiwxNy4zNS0yNy4yNiw0My4zNS03My40NCw2OS4yNy0xMTguNjgsMjEuOTctMzguMzYsNDMuODMtNzYuMTIsNjAuMjUtMTAxLjA3SDM4OS44OFpNNzc1LjAxLDE3NDIuNDJsLTIzNy44OS01NjYuODJoNjE2Ljg0bC0zNzguOTUsNTY2LjgyWk0xNDE4LjU5LDEyMzIuODRjLTE4LjkyLDI5LjU3LTM4LjIxLDU5Ljg0LTU4LjEzLDkwLjc5bC0xMTguODMtMTQ4LjAzaDIxMy40NmMtMTIuNCwxOS4zNi0yNC41LDM4LjM5LTM2LjQ5LDU3LjI0WiIvPgogIDwvZz4KPC9zdmc+" alt="MB">
       <div class="card-kicker">Events · Expeditions · Entrepreneurship</div>
       <div class="card-hl">Mark<br>Beaumont</div>
-      <div class="card-sub">Multiple World Record Holder. International Conference Speaker.<br>Business Builder. Author. Broadcaster.</div>
-      <div style="display:flex;flex-direction:column;gap:6px;margin-top:16px;margin-bottom:4px;">
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.12);border-radius:100px;padding:5px 14px;width:fit-content;"><svg width="10" height="10" viewBox="0 0 24 24" fill="#F6EA58"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-size:10px;font-weight:600;color:rgba(0,0,0,.65);letter-spacing:.03em;">World's Highest Marathon · Atacama Desert</span></div>
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.12);border-radius:100px;padding:5px 14px;width:fit-content;"><svg width="10" height="10" viewBox="0 0 24 24" fill="#F6EA58"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-size:10px;font-weight:600;color:rgba(0,0,0,.65);letter-spacing:.03em;">Fastest Cycle Around the World</span></div>
-      </div>
+      <div class="card-sub">Multiple World Record Holder. Conference Speaker.<br>Business Builder. Author. Broadcaster.</div>
       <div class="card-btns">
         <a href="#" class="btn btn-p" id="lmbtn"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 8l5 4 5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Learn More</a>
         <a href="#contact" class="btn btn-s">Contact Mark ↗</a>
@@ -438,7 +455,7 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
             <span class="split-item">Leadership &amp; Strategy</span>
           </div>
         </div>
-        <div class="split-half split-right" style="background-image:url('images/Slide 7.jpg');background-size:cover;background-position:75% top;" data-caption="Paragliding with Fern the dog near Edinburgh">
+        <div class="split-half split-right" style="background-image:url('images/slide-7.webp');background-size:cover;background-position:75% top;" data-caption="Full flight with Fern the dog near Edinburgh!">
           <span class="split-label">Creating a Different Future</span>
           <h2 class="split-title">One Method.</h2>
           <div class="split-items">
@@ -454,7 +471,7 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
     <!-- Card 3: World Record — Yellow -->
     <div class="card c2" id="c2">
       <div style="position:absolute;top:0;right:0;width:46%;height:62%;pointer-events:none;z-index:0;overflow:hidden;">
-        <img src="images/JPEG image 26.jpeg" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;-webkit-mask-image:linear-gradient(to bottom left,rgba(0,0,0,.65) 15%,transparent 72%);mask-image:linear-gradient(to bottom left,rgba(0,0,0,.65) 15%,transparent 72%);" alt="">
+        <img src="images/jpeg-26.webp" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;-webkit-mask-image:linear-gradient(to bottom left,rgba(0,0,0,.65) 15%,transparent 72%);mask-image:linear-gradient(to bottom left,rgba(0,0,0,.65) 15%,transparent 72%);" alt="">
       </div>
       <div class="map-wrap">
         <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
@@ -552,7 +569,7 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
         </svg>
       </div>
       <span class="card-tag">MB — 03</span>
-      
+      <div style="position:absolute;top:calc(clamp(24px,4vw,52px) + 22px);left:clamp(24px,5vw,80px);z-index:2;display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.14);border-radius:100px;padding:5px 14px;max-width:calc(100% - 48px);"><svg width="10" height="10" viewBox="0 0 24 24" fill="#1C1A18" style="flex-shrink:0;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-size:10px;font-weight:600;color:rgba(0,0,0,.65);letter-spacing:.03em;">World's Highest Marathon · Fastest Cycle Cairo to Cape Town</span></div>
       <img class="card-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTUJfTG9nbyIgZGF0YS1uYW1lPSJNQiBMb2dvIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDQ4IDIwNDgiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICMwRDBEMEQ7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJfTV8iIGRhdGEtbmFtZT0iJmFtcDtxdW90O00mYW1wO3F1b3Q7Ij4KICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE2NDIuMyw5NzMuNDZoLTEwNC44NGwtMjgwLjI3LTY2Ny44OS00MTguODEsNjI2LjQyLTE2Ni42Ny0yMDcuNjFjLTE5LjksMzAuOTYtMzkuMTksNjEuMjItNTguMSw5MC44MS0zMi4zMyw1MC43OC02NS43MiwxMDMuMjMtMTAxLjk0LDE1OC4yOGgtMTI0LjA1YzM1Ljc2LTU0LjM2LDk3LjQ0LTE2OS4zNCwxMjkuNTQtMjE5LjczLDMyLjMzLTUwLjcsNjUuNzItMTAzLjA4LDEwMS45NC0xNTguMTNsNDMuMTUtNjUuNzIsMTY3LjY2LDIwOC45MUwxMjc5LjY4LDY2LjE2bDM2Mi42Miw5MDcuM1oiLz4KICA8L2c+CiAgPGcgaWQ9Il9CXyIgZGF0YS1uYW1lPSImYW1wO3F1b3Q7QiZhbXA7cXVvdDsiPgogICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzg5Ljg4LDEwNzQuNTNsMjYuMjUsNjUuNjksMTQuMTUsMzUuMzgsMzIyLjIzLDgwNi4yNCw0NDkuNzQtNjcyLjYyLDE2Ny42NSwyMDguOTEsNDMuMTYtNjUuNzNjMzYuMjMtNTUuMDQsNjkuNi0xMDcuNDQsMTAxLjk2LTE1OC4xMiwxNy4zNS0yNy4yNiw0My4zNS03My40NCw2OS4yNy0xMTguNjgsMjEuOTctMzguMzYsNDMuODMtNzYuMTIsNjAuMjUtMTAxLjA3SDM4OS44OFpNNzc1LjAxLDE3NDIuNDJsLTIzNy44OS01NjYuODJoNjE2Ljg0bC0zNzguOTUsNTY2LjgyWk0xNDE4LjU5LDEyMzIuODRjLTE4LjkyLDI5LjU3LTM4LjIxLDU5Ljg0LTU4LjEzLDkwLjc5bC0xMTguODMtMTQ4LjAzaDIxMy40NmMtMTIuNCwxOS4zNi0yNC41LDM4LjM5LTM2LjQ5LDU3LjI0WiIvPgogIDwvZz4KPC9zdmc+" alt="MB">
       <div class="card-deco"><svg width="130" height="80" viewBox="0 0 130 80" fill="none" color="#27221E"><circle cx="22" cy="58" r="16" stroke="currentColor" stroke-width="1.2"/><circle cx="108" cy="58" r="16" stroke="currentColor" stroke-width="1.2"/><path d="M22 58L48 20h22" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M70 20L108 58" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M48 20L65 58" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="60" y1="20" x2="82" y2="20" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="71" cy="20" r="3.5" stroke="currentColor" stroke-width="1.2"/></svg></div>
       <div class="slide-counter">03 / 05</div>
@@ -578,7 +595,7 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
       <img class="card-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTUJfTG9nbyIgZGF0YS1uYW1lPSJNQiBMb2dvIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDQ4IDIwNDgiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICNGRkZGRkY7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJfTV8iIGRhdGEtbmFtZT0iJmFtcDtxdW90O00mYW1wO3F1b3Q7Ij4KICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE2NDIuMyw5NzMuNDZoLTEwNC44NGwtMjgwLjI3LTY2Ny44OS00MTguODEsNjI2LjQyLTE2Ni42Ny0yMDcuNjFjLTE5LjksMzAuOTYtMzkuMTksNjEuMjItNTguMSw5MC44MS0zMi4zMyw1MC43OC02NS43MiwxMDMuMjMtMTAxLjk0LDE1OC4yOGgtMTI0LjA1YzM1Ljc2LTU0LjM2LDk3LjQ0LTE2OS4zNCwxMjkuNTQtMjE5LjczLDMyLjMzLTUwLjcsNjUuNzItMTAzLjA4LDEwMS45NC0xNTguMTNsNDMuMTUtNjUuNzIsMTY3LjY2LDIwOC45MUwxMjc5LjY4LDY2LjE2bDM2Mi42Miw5MDcuM1oiLz4KICA8L2c+CiAgPGcgaWQ9Il9CXyIgZGF0YS1uYW1lPSImYW1wO3F1b3Q7QiZhbXA7cXVvdDsiPgogICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzg5Ljg4LDEwNzQuNTNsMjYuMjUsNjUuNjksMTQuMTUsMzUuMzgsMzIyLjIzLDgwNi4yNCw0NDkuNzQtNjcyLjYyLDE2Ny42NSwyMDguOTEsNDMuMTYtNjUuNzNjMzYuMjMtNTUuMDQsNjkuNi0xMDcuNDQsMTAxLjk2LTE1OC4xMiwxNy4zNS0yNy4yNiw0My4zNS03My40NCw2OS4yNy0xMTguNjgsMjEuOTctMzguMzYsNDMuODMtNzYuMTIsNjAuMjUtMTAxLjA3SDM4OS44OFpNNzc1LjAxLDE3NDIuNDJsLTIzNy44OS01NjYuODJoNjE2Ljg0bC0zNzguOTUsNTY2LjgyWk0xNDE4LjU5LDEyMzIuODRjLTE4LjkyLDI5LjU3LTM4LjIxLDU5Ljg0LTU4LjEzLDkwLjc5bC0xMTguODMtMTQ4LjAzaDIxMy40NmMtMTIuNCwxOS4zNiwtMjQuNSwzOC4zOS0zNi40OSw1Ny4yNFoiLz4KICA8L2c+Cjwvc3ZnPg==" alt="MB" style="z-index:1;">
       <div class="card-deco" style="position:relative;z-index:1;"><svg width="110" height="80" viewBox="0 0 110 80" fill="none" color="rgba(255,255,255,0.2)"><polyline points="8,68 28,42 52,52 76,18 102,8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="92,8 102,8 102,18" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
       <div class="slide-counter" style="z-index:1;">04 / 05</div>
-      <div style="position:absolute;bottom:clamp(24px,3vw,40px);right:clamp(60px,8vw,120px);display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.3);z-index:1;"><span style="font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;">Scroll</span><div style="width:32px;height:1px;background:currentColor;position:relative;overflow:hidden;"><div style="position:absolute;top:0;left:-100%;width:100%;height:100%;background:currentColor;animation:lr 1.8s ease-in-out infinite;"></div></div></div>
+      <div class="scroll-hint" style="position:absolute;bottom:clamp(24px,3vw,40px);right:clamp(60px,8vw,120px);display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.3);z-index:1;"><span style="font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;">Scroll</span><div style="width:32px;height:1px;background:currentColor;position:relative;overflow:hidden;"><div style="position:absolute;top:0;left:-100%;width:100%;height:100%;background:currentColor;animation:lr 1.8s ease-in-out infinite;"></div></div></div>
       <div class="card-kicker" style="position:relative;z-index:1;">Finance &amp; Business Growth</div>
       <div class="card-hl" style="position:relative;z-index:1;">Backing<br>Business</div>
       <div class="card-sub" style="position:relative;z-index:1;">Supporting founders doing something that has never been done before</div>
@@ -591,7 +608,7 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
     </div>
 
     <!-- Card 5: Community — Blue -->
-    <div class="card c4" id="c4" style="background-image:linear-gradient(to top,rgba(8,8,55,.92) 0%,rgba(8,8,55,.42) 45%,rgba(8,8,55,.14) 100%),url('images/Slide 6.jpeg');background-size:cover;background-position:center 20%;background-attachment:scroll;">
+    <div class="card c4" id="c4" style="background-image:linear-gradient(to top,rgba(8,8,55,.92) 0%,rgba(8,8,55,.42) 45%,rgba(8,8,55,.14) 100%),url('images/slide-6.webp');background-size:cover;background-position:center 20%;background-attachment:scroll;">
       <span class="card-tag">MB — 05</span>
       <img class="card-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTUJfTG9nbyIgZGF0YS1uYW1lPSJNQiBMb2dvIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDQ4IDIwNDgiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICNGRkZGRkY7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJfTV8iIGRhdGEtbmFtZT0iJmFtcDtxdW90O00mYW1wO3F1b3Q7Ij4KICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE2NDIuMyw5NzMuNDZoLTEwNC44NGwtMjgwLjI3LTY2Ny44OS00MTguODEsNjI2LjQyLTE2Ni42Ny0yMDcuNjFjLTE5LjksMzAuOTYtMzkuMTksNjEuMjItNTguMSw5MC44MS0zMi4zMyw1MC43OC02NS43MiwxMDMuMjMtMTAxLjk0LDE1OC4yOGgtMTI0LjA1YzM1Ljc2LTU0LjM2LDk3LjQ0LTE2OS4zNCwxMjkuNTQtMjE5LjczLDMyLjMzLTUwLjcsNjUuNzItMTAzLjA4LDEwMS45NC0xNTguMTNsNDMuMTUtNjUuNzIsMTY3LjY2LDIwOC45MUwxMjc5LjY4LDY2LjE2bDM2Mi42Miw5MDcuM1oiLz4KICA8L2c+CiAgPGcgaWQ9Il9CXyIgZGF0YS1uYW1lPSImYW1wO3F1b3Q7QiZhbXA7cXVvdDsiPgogICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzg5Ljg4LDEwNzQuNTNsMjYuMjUsNjUuNjksMTQuMTUsMzUuMzgsMzIyLjIzLDgwNi4yNCw0NDkuNzQtNjcyLjYyLDE2Ny42NSwyMDguOTEsNDMuMTYtNjUuNzNjMzYuMjMtNTUuMDQsNjkuNi0xMDcuNDQsMTAxLjk2LTE1OC4xMiwxNy4zNS0yNy4yNiw0My4zNS03My40NCw2OS4yNy0xMTguNjgsMjEuOTctMzguMzYsNDMuODMtNzYuMTIsNjAuMjUtMTAxLjA3SDM4OS44OFpNNzc1LjAxLDE3NDIuNDJsLTIzNy44OS01NjYuODJoNjE2Ljg0bC0zNzguOTUsNTY2LjgyWk0xNDE4LjU5LDEyMzIuODRjLTE4LjkyLDI5LjU3LTM4LjIxLDU5Ljg0LTU4LjEzLDkwLjc5bC0xMTguODMtMTQ4LjAzaDIxMy40NmMtMTIuNCwxOS4zNi0yNC41LDM4LjM5LTM2LjQ5LDU3LjI0WiIvPgogIDwvZz4KPC9zdmc+" alt="MB">
       <div class="card-deco"><svg width="90" height="80" viewBox="0 0 90 80" fill="none" color="white"><circle cx="30" cy="28" r="12" stroke="currentColor" stroke-width="1.2"/><circle cx="60" cy="28" r="12" stroke="currentColor" stroke-width="1.2"/><path d="M6 68c0-13.255 10.745-24 24-24M60 44c13.255 0 24 10.745 24 24" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M36 68c0-7.732 3.582-14.627 9.207-19.166" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
@@ -616,40 +633,48 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
     <div style="display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 clamp(36px,5vw,56px) 0;">
       <div class="sec-label">Partnerships</div>
       <h2 class="about-title">Partner<br>With<br>Mark</h2>
-      <p class="about-body">Associate your organisation with an endurance and adventure story that will resonate with audiences across business, sport and life.</p>
+      <p class="about-body">Associate with an endurance and adventure story that will resonate with audiences across business, sport, and life.</p>
     </div>
     <div style="position:relative;clip-path:inset(0 0 12% -600px);">
-      <img id="mark-png" src="images/mark-speaking.png" alt="Mark Beaumont on stage" style="position:absolute;top:-40px;left:60%;transform:translateX(-50%);height:125%;width:auto;object-fit:contain;object-position:top center;display:block;">
+      <img id="mark-png" src="images/mark-speaking.webp" alt="Mark Beaumont on stage" loading="lazy" style="position:absolute;top:-40px;left:60%;transform:translateX(-50%);height:125%;width:auto;object-fit:contain;object-position:top center;display:block;">
     </div>
   </div>
   <!-- Stats + cards wrapper — matches about-layout centering -->
   <div style="max-width:1200px;margin:clamp(32px,4vw,52px) auto 0;">
-  <div class="pstat6" style="display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid var(--light);">
-    <div style="padding:clamp(10px,1.5vw,18px) clamp(10px,1.2vw,16px) clamp(10px,1.5vw,18px) 0;border-right:1px solid var(--light);"><span class="stat-val" data-final="92,000" style="font-size:clamp(22px,3vw,40px);font-weight:800;letter-spacing:-.04em;color:var(--ink);display:block;line-height:1;">92,000</span><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-top:6px;">Podcast listens</span></div>
-    <div style="padding:clamp(10px,1.5vw,18px) clamp(10px,1.2vw,16px);border-right:1px solid var(--light);"><span class="stat-val" data-final="67.5%" style="font-size:clamp(22px,3vw,40px);font-weight:800;letter-spacing:-.04em;color:var(--ink);display:block;line-height:1;">67.5%</span><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-top:6px;">UK audience</span></div>
-    <div style="padding:clamp(10px,1.5vw,18px) clamp(10px,1.2vw,16px);border-right:1px solid var(--light);"><span class="stat-val" data-final="320" style="font-size:clamp(22px,3vw,40px);font-weight:800;letter-spacing:-.04em;color:var(--ink);display:block;line-height:1;">320</span><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-top:6px;">Avg. per night</span></div>
-    <div style="padding:clamp(10px,1.5vw,18px) clamp(10px,1.2vw,16px);border-right:1px solid var(--light);"><span class="stat-val" data-final="28–59" style="font-size:clamp(22px,3vw,40px);font-weight:800;letter-spacing:-.04em;color:var(--ink);display:block;line-height:1;">28–59</span><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-top:6px;">Core age range</span></div>
-    <div style="padding:clamp(10px,1.5vw,18px) clamp(10px,1.2vw,16px);border-right:1px solid var(--light);"><span class="stat-val" data-final="200+" style="font-size:clamp(22px,3vw,40px);font-weight:800;letter-spacing:-.04em;color:var(--ink);display:block;line-height:1;">200+</span><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-top:6px;">Keynotes</span></div>
-    <div style="padding:clamp(10px,1.5vw,18px) clamp(10px,1.2vw,16px);"><span class="stat-val" data-final="20+" style="font-size:clamp(22px,3vw,40px);font-weight:800;letter-spacing:-.04em;color:var(--ink);display:block;line-height:1;">20+</span><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-top:6px;">Companies</span></div>
+  <div style="border-top:1px solid var(--light);padding-top:clamp(12px,1.8vw,18px);">
+    <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);display:block;">Podcast</span>
+    <div class="pstat6" style="display:grid;grid-template-columns:repeat(3,1fr);">
+      <div style="padding:clamp(10px,1.5vw,18px) clamp(10px,1.2vw,16px) clamp(10px,1.5vw,18px) 0;border-right:1px solid var(--light);"><span class="stat-val" data-final="100,000+" style="font-size:clamp(22px,3vw,40px);font-weight:800;letter-spacing:-.04em;color:var(--ink);display:block;line-height:1;">100,000+</span><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-top:6px;">Listens per season</span></div>
+      <div style="padding:clamp(10px,1.5vw,18px) clamp(10px,1.2vw,16px);border-right:1px solid var(--light);"><span class="stat-val" data-final="67%" style="font-size:clamp(22px,3vw,40px);font-weight:800;letter-spacing:-.04em;color:var(--ink);display:block;line-height:1;">67%</span><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-top:6px;">UK audience</span></div>
+      <div style="padding:clamp(10px,1.5vw,18px) clamp(10px,1.2vw,16px);"><span class="stat-val" data-final="28–59" style="font-size:clamp(22px,3vw,40px);font-weight:800;letter-spacing:-.04em;color:var(--ink);display:block;line-height:1;">28–59</span><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-top:6px;">Age range</span></div>
+    </div>
+  </div>
+  <div style="margin-top:clamp(14px,2vw,22px);border-top:1px solid var(--light);padding-top:clamp(12px,1.8vw,18px);">
+    <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);display:block;">Keynotes</span>
+    <div class="pstat6" style="display:grid;grid-template-columns:repeat(3,1fr);">
+      <div style="padding:clamp(10px,1.5vw,18px) clamp(10px,1.2vw,16px) clamp(10px,1.5vw,18px) 0;border-right:1px solid var(--light);"><span class="stat-val" data-final="20 years" style="font-size:clamp(22px,3vw,40px);font-weight:800;letter-spacing:-.04em;color:var(--ink);display:block;line-height:1;">20 years</span><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-top:6px;">Conference experience</span></div>
+      <div style="padding:clamp(10px,1.5vw,18px) clamp(10px,1.2vw,16px);border-right:1px solid var(--light);"><span class="stat-val" data-final="500+" style="font-size:clamp(22px,3vw,40px);font-weight:800;letter-spacing:-.04em;color:var(--ink);display:block;line-height:1;">500+</span><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-top:6px;">Keynotes</span></div>
+      <div style="padding:clamp(10px,1.5vw,18px) clamp(10px,1.2vw,16px);"><span class="stat-val" data-final="25+" style="font-size:clamp(22px,3vw,40px);font-weight:800;letter-spacing:-.04em;color:var(--ink);display:block;line-height:1;">25+</span><span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);display:block;margin-top:6px;">Countries</span></div>
+    </div>
   </div>
   <!-- Three routes -->
   <div class="pcards-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:clamp(20px,3vw,32px);">
     <a href="#podcast" class="pcard" style="background:var(--paper);border:1px solid var(--light);border-radius:var(--r);padding:clamp(28px,3vw,40px) clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:20px;text-decoration:none;color:inherit;">
-      <div><span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);">01</span><h3 style="font-size:clamp(18px,2vw,22px);font-weight:800;letter-spacing:-.02em;color:var(--ink);margin-top:10px;line-height:1.15;">The Endurance<br>Podcast</h3><p style="font-size:12px;color:#666;margin-top:6px;font-style:italic;">Season 3 · 20 episodes · July–December 2026 · YouTube, Apple &amp; Spotify</p></div>
-      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;flex:1;"><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>92,000 listens since January 2026 — 67.5% UK</li><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Filmed at live festivals — Kendal Mountain, National Outdoor Expo, London Adventure Show</li><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Ad-reads, on-screen branding, product sampling and guest interaction</li><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Scales from a headline ad-read to full title rights</li></ul>
+      <div><span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);">01</span><h3 style="font-size:clamp(18px,2vw,22px);font-weight:800;letter-spacing:-.02em;color:var(--ink);margin-top:10px;line-height:1.15;">The Endurance<br>Podcast</h3><p style="font-size:12px;color:#666;margin-top:6px;font-style:italic;">Each season is 20 episodes, shared across YouTube, Apple &amp; Spotify</p></div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;flex:1;"><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>100,000+ listens per season — 67% UK audience</li><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Always filmed live — including festivals such as Kendal Mountain, National Outdoor Expo and the London Adventure Show</li><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Ad-reads, on-screen branding, product sampling and guest interaction</li></ul>
     </a>
     <div class="pcard" style="background:var(--paper);border:1px solid var(--light);border-radius:var(--r);padding:clamp(28px,3vw,40px) clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:20px;">
-      <div><span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);">02</span><h3 style="font-size:clamp(18px,2vw,22px);font-weight:800;letter-spacing:-.02em;color:var(--ink);margin-top:10px;line-height:1.15;">UK Theatre<br>Tour</h3><p style="font-size:12px;color:#666;margin-top:6px;font-style:italic;">Spring 2027 · 5th national tour · 18–22 theatres across England, Wales &amp; Scotland</p></div>
-      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;flex:1;margin-top:auto;"><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>A captive, paying audience — 2023 tour averaged 320 tickets a night</li><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Marketing campaign live from autumn 2026 through the run</li><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Branding across tickets, programmes, on-stage and front-of-house</li><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Delivered in partnership with Speakers from the Edge</li></ul>
+      <div><span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);">02</span><h3 style="font-size:clamp(18px,2vw,22px);font-weight:800;letter-spacing:-.02em;color:var(--ink);margin-top:10px;line-height:1.15;">Keynotes &amp;<br>Conferences</h3><p style="font-size:12px;color:#666;margin-top:6px;font-style:italic;">Keynotes, fireside chats &amp; Q&amp;As · in-person, hybrid &amp; virtual</p></div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;flex:1;margin-top:auto;"><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>A story of world records, business building and giving back — shaped around your event's theme and audience</li><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Works at every scale, from board offsites and awards dinners to arena main stages</li><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Public talk tours, including the 5th UK Theatre Tour — 18–22 theatres across England, Wales &amp; Scotland, Spring 2027</li></ul>
+      <a href="#speaking" style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:8px;">See Speaking Topics <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
     <div class="pcard" style="background:var(--paper);border:1px solid var(--light);border-radius:var(--r);padding:clamp(28px,3vw,40px) clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:20px;">
       <div><span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);">03</span><h3 style="font-size:clamp(18px,2vw,22px);font-weight:800;letter-spacing:-.02em;color:var(--ink);margin-top:10px;line-height:1.15;">Ambassador<br>Partnership</h3><p style="font-size:12px;color:#666;margin-top:6px;font-style:italic;">Name, image &amp; story · media days · brand activations</p></div>
       <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;flex:1;"><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>A long-term association with a credibly built endurance and adventure brand</li><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Bespoke deliverables: campaign shoots, event appearances, social content, internal speaking</li><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Read-across from adventure sport into leadership, entrepreneurship and daily life</li><li style="font-size:12px;color:#6b6b6b;line-height:1.55;padding-left:12px;position:relative;"><span style="position:absolute;left:0;color:var(--blue);">—</span>Stand-alone, or as a top-up to a podcast or tour partnership</li></ul>
     </div>
   </div>
-  <p style="font-size:12px;color:var(--mid);line-height:1.65;max-width:800px;padding-top:16px;border-top:1px solid var(--light);margin-top:clamp(20px,3vw,32px);"><strong style="color:var(--ink);">Also in motion:</strong> Guinness World Record Race Across Europe with Jenny Graham — title sponsor sought · Gravel Norway guided week, Sept 2026 · The Endurance Club membership platform, in development.</p>
-  <div style="margin-top:clamp(20px,3vw,32px);display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;">
-    <div><h3 style="font-size:clamp(24px,3.5vw,44px);font-weight:800;line-height:.95;letter-spacing:-.03em;color:var(--ink);">Let's build something<br>that goes further.</h3><p style="font-size:13px;color:#6b6b6b;margin-top:12px;line-height:1.65;max-width:380px;">Tell us about your brand and we'll come back within 48 hours.</p></div>
+  <div style="margin-top:clamp(20px,3vw,32px);display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;border-top:1px solid var(--light);padding-top:clamp(20px,3vw,32px);">
+    <div><h3 style="font-size:clamp(24px,3.5vw,44px);font-weight:800;line-height:.95;letter-spacing:-.03em;color:var(--ink);">Let's build something<br>that goes further.</h3><p style="font-size:13px;color:#6b6b6b;margin-top:12px;line-height:1.65;max-width:380px;">Get in touch and we'll come back within 48 hours.</p></div>
     <a href="#contact" onclick="document.getElementById('topic-interest').value='Partnerships'" class="btn btn-p" style="background:var(--yellow);color:var(--ink);white-space:nowrap;flex-shrink:0;">Request the Partnership Deck ↗</a>
   </div>
   </div><!-- end stats+cards wrapper -->
@@ -659,14 +684,14 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
 <section id="speaking">
   <div class="speaking-head"><h2 class="speaking-title">Speaking<br>Topics</h2><a href="#contact" class="sp-book">Contact Mark ↗</a></div>
   <div style="margin:0 0 clamp(20px,3vw,36px);border-radius:var(--r);overflow:hidden;height:clamp(160px,22vw,340px);position:relative;">
-    <img src="images/Slide 1.jpg" alt="Mark Beaumont speaking" style="width:100%;height:100%;object-fit:cover;object-position:center 42%;display:block;">
+    <img src="images/slide-1.webp" alt="Mark Beaumont speaking" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center 42%;display:block;">
     <div style="position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(0,0,0,.55));"></div>
   </div>
   <div class="topics-track" id="topicsTrack">
     <div class="topic-card" style="background-image:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.15) 100%),url('images/WhatsApp Image 2568-12-17 at 04.58.03.jpeg');background-size:cover;background-position:center 35%;"><span class="tc-num">01</span><svg class="tc-icon" width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M6 28V16l10-12 10 12v12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 28v-8h8v8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="tc-bg-num">01</span><div class="tc-name">Leadership</div><div class="tc-desc">Leading under extreme pressure — translated to every boardroom and every team.</div></div>
     <div class="topic-card" style="background-image:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.15) 100%),url('images/JPEG image 10.jpeg');background-size:cover;background-position:center 60%;"><span class="tc-num">02</span><svg class="tc-icon" width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M16 4c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M16 4l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="tc-bg-num">02</span><div class="tc-name">Resilience</div><div class="tc-desc">A masterclass in bouncing forward — not just back — from cycling through the dark.</div></div>
     <div class="topic-card" style="background-image:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.15) 100%),url('images/JPEG image 8.jpeg');background-size:cover;background-position:center top;"><span class="tc-num">03</span><svg class="tc-icon" width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="5" stroke="currentColor" stroke-width="1.3"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="tc-bg-num">03</span><div class="tc-name">Innovation</div><div class="tc-desc">Breaking records requires systematic creative thinking. So does building organisations.</div></div>
-    <div class="topic-card" style="background-image:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.15) 100%),url('images/JPEG image 19.jpeg');background-size:cover;background-position:center 40%;"><span class="tc-num">04</span><svg class="tc-icon" width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M4 28L16 4l12 24" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 20h16" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="tc-bg-num">04</span><div class="tc-name">First Principles</div><div class="tc-desc">Strip away assumption. The methodology behind Mark's approach to impossible challenges.</div></div>
+    <div class="topic-card" style="background-image:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.15) 100%),url('images/jpeg-19.webp');background-size:cover;background-position:center 40%;"><span class="tc-num">04</span><svg class="tc-icon" width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M4 28L16 4l12 24" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 20h16" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="tc-bg-num">04</span><div class="tc-name">First Principles</div><div class="tc-desc">Strip away assumption. The methodology behind Mark's approach to impossible challenges.</div></div>
     <div class="topic-card" style="background-image:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.15) 100%),url('images/WhatsApp Image 2026-04-22 at 12.49.55.jpeg');background-size:cover;background-position:center 20%;"><span class="tc-num">05</span><svg class="tc-icon" width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="8" r="4" stroke="currentColor" stroke-width="1.3"/><path d="M4 28c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="tc-bg-num">05</span><div class="tc-name">Rethink What's Possible</div><div class="tc-desc">The flagship — challenges audiences to expand what they believe they're capable of.</div></div>
     <div class="topic-card" style="background:transparent;border:1px dashed #1c1c1c;justify-content:center;align-items:center;cursor:pointer;" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})"><span style="font-size:13px;font-weight:700;color:#999;text-align:center;line-height:1.5;position:relative;z-index:1;">All talks tailored<br>to your event →</span></div>
   </div>
@@ -681,29 +706,43 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
 <section id="testimonials">
   <div class="test-header"><h2 class="test-title">What<br>People Say</h2></div>
   <div class="notes-field" id="nf">
-    <div class="note" style="--rot:-2.5deg;"><p class="note-q">"The room went silent — then erupted. Connected physical endurance to leadership in a way I've never seen."</p><div class="note-attr">Chief People Officer<br>Financial Services</div></div>
-    <div class="note" style="--rot:1.8deg;"><p class="note-q">"In a different league. Authentic, structured, transformative. We've booked him three times."</p><div class="note-attr">Head of Events<br>FTSE 100</div></div>
-    <div class="note" style="--rot:-1.2deg;"><p class="note-q">"Audience feedback was off the charts. You could feel the energy in the room shift."</p><div class="note-attr">Managing Director<br>Professional Services</div></div>
-    <div class="note" style="--rot:2.2deg;"><p class="note-q">"Best speaker investment in five years. Immediate standing ovation."</p><div class="note-attr">COO<br>Healthcare Group</div></div>
-    <div class="note" style="--rot:-1.8deg;"><p class="note-q">"Still talked about six months later. The highlight of our whole conference series."</p><div class="note-attr">Event Director<br>Technology</div></div>
-    <div class="note" style="--rot:1.2deg;"><p class="note-q">"Genuinely moving and practically useful. A rare combination. The team left changed."</p><div class="note-attr">VP Leadership<br>Global Consultancy</div></div>
+    <div class="note" style="--rot:-2.5deg;"><p class="note-q">"He found a great balance of telling his story about adventure, business, and family… he delivered the talk even better than expected."</p><div class="note-attr">IMELCO<br>International Convention, Budapest</div></div>
+    <div class="note" style="--rot:1.8deg;"><p class="note-q">"Mark Beaumont was an outstanding keynote speaker at our event… He delivered his message with clarity, energy, and engagement, making the session both thought provoking and genuinely enjoyable. Our audience left motivated and full of actionable takeaways."</p><div class="note-attr">Isabel Williams<br>Green Motion</div></div>
+    <div class="note" style="--rot:2.2deg;"><p class="note-q">"Mark's speech was a stand-out highlight from the day. We received lots of great feedback and without hesitation, Solid Solutions would recommend Mark to speak at your event, virtual or in-person."</p><div class="note-attr">Solid Solutions<br>Conference, October 2020</div></div>
+    <div class="note" style="--rot:1.2deg;"><p class="note-q">"Mark gave a fascinating account of some of his exploits, all the while keeping it relatable for our people… there were lots of questions asked, a clear sign that Mark had engaged the group."</p><div class="note-attr">AG Barr<br>Online Conference</div></div>
+    <div class="note" style="--rot:2deg;"><p class="note-q">"Mark was fantastic. Our highest rated speaker and his presentation was inspiring and genuine with real practical takeaways for everyone."</p><div class="note-attr">Opticians Training Conference</div></div>
+    <div class="note" style="--rot:-1.5deg;"><p class="note-q">"I could have spent a lot longer listening to Mark, and I suspect he could have spent a lot longer talking about his adventures!"</p><div class="note-attr">Jonathan Kirkham<br>Finance Director, Bistech</div></div>
+    <div class="note note-float nf1" style="--rot:4deg;"><p class="note-q">"Mark was great. Humble and inspirational all in one which is rare."</p><div class="note-attr">Mark Escolme<br>Chairman / NED</div></div>
+    <div class="note note-float nf2" style="--rot:-3.5deg;"><p class="note-q">"That was AMAZING! Talk about great content for a mid-week event. INCREDIBLE imagery, inspiring messages."</p><div class="note-attr">Canadian Grocery Conference</div></div>
   </div>
   <div class="trusted-strip" style="flex-direction:row;align-items:center;gap:clamp(24px,4vw,52px);overflow:hidden;margin-top:clamp(48px,6vw,80px);background:transparent;border-top:1px solid var(--light);">
     <span class="trusted-lbl" style="flex-shrink:0;">Trusted by</span>
     <div style="overflow:hidden;flex:1;position:relative;">
-      <div class="ticker-track" style="display:flex;align-items:center;white-space:nowrap;animation:ticker 22s linear infinite;gap:clamp(32px,5vw,64px);">
-        <span class="tlogo">John Clark Motor Group</span>
-        <span class="tlogo">Balderton</span>
-        <span class="tlogo">Coca-Cola</span>
-        <span class="tlogo">Citywire</span>
-        <span class="tlogo">Lloyds Bank</span>
-        <span style="color:var(--light);font-size:18px;flex-shrink:0;">·</span>
-        <span class="tlogo">John Clark Motor Group</span>
-        <span class="tlogo">Balderton</span>
-        <span class="tlogo">Coca-Cola</span>
-        <span class="tlogo">Citywire</span>
-        <span class="tlogo">Lloyds Bank</span>
-        <span style="color:var(--light);font-size:18px;flex-shrink:0;">·</span>
+      <div class="ticker-track" style="display:flex;align-items:center;white-space:nowrap;animation:ticker 16s linear infinite;gap:clamp(20px,2.8vw,40px);">
+        <span class="tlogo">Scottish Power</span><span class="tdot">·</span>
+        <span class="tlogo">Rathbones</span><span class="tdot">·</span>
+        <span class="tlogo">PwC</span><span class="tdot">·</span>
+        <span class="tlogo">EY</span><span class="tdot">·</span>
+        <span class="tlogo">Dell</span><span class="tdot">·</span>
+        <span class="tlogo">Total Energies</span><span class="tdot">·</span>
+        <span class="tlogo">Barclays</span><span class="tdot">·</span>
+        <span class="tlogo">Coca-Cola</span><span class="tdot">·</span>
+        <span class="tlogo">Lloyds Bank</span><span class="tdot">·</span>
+        <span class="tlogo">John Clark Motor Group</span><span class="tdot">·</span>
+        <span class="tlogo">Balderton</span><span class="tdot">·</span>
+        <span class="tlogo">Citywire</span><span class="tdot">·</span>
+        <span class="tlogo">Scottish Power</span><span class="tdot">·</span>
+        <span class="tlogo">Rathbones</span><span class="tdot">·</span>
+        <span class="tlogo">PwC</span><span class="tdot">·</span>
+        <span class="tlogo">EY</span><span class="tdot">·</span>
+        <span class="tlogo">Dell</span><span class="tdot">·</span>
+        <span class="tlogo">Total Energies</span><span class="tdot">·</span>
+        <span class="tlogo">Barclays</span><span class="tdot">·</span>
+        <span class="tlogo">Coca-Cola</span><span class="tdot">·</span>
+        <span class="tlogo">Lloyds Bank</span><span class="tdot">·</span>
+        <span class="tlogo">John Clark Motor Group</span><span class="tdot">·</span>
+        <span class="tlogo">Balderton</span><span class="tdot">·</span>
+        <span class="tlogo">Citywire</span><span class="tdot">·</span>
       </div>
     </div>
   </div>
@@ -714,23 +753,24 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
   <!-- Photo hero banner -->
   <div class="pod-hero" style="position:relative;overflow:hidden;height:clamp(280px,38vw,500px);">
     <div style="position:absolute;inset:0;">
-    <img src="images/Slide 5 (thumbail in podcast section).JPG" class="pod-slide" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;opacity:1;transition:opacity 1.2s ease;display:block;">
+    <img src="images/Slide 5 (thumbail in podcast section).JPG" class="pod-slide" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;opacity:1;transition:opacity 1.2s ease;display:block;">
   </div>
     <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,.08) 100%);"></div>
     <div class="pod-hero-text" style="position:absolute;inset:0;padding:clamp(32px,5vw,64px) clamp(32px,5vw,64px) clamp(32px,5vw,64px) clamp(80px,8.5vw,120px);display:flex;flex-direction:column;justify-content:flex-end;max-width:700px;">
       <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);display:block;margin-bottom:12px;">Podcast</span>
       <h2 style="font-size:clamp(28px,4.5vw,58px);font-weight:800;line-height:.9;letter-spacing:-.04em;color:var(--white);margin-bottom:14px;">The Endurance<br>Podcast</h2>
-      <p style="font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;max-width:400px;margin-bottom:12px;">Conversations with the world's greatest endurance athletes — going deep on mindset, method, and the pursuit of extraordinary.</p>
+      <p style="font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;max-width:400px;margin-bottom:12px;">Conversations with endurance athletes, sports scientists, and community builders — going deep on mindset, methods, and the pursuit of extraordinary.</p>
 <div style="display:flex;gap:8px;flex-wrap:wrap;"><a href="https://youtube.com/playlist?list=PLZAm04fy9xotSSluuDpMpptqFm16c1RmX&si=255hVJ6BjLs8xpwq" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:100px;border:1.5px solid rgba(255,255,255,.2);font-size:11px;font-weight:700;letter-spacing:.06em;text-decoration:none;color:rgba(255,255,255,.7);transition:background .2s,border-color .2s;" onmouseover="this.style.background='rgba(255,255,255,.08)';this.style.borderColor='rgba(255,255,255,.4)'" onmouseout="this.style.background='';this.style.borderColor='rgba(255,255,255,.2)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a> <a href="https://open.spotify.com/show/1npa2DZ7jAeagEfazPGZWb" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:100px;border:1.5px solid rgba(255,255,255,.2);font-size:11px;font-weight:700;letter-spacing:.06em;text-decoration:none;color:rgba(255,255,255,.7);transition:background .2s,border-color .2s;" onmouseover="this.style.background='rgba(255,255,255,.08)';this.style.borderColor='rgba(255,255,255,.4)'" onmouseout="this.style.background='';this.style.borderColor='rgba(255,255,255,.2)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>Spotify</a> <a href="https://podcasts.apple.com/us/podcast/endurance/id1867197295" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:100px;border:1.5px solid rgba(255,255,255,.2);font-size:11px;font-weight:700;letter-spacing:.06em;text-decoration:none;color:rgba(255,255,255,.7);transition:background .2s,border-color .2s;" onmouseover="this.style.background='rgba(255,255,255,.08)';this.style.borderColor='rgba(255,255,255,.4)'" onmouseout="this.style.background='';this.style.borderColor='rgba(255,255,255,.2)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm2.54 17.747c-.19.316-.48.49-.794.49-.16 0-.32-.04-.462-.126l-3.986-2.37v.878a.75.75 0 01-1.5 0V7.381a.75.75 0 011.5 0v.877l3.986-2.369a.898.898 0 011.256.364 9.06 9.06 0 010 8.494z"/></svg>Apple</a></div>
     </div>
   </div>
   <!-- Episodes strip + side image -->
   <div style="display:block;">
     <div style="padding:clamp(24px,4vw,48px) clamp(24px,6vw,80px);">
-      <div style="border-top:1px solid var(--light);">
-        <a href="https://www.youtube.com/watch?v=qR-y9p--X98" target="_blank" class="ep"><span class="ep-title">Amy Ennion — Endurance Swimming Records</span><span class="ep-meta">55m</span><svg class="ep-arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a href="https://www.youtube.com/watch?v=ajZXVMmmg2Q" target="_blank" class="ep"><span class="ep-title">Rob Wainwright — Going the Extra Mile for Doddie Weir</span><span class="ep-meta">46m</span><svg class="ep-arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a href="https://www.youtube.com/watch?v=v_TACa4C5os" target="_blank" class="ep"><span class="ep-title">Sarah Ruggins — LEJOGLE, Europe, the World?</span><span class="ep-meta">63m</span><svg class="ep-arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:12px;">Latest Episodes</span>
+      <div id="ep-list" style="border-top:1px solid var(--light);">
+        <a href="https://www.youtube.com/watch?v=Dkz8wrRdq5k" target="_blank" class="ep"><span class="ep-title">Leigh Timmis — Cycling the World and Chasing Records Helped Me to Help Others</span><span class="ep-meta">50m</span><svg class="ep-arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="https://www.youtube.com/watch?v=5bDv-jhvwUs" target="_blank" class="ep"><span class="ep-title">Kyle Gordon — You Can't Win If You Don't Enter</span><span class="ep-meta">36m</span><svg class="ep-arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="https://www.youtube.com/watch?v=RQiQ5a7zVuk" target="_blank" class="ep"><span class="ep-title">Mitch Hutchcraft — England to Everest</span><span class="ep-meta">51m</span><svg class="ep-arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <div style="margin-top:20px;padding-top:16px;">
         <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#aaa;display:block;margin-bottom:8px;">Sponsored by</span>
@@ -791,11 +831,11 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
   <div class="res-inner">
     <div class="res-header"><h2 class="res-title">Event<br>Resources</h2></div>
     <div class="res-layout">
-      <div class="res-block wide"><svg class="res-block-icon" width="56" height="56" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="20" stroke="currentColor" stroke-width="1.5"/><path d="M24 22l18 10-18 10V22z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><div><span class="res-block-label">Download</span><span class="res-block-name">Speaker Reel</span><p class="res-block-desc">2-minute highlight reel and full 8-minute keynote demonstration.</p><div class="res-block-arr">Download <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></div>
-      <div class="res-block"><div><svg class="res-block-icon" width="44" height="44" viewBox="0 0 48 48" fill="none"><rect x="8" y="8" width="32" height="32" rx="3" stroke="currentColor" stroke-width="1.4"/><circle cx="24" cy="24" r="8" stroke="currentColor" stroke-width="1.4"/><circle cx="35" cy="13" r="2.5" fill="currentColor" opacity=".4"/></svg><span class="res-block-label" style="margin-top:18px;">Download</span><span class="res-block-name">Headshots</span><p class="res-block-desc">High-res photography for event programmes and press.</p></div><div class="res-block-arr">Download <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-      <div class="res-block"><div><svg class="res-block-icon" width="44" height="44" viewBox="0 0 48 48" fill="none"><path d="M10 6h28v36H10z" stroke="currentColor" stroke-width="1.4"/><path d="M16 18h16M16 24h16M16 30h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M30 6v8h8" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span class="res-block-label" style="margin-top:18px;">Download</span><span class="res-block-name">Bios &amp; Rate Card</span><p class="res-block-desc">Short, medium, long bios — plus fee information by region.</p></div><div class="res-block-arr">Download <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      <div class="res-block wide"><svg class="res-block-icon" width="56" height="56" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="20" stroke="currentColor" stroke-width="1.5"/><path d="M24 22l18 10-18 10V22z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><div><span class="res-block-label">Watch</span><span class="res-block-name">Speaker Reel</span><p class="res-block-desc">Three lengths available on YouTube.</p><div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;"><a class="res-reel-btn" href="https://youtu.be/p8TtC2RaCdQ?si=EG_kplvQ09GOivLT" target="_blank" rel="noopener">5-Min Showreel ↗</a><a class="res-reel-btn" href="https://youtu.be/BUz2FKC15rk?si=rzuZgJeFo5V9LNX4" target="_blank" rel="noopener">4-Min Highlights ↗</a><a class="res-reel-btn" href="https://www.youtube.com/watch?v=hbB60G6Z-q0" target="_blank" rel="noopener">38-Min Webinar ↗</a></div></div></div>
+      <a class="res-block" href="downloads/mark-beaumont-headshots.zip" download><div><svg class="res-block-icon" width="44" height="44" viewBox="0 0 48 48" fill="none"><rect x="8" y="8" width="32" height="32" rx="3" stroke="currentColor" stroke-width="1.4"/><circle cx="24" cy="24" r="8" stroke="currentColor" stroke-width="1.4"/><circle cx="35" cy="13" r="2.5" fill="currentColor" opacity=".4"/></svg><span class="res-block-label" style="margin-top:18px;">Download</span><span class="res-block-name">Headshots</span><p class="res-block-desc">High-res photography for event programmes and press.</p></div><div class="res-block-arr">Download <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a>
+      <a class="res-block" href="downloads/mark-beaumont-bios-and-rate-card.zip" download><div><svg class="res-block-icon" width="44" height="44" viewBox="0 0 48 48" fill="none"><path d="M10 6h28v36H10z" stroke="currentColor" stroke-width="1.4"/><path d="M16 18h16M16 24h16M16 30h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M30 6v8h8" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span class="res-block-label" style="margin-top:18px;">Download</span><span class="res-block-name">Bios &amp; Rate Card</span><p class="res-block-desc">Short, medium, long bios — plus fee information by region.</p></div><div class="res-block-arr">Download <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></a>
     </div>
-    <div class="res-footer"><a href="#" class="res-dl"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v8M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Download All Resources</a><p class="res-note">All assets are print-ready and web-optimised. Questions? Contact Deborah directly.</p></div>
+    <div class="res-footer"><a href="downloads/mark-beaumont-event-resources.zip" download class="res-dl"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v8M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Download All Resources</a><p class="res-note">All assets are print-ready and web-optimised.</p></div>
   </div>
 </section>
 
@@ -808,7 +848,13 @@ footer{background:var(--ink);border-top:1px solid #1a1a1a;padding:24px clamp(24p
 <div id="split-tip"></div>
 <script>
 const cur=document.getElementById('cur');
-if(cur)document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';});
+if(cur){
+  let curX=0,curY=0,curRaf=false;
+  document.addEventListener('mousemove',e=>{
+    curX=e.clientX;curY=e.clientY;
+    if(!curRaf){curRaf=true;requestAnimationFrame(()=>{cur.style.transform='translate('+curX+'px,'+curY+'px) translate(-50%,-50%)';cur.style.opacity='1';curRaf=false;});}
+  },{passive:true});
+}
 
 (function(){
   const wrap=document.getElementById('cards-scroll');
@@ -831,15 +877,25 @@ if(cur)document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';c
       c2.classList.remove('bike-running');
     },{once:true});
   }
+  const mapSvg=document.querySelector('#c2 .map-wrap svg');
+  let mapPaused=false;
   function tick(){
     const scrolled=Math.max(0,window.pageYOffset-wrapTop);
+    const stackActive=window.pageYOffset<wrapTop+5.2*vh;
     cards.forEach((card,i)=>{
       const t=Math.max(0,Math.min(1,(scrolled-i*vh)/vh));
       card.style.transform='translateY('+Math.round(-ease(t)*vh)+'px)';
+      card.style.visibility=(t>=1)?'hidden':'visible';
+      card.style.willChange=(stackActive&&t<1)?'transform':'auto';
     });
     const c2Visible=scrolled>=1.3*vh&&scrolled<3*vh;
     if(c2Visible&&!bikeGo){bikeGo=true;triggerBike();}
     if(!c2Visible&&bikeGo){bikeGo=false;}
+    if(mapSvg&&mapSvg.pauseAnimations){
+      const mapOn=scrolled>=0.9*vh&&scrolled<3*vh;
+      if(mapOn&&mapPaused){mapSvg.unpauseAnimations();mapPaused=false;}
+      else if(!mapOn&&!mapPaused){mapSvg.pauseAnimations();mapPaused=true;}
+    }
   }
   var rafPending=false;
   window.addEventListener('scroll',function(){
@@ -858,7 +914,12 @@ document.getElementById('lmbtn').addEventListener('click',e=>{
 (function(){
   const notes=Array.from(document.querySelectorAll('.note'));
   let topZ=10;
-  notes.forEach(n=>n.addEventListener('click',()=>{topZ++;n.style.zIndex=topZ;}));
+  notes.forEach(n=>n.addEventListener('click',()=>{
+    const z=parseInt(n.style.zIndex||'0',10);
+    const isTop=(z===topZ&&topZ>10)||(!n.style.zIndex&&n.classList.contains('note-float'));
+    if(isTop){n.style.zIndex=-1;}
+    else{topZ++;n.style.zIndex=topZ;}
+  }));
 })();
 
 (function(){
@@ -887,14 +948,12 @@ document.getElementById('lmbtn').addEventListener('click',e=>{
 })();
 
 (function(){
-  var slides = document.querySelectorAll('.c3-slide');
-  if(slides.length < 2) return;
-  var cur = 0;
-  setInterval(function(){
-    slides[cur].style.opacity = '0';
-    cur = (cur + 1) % slides.length;
-    slides[cur].style.opacity = '1';
-  }, 4500);
+  var track=document.querySelector('.ticker-track');
+  if(!track||!('IntersectionObserver' in window))return;
+  var obs=new IntersectionObserver(function(e){
+    track.style.animationPlayState=e[0].isIntersecting?'running':'paused';
+  });
+  obs.observe(track);
 })();
 
 (function(){
@@ -912,7 +971,7 @@ document.getElementById('lmbtn').addEventListener('click',e=>{
 (function(){
   var grid=document.querySelector('#partnerships .pstat6');
   if(!grid)return;
-  var vals=grid.querySelectorAll('.stat-val');
+  var vals=document.querySelectorAll('#partnerships .stat-val');
   var done=false;
   function scramble(el,final,delay){
     setTimeout(function(){
@@ -942,7 +1001,12 @@ document.getElementById('lmbtn').addEventListener('click',e=>{
 (function(){
   var o=document.getElementById('intro-overlay');
   if(!o)return;
-  if(sessionStorage.getItem('mbIntroSeen')){o.remove();return;}
+  var bg0=document.getElementById('c0-logo-bg');
+  if(sessionStorage.getItem('mbIntroSeen')||matchMedia('(prefers-reduced-motion: reduce)').matches){
+    o.remove();
+    if(bg0)bg0.classList.add('is-visible');
+    return;
+  }
   sessionStorage.setItem('mbIntroSeen','1');
   document.body.style.overflow='hidden';
 
@@ -1009,6 +1073,64 @@ document.getElementById('lmbtn').addEventListener('click',e=>{
       alert('Something went wrong — please try again or email directly.');
     });
   });
+})();
+
+/* Latest episodes — live-sync from the YouTube playlist page.
+   Fetches the playlist via a CORS proxy, reads the newest full-length
+   episodes (Shorts/clips under 15 min are skipped), caches for 6 hours.
+   If anything fails (offline, proxy down, YouTube markup change) the
+   hard-coded episode rows above stay in place as the fallback. */
+(function(){
+  var list=document.getElementById('ep-list');
+  if(!list||!window.fetch)return;
+  var KEY='mbEpsCache1';
+  function render(eps){
+    list.innerHTML='';
+    eps.forEach(function(ep){
+      var a=document.createElement('a');
+      a.href='https://www.youtube.com/watch?v='+ep.id;
+      a.target='_blank';a.className='ep';
+      var t=document.createElement('span');t.className='ep-title';t.textContent=ep.t;
+      var m=document.createElement('span');m.className='ep-meta';m.textContent=ep.m+'m';
+      a.appendChild(t);a.appendChild(m);
+      a.insertAdjacentHTML('beforeend','<svg class="ep-arr" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+      list.appendChild(a);
+    });
+  }
+  try{
+    var c=JSON.parse(localStorage.getItem(KEY)||'null');
+    if(c&&Date.now()-c.t<21600000&&c.eps&&c.eps.length){render(c.eps);return;}
+  }catch(e){}
+  var PL='https://www.youtube.com/playlist?list=PLZAm04fy9xotSSluuDpMpptqFm16c1RmX';
+  fetch('https://api.allorigins.win/raw?url='+encodeURIComponent(PL))
+  .then(function(r){if(!r.ok)throw 0;return r.text();})
+  .then(function(html){
+    var m=html.match(/var ytInitialData = (\{[\s\S]*?\});<\/script>/);
+    if(!m)return;
+    var data=JSON.parse(m[1]);
+    var lockups=[];
+    (function walk(o){
+      if(o&&typeof o==='object'){
+        if(o.lockupViewModel)lockups.push(o.lockupViewModel);
+        for(var k in o)walk(o[k]);
+      }
+    })(data);
+    var eps=[];
+    for(var i=0;i<lockups.length&&eps.length<3;i++){
+      var l=lockups[i];
+      var dm=JSON.stringify(l).match(/"text":"(\d+):(\d\d)(?::(\d\d))?"/);
+      if(!dm)continue;
+      var mins=dm[3]?parseInt(dm[1],10)*60+parseInt(dm[2],10):parseInt(dm[1],10);
+      if(mins<15)continue;
+      var md=l.metadata&&l.metadata.lockupMetadataViewModel;
+      var title=md&&md.title&&md.title.content;
+      if(!title||!l.contentId)continue;
+      eps.push({id:l.contentId,t:title.trim(),m:mins});
+    }
+    if(eps.length<1)return;
+    try{localStorage.setItem(KEY,JSON.stringify({t:Date.now(),eps:eps}));}catch(e){}
+    render(eps);
+  }).catch(function(){});
 })();
 
 (function(){
